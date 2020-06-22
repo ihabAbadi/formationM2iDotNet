@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+h2 {
+    color: green;
+}
+
+#a1 {
+    border: 1px solid #cd2127;
+}
+.text1 {
+    font-size: 20px;
+    font-weight: bold;
+    color: purple;
+    
+}
+/* #h21 {
+    color: pink;
+} */
+
+article .text1 {
+    color: yellow;
+}
+section article .text1 {
+    color: turquoise;
+}
+
+h3.text1 {
+    color: tomato;
+}
+
+ul {
+    text-align: center;
+}
+li {
+    list-style: none;
+}

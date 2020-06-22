@@ -1,0 +1,22 @@
+div {
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+}
+.bloc1 {
+    background-color: blue;
+    /* position: absolute; */
+    position: fixed;
+    right: 10px;
+    top: 0px;
+}
+
+.bloc2 {
+    background-color: red;
+    position: absolute;
+    left: 50%;
+}
+
+.bloc3 {
+    background-color: tomato;
+}
