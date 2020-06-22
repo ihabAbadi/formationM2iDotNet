@@ -1,0 +1,27 @@
+body, html {
+    height: 100%;
+}
+header {
+    width: 100%;
+    min-height: 25%;
+    background-color: orange;
+}
+#page {
+    height: 50%;
+}
+.left, .right {
+    float: left;
+    min-height: 100%;
+    border: 1px solid black;
+}
+.left {
+    width: 30%;
+}
+.right {
+    width: 69%;
+}
+footer {
+    width: 100%;
+    min-height: 25%;
+    background-color: greenyellow;
+}
