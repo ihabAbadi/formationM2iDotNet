@@ -1,0 +1,34 @@
+body {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    height: 100%;
+}
+div {
+    flex-grow: 1;
+    margin: 5px;
+    background-color: red;
+    height: 100px;
+}
+/* @media (min-width:400px) and (max-width : 700px) {
+    div {
+        background-color: blue;
+    }
+} */
+@media (max-width:439px) {
+    body {
+        flex-flow: column;
+    }
+} 
+@media (max-width:739px) and (min-width:440px){
+    
+    div {
+        width: 48%;
+    }
+} 
+@media (orientation:landscape) {
+    div {
+        background-color: blueviolet;
+    }
+}
