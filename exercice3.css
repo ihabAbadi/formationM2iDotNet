@@ -1,0 +1,30 @@
+html,body {
+    height: 100%;
+}
+main {
+    display: flex;
+    flex-flow: column;
+    align-items: stretch;
+    justify-content: space-between;
+    height: 100%;
+}
+
+section {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: stretch;
+    height: 23%;
+}
+
+.bloc {
+    background-color: greenyellow;
+    width: 100px;
+    margin: 5px;
+}
+.bloc2 {
+    width: 60%;
+}
+.bloc3 {
+    width: 30%;
+}
