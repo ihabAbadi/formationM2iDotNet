@@ -1,0 +1,64 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: stretch;
+}
+header {
+    height: 10%;
+    background-color: lightblue;
+}
+footer {
+    height: 8%;
+    background-color: orange;
+}
+
+.main, .related {
+    display: flex;
+    flex-flow: row;
+    align-items: stretch;
+}
+.main {
+    height: 60%;
+}
+.related {
+    height: 20%;
+}
+.relatedImages {
+    flex-grow: 2;
+    background-color: green;
+}
+.relatedPosts {
+    flex-grow: 1;
+    background-color: pink;
+}
+.main section {
+    display: flex;
+    flex-flow: column;
+    align-items: stretch;
+    height: 100%;
+    width: 50%;
+}
+.hero {
+    background-color: plum;
+    flex-grow: 2;
+}
+.sidebar {
+    background-color: greenyellow;
+    flex-grow: 3;
+}
+.mainContent {
+    background-color: yellow;
+    flex-grow: 3;
+}
+.extraContent {
+    background-color: gray;
+    flex-grow: 1;
+}
+div, aside, footer, header {
+    margin: 5px;
+}

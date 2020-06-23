@@ -1,32 +1,36 @@
+html,body {
+    height: 100%;
+}
 #parent {
     display: flex;
     /*flex-direction: row-reverse;
     flex-wrap: wrap; */
-    flex-flow: row;
+    flex-flow: column wrap;
     justify-content: space-around;
-    height: 700px;
-    align-items: center;
+    height: 70%;
+    /* align-items: center; */
 }
 
 .bloc {
     margin: 10px;
-    height: 100px;
+    height: 200px;
+    width: 100px;
 }
 
 .bloc1 {
     background-color: blue;
-    order: 2;
+    /* order: 2;
     flex-grow: 2;
     /* align-self: flex-end; */
-    align-self: stretch;
+    /* align-self: stretch;  */
 }
 .bloc2 {
     background-color: red;
-    order: 3;
-    flex-grow: 3;
+    /* order: 3;
+    flex-grow: 3; */
 }
 .bloc3 {
     background-color: greenyellow;
-    order: 1;
-    flex-grow: 1;
+    /* order: 1;
+    flex-grow: 1; */
 }
