@@ -1,0 +1,22 @@
+#parent {
+    display: flex;
+    /*flex-direction: row-reverse;
+    flex-wrap: wrap; */
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.bloc {
+    margin: 10px;
+    max-width: 200px;
+}
+
+.bloc1 {
+    background-color: blue;
+}
+.bloc2 {
+    background-color: red;
+}
+.bloc3 {
+    background-color: greenyellow;
+}
