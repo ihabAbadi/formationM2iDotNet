@@ -1,0 +1,29 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+body section {
+    width: 50%;
+    height: 50%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+}
+.bloc {
+    width: 30%;
+    height: 45%;
+    background-color: lightblue;
+    margin: 5px;
+}
+.bigBloc {
+    height: 100%;
+    width: 63%;
+}
+#sectionInRow {
+    flex-flow: row wrap;
+}
