@@ -1,0 +1,127 @@
+
+body,html {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-flow: column;
+    align-items: stretch
+}
+
+header {
+    background-color: blue;
+    height: 10%;
+}
+#central, footer {
+    display:flex;
+}
+.isMobile {
+    display: block;
+    height: 100%;
+}
+.isNotMobile {
+    display: none;
+    height: 100%;
+}
+@media (min-width : 767px) {
+    .isMobile {
+        display: none;
+    }
+    .isNotMobile {
+        display: block;
+    }
+    #mainSection {
+        height: 70%;
+        display: flex;
+        flex-flow: row wrap;
+        align-items: stretch;
+    }
+    .g1 {
+        background-color: darkblue;
+        width: 30%;
+    }
+    .g2 {
+        background-color: gray;
+        width: 50%;
+    }
+    .secondSection {
+        width: 20%;
+        display: flex;
+        flex-flow: column;
+        align-items: stretch;
+    }
+    .f1 {
+        background-color: darkgray;
+        height: 50%;
+    }
+    .f2 {
+        background-color: lightblue;
+        height: 50%;
+    }
+    footer {
+        width: 100%;
+        background-color: darkcyan;
+        height: 20%;
+    }
+} 
+@media (max-width:767px) {
+    nav {
+        background-color: darkblue;
+        height: 10%;
+    }
+    #central {
+        flex-flow: row-reverse;
+        align-items: stretch;
+        height: 50%;
+    }
+    footer {
+        flex-flow: row;
+        align-items: stretch;
+        height: 20%;
+    }
+    .g1 {
+        background-color: lightgray;
+        flex-grow: 2;
+    }
+    .g2 {
+        background-color: lightslategray;
+        flex-grow: 1;
+    }
+    .f1 {
+        background-color: darkblue;
+        flex-grow: 1;
+    }
+    .f2 {
+        background-color: darkcyan;
+        flex-grow: 2;
+    }
+}
+@media (max-width:439px) {
+    #central, footer {
+        flex-flow: column;
+        align-items: stretch;
+    }
+    #central {
+        height: 50%;
+    }
+    footer {
+        height: 20%;
+    }
+    .g1 {
+        background-color: lightgray;
+        height: 70%;
+    }
+    .g2 {
+        background-color: lightslategray;
+        height: 30%;
+    }
+    .f1 {
+        background-color: darkblue;
+        height: 50%;
+    }
+    .f2 {
+        background-color: darkcyan;
+        height: 50%;
+    }
+}
