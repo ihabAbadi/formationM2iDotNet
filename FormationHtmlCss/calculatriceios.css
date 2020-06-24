@@ -38,11 +38,16 @@ main {
     background-color: gray;
 }
 
-
+.scientifique button:hover {
+    background-color: lightgreen;
+}
 .standard button {
     width: 25%;
     height: 20%;
     background-color: gray;
+}
+.standard button:hover {
+    background-color: lightgray;
 }
 .standard .zero {
     width: 50%;

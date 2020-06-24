@@ -1,0 +1,44 @@
+@keyframes changeColor {
+    /* from {
+        background-color: red;
+        transform: translateX(0px);
+    }
+    to {
+        background-color: blue;
+        transform: translateX(150px) rotate(180deg);
+        border-radius: 50px;
+    } */
+    from {
+        background-color: red;
+        transform: translateX(0px);
+    }
+    25% {
+        background-color: blueviolet;
+        transform: translateX(100px);
+    }
+    50% {
+        background-color: brown;
+        transform: translateY(200px) rotate(180deg);
+    }
+    75% {
+        background-color: cadetblue;
+        transform: translateZ(250px) rotate(-360deg);
+    }
+
+    to {
+        background-color: coral;
+        transform: translateX(-100px) rotate(360deg);
+    }
+}
+
+div {
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    
+}
+div {
+    animation-name: changeColor;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+}
