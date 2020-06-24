@@ -1,0 +1,57 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-flow: column;
+    align-items: stretch;
+}
+header {
+    height: 10%;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    font-size: 20px;
+    text-align: right;
+}
+main {
+    height: 90%;
+    display: flex;
+    flex-flow: row;
+    align-items: stretch;
+}
+.scientifique {
+    flex-grow: 25;
+    display: none;
+    flex-flow: column wrap;
+}
+.standard {
+    flex-grow: 4;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.scientifique button {
+    width: 16.66%;
+    height: 20%;
+    background-color: gray;
+}
+
+
+.standard button {
+    width: 25%;
+    height: 20%;
+    background-color: gray;
+}
+.standard .zero {
+    width: 50%;
+}
+.standard .orange {
+    background-color: orange;
+}
+@media (orientation:landscape) {
+    .scientifique {
+        display: flex;
+    }
+}
