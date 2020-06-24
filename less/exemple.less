@@ -1,0 +1,31 @@
+// declaration de variable
+@couleur : red;
+@taille-police : 10px;
+div {
+    background-color:@couleur;
+}
+
+section {
+    color: @couleur;
+    font-size: @taille-police * 3;
+}
+// les mixins
+/* css comment */
+.bordure(@taille: 5px, @color : green) {
+    border: @taille solid @color;
+    border-radius: @taille;
+}
+
+article {
+    .bordure(5px, red);
+}
+header {
+    .bordure(10px, blue);
+}
+
+footer {
+    .bordure;
+}
+.bordure(){
+    background-color: red;
+}

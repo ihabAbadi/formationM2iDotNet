@@ -1,0 +1,21 @@
+div {
+  background-color: red;
+}
+section {
+  color: red;
+  font-size: 30px;
+}
+/* css comment */
+article {
+  border: 5px solid red;
+  border-radius: 5px;
+}
+header {
+  border: 10px solid blue;
+  border-radius: 10px;
+}
+footer {
+  border: 5px solid green;
+  border-radius: 5px;
+  background-color: red;
+}
