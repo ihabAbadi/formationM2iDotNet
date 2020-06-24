@@ -24,7 +24,7 @@ main {
 .scientifique {
     flex-grow: 25;
     display: none;
-    flex-flow: column wrap;
+    flex-flow: row wrap;
 }
 .standard {
     flex-grow: 4;
