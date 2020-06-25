@@ -1,6 +1,3 @@
-.navPerso {
-    /* background-color: grey; */
-}
 .navPerso a {
     font-size: 10px;
 }
@@ -20,6 +17,19 @@
     color: white;
     font-size: 25px;
 }
-.pub {
-
+.icone .fa {
+    background-color: #0078D7;
+    color: white;
+    border-radius: 60px;
+    font-size: 20px;
+    padding: 10px;
+    width: 40px;
+}
+.icone .badge {
+    top: 0;
+    position: absolute;
+    right: 0;
+    background-color: #FFDD00;
+    border-radius: 10px;
+    color: white;
 }
