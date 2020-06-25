@@ -25,5 +25,6 @@
 const div = document.querySelector("#maDiv")
 
 div.addEventListener('click', function(e) {
-    alert(e.target.innerText)
+    const res = document.querySelector('#result')
+    res.innerHTML = e.target.innerHTML
 })
