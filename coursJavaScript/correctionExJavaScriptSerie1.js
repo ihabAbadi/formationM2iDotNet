@@ -25,12 +25,25 @@
 // })
 
 //Exercice 3
+// const input = document.querySelector("input")
+// const result = document.querySelector("div")
+
+// input.addEventListener('keyup', function(e) {
+//     result.innerHTML = "";
+//     for(let i=1; i <= parseInt(e.target.value); i++) {
+//         result.innerHTML += "<div>Bonjour tout le monde</div>"
+//     }
+// })
+
+//Exercice 4
 const input = document.querySelector("input")
 const result = document.querySelector("div")
 
 input.addEventListener('keyup', function(e) {
     result.innerHTML = "";
-    for(let i=1; i <= parseInt(e.target.value); i++) {
-        result.innerHTML += "<div>Bonjour tout le monde</div>"
+    for(let i=1; i <= 10; i++) {
+        const nombre = parseInt(e.target.value)
+        let chaine = nombre +" X "+ i +" = " + (nombre*i)
+        result.innerHTML += "<div>"+chaine+"</div>"
     }
 })
