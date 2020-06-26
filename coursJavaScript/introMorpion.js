@@ -1,6 +1,15 @@
-const section = document.querySelector("section")
+const taille = 4
+const grid = document.querySelector(".grid")
 
-section.addEventListener('click', function(e) {
-    e.target.innerText = "Coucou"
-    alert(e.target.getAttribute('data-x') +" "+e.target.getAttribute("data-y"))
+for(let i=1; i <= taille; i++) {
+    for(let j=1; j <= taille ; j++) {
+        grid.innerHTML+='<div class="col-'+parseInt(12/taille)+' case" data-x="'+i+'" data-y="'+j+'"></div>'
+    }
+}
+let isFirstPlayer = true
+grid.addEventListener('click', function(e) {
+    if(e.target.innerText == "") {
+        e.target.innerText = (isFirstPlayer) ? 'X' : 'O'
+        isFirstPlayer = !isFirstPlayer
+    }
 })
