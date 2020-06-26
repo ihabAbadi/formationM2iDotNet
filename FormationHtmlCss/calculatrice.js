@@ -1,6 +1,8 @@
 const standard = document.querySelector('.standard')
 const header = document.querySelector('header')
 let firstNumber = true
+let operationCours = undefined
+let nombre
 standard.addEventListener('click', function(e) {
     const valueButton = e.target.innerText
     if(!isNaN(valueButton)) {
@@ -14,5 +16,21 @@ standard.addEventListener('click', function(e) {
     }
     else {
         firstNumber = true
+        switch(valueButton) {
+            case "+":
+                if(operationCours == undefined) {
+                    nombre = parseFloat(header.innerText)
+                }
+                else {
+                    switch(operationCours) {
+                        case "+":
+                            nombre = nombre + parseFloat(header.innerText)
+                            header.innerText = nombre
+                            break;
+                    }
+                }
+                operationCours = "+"
+                break;
+        }
     }
 })
