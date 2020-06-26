@@ -1,5 +1,6 @@
 const taille = 4
 const grid = document.querySelector(".grid")
+
 let endGame = false
 for (let i = 1; i <= taille; i++) {
     for (let j = 1; j <= taille; j++) {
