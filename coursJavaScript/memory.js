@@ -33,6 +33,13 @@ class Memory {
 
 
 const g = document.querySelector("#grid")
-let m = new Memory(8,g)
-m.generateHtml()
+let m = new Memory(16,g)
 
+m.generateHtml()
+// setTimeout(function(){
+//     alert("Bonjour après 2 sec")
+// },2000)
+g.addEventListener('click', function(e){
+    
+    e.target.classList.add("hideMask")
+})
