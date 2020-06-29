@@ -55,19 +55,50 @@
 // console.log(p1)
 // console.log(p2)
 
-function voiture(model, marque, immat, conso) {
-    this.model = model
-    this.marque = marque
-    this.immat = immat
-    this.reservoir = 0
-    this.conso = conso
-    this.afficher = function() {
+// function voiture(model, marque, immat, conso) {
+//     this.model = model
+//     this.marque = marque
+//     this.immat = immat
+//     this.reservoir = 0
+//     this.conso = conso
+//     this.afficher = function() {
+//         console.log("Voiture model : "+ this.model + ", marque : "+this.marque + ", immat : "+this.immat+", reservoir : "+this.reservoir)
+//     }
+//     this.fairePlein = function(nombreLitre) {
+//         this.reservoir += nombreLitre
+//     }
+//     this.rouler = function(nombreKm) {
+//         const consoF = nombreKm * this.conso / 100
+//         if(this.reservoir - consoF >= 0) {
+//             console.log("Voiture roule ")
+//             this.reservoir -= consoF
+//         }
+//         else {
+//             console.log("Merci de faire le plein il vous manque : "+ (consoF - this.reservoir) + " L")
+//         }
+//     }
+// }
+
+//Création d'objet en utilisant des classes
+class Voiture {
+
+    constructor(model, marque, immat, conso) {
+        this.model = model
+        this.marque = marque
+        this.immat = immat
+        this.reservoir = 0
+        this.conso = conso
+    }
+    
+    afficher() {
         console.log("Voiture model : "+ this.model + ", marque : "+this.marque + ", immat : "+this.immat+", reservoir : "+this.reservoir)
     }
-    this.fairePlein = function(nombreLitre) {
+
+    fairePlein(nombreLitre) {
         this.reservoir += nombreLitre
     }
-    this.rouler = function(nombreKm) {
+
+    rouler(nombreKm) {
         const consoF = nombreKm * this.conso / 100
         if(this.reservoir - consoF >= 0) {
             console.log("Voiture roule ")
@@ -78,12 +109,12 @@ function voiture(model, marque, immat, conso) {
         }
     }
 }
-const v1 = new voiture("kuga" ,"Ford", "123456",9)
+const v1 = new Voiture("kuga" ,"Ford", "123456",9)
 v1.afficher()
 v1.fairePlein(50)
 v1.afficher()
 v1.rouler(30)
 v1.afficher()
 v1.rouler(1000)
-const v2 = new voiture("Kia", "ceed", "233333", 7)
+const v2 = new Voiture("Kia", "ceed", "233333", 7)
 
