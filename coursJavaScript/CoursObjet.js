@@ -80,41 +80,79 @@
 // }
 
 //Création d'objet en utilisant des classes
-class Voiture {
+// class Voiture {
 
-    constructor(model, marque, immat, conso) {
-        this.model = model
-        this.marque = marque
-        this.immat = immat
-        this.reservoir = 0
-        this.conso = conso
-    }
+//     constructor(model, marque, immat, conso) {
+//         this.model = model
+//         this.marque = marque
+//         this.immat = immat
+//         this.reservoir = 0
+//         this.conso = conso
+//     }
     
+//     afficher() {
+//         console.log("Voiture model : "+ this.model + ", marque : "+this.marque + ", immat : "+this.immat+", reservoir : "+this.reservoir)
+//     }
+
+//     fairePlein(nombreLitre) {
+//         this.reservoir += nombreLitre
+//     }
+
+//     rouler(nombreKm) {
+//         const consoF = nombreKm * this.conso / 100
+//         if(this.reservoir - consoF >= 0) {
+//             console.log("Voiture roule ")
+//             this.reservoir -= consoF
+//         }
+//         else {
+//             console.log("Merci de faire le plein il vous manque : "+ (consoF - this.reservoir) + " L")
+//         }
+//     }
+// }
+// const v1 = new Voiture("kuga" ,"Ford", "123456",9)
+// v1.afficher()
+// v1.fairePlein(50)
+// v1.afficher()
+// v1.rouler(30)
+// v1.afficher()
+// v1.rouler(1000)
+// const v2 = new Voiture("Kia", "ceed", "233333", 7)
+
+class Personnage {
+    constructor(nom, sante, force) {
+        this.nom = nom
+        this.sante = sante
+        this.force = force
+        this.exp = 0
+    }
+
     afficher() {
-        console.log("Voiture model : "+ this.model + ", marque : "+this.marque + ", immat : "+this.immat+", reservoir : "+this.reservoir)
+        console.log("Nom du personnage : "+ this.nom + ", sante : "+this.sante +", force : "+this.force +", exp : "+this.exp)
     }
 
-    fairePlein(nombreLitre) {
-        this.reservoir += nombreLitre
-    }
-
-    rouler(nombreKm) {
-        const consoF = nombreKm * this.conso / 100
-        if(this.reservoir - consoF >= 0) {
-            console.log("Voiture roule ")
-            this.reservoir -= consoF
-        }
-        else {
-            console.log("Merci de faire le plein il vous manque : "+ (consoF - this.reservoir) + " L")
+    attaquer(cible) {
+        if(cible.sante > 0) {
+            cible.sante -= this.force
+            this.exp += 10
+            cible.afficher()
+            if(cible.sante <= 0) {
+                console.log("cible est morte")
+            }
         }
     }
 }
-const v1 = new Voiture("kuga" ,"Ford", "123456",9)
-v1.afficher()
-v1.fairePlein(50)
-v1.afficher()
-v1.rouler(30)
-v1.afficher()
-v1.rouler(1000)
-const v2 = new Voiture("Kia", "ceed", "233333", 7)
+const p1 = new Personnage("p1", 1000, 50)
+const p2 = new Personnage("p2", 1000, 160)
+
+let firstAttack = true
+while(p1.sante > 0 && p2.sante > 0 ) {
+    
+    if(firstAttack) {
+        p1.attaquer(p2)
+    }
+    else {
+        p2.attaquer(p1)
+    }
+    firstAttack = !firstAttack
+}
 
