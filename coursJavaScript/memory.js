@@ -39,7 +39,6 @@ class Memory {
         this.htmlGrid.addEventListener('click', (e) => {
             if (e.target.classList.contains("mask")) {
                 e.target.classList.add('hideMask')
-                
                 if (!this.firstClick) {
                     if (e.target.getAttribute("data-value") == this.firstValue) {
                         const allhiddenMask = document.querySelectorAll(".hideMask")
