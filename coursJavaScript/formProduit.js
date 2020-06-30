@@ -152,7 +152,16 @@ class GestionProduits {
     //Méthode pour supprimer un produit avec son id
     supprimerProduit(id) {
         //Insctruction pour la suppression du produit
-        alert("suppression produit "+id)
+        let index = undefined
+        for(let i=0; i < this.produits.length; i++) {
+            if(this.produits[i].id == id) {
+                index = i;
+                break;
+            }
+        }
+        if(index != undefined) {
+            this.produits.splice(index,1)
+        }
         this.affichageHtmlProduits()
     }
 
