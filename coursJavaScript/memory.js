@@ -38,6 +38,7 @@ class Memory {
         this.htmlGrid.addEventListener('click', (e) => {
             if (e.target.classList.contains("mask")) {
                 e.target.classList.add('hideMask')
+                
                 if (!this.firstClick) {
                     if (e.target.getAttribute("data-value") == this.firstValue) {
                         const allhiddenMask = document.querySelectorAll(".hideMask")
@@ -56,7 +57,6 @@ class Memory {
                             this.firstClick = true
                         }, 1000)
                     }
-
                     this.firstValue = undefined
                 }
                 else {
@@ -74,6 +74,9 @@ const g = document.querySelector("#grid")
 let m = new Memory(8, g)
 
 m.generateHtml()
+setInterval(() => {
+    document.querySelector('h1').innerText = parseInt(document.querySelector('h1').innerText) + 1 
+}, 1000)
 // setTimeout(function(){
 //     alert("Bonjour après 2 sec")
 // },2000)
