@@ -5,6 +5,8 @@ class Memory {
         this.init()
         this.shuffle()
         this.htmlGrid = htmlGrid
+        this.firstClick = true
+        this.firstValue = undefined
     }
 
     init() {
@@ -26,20 +28,54 @@ class Memory {
 
     generateHtml() {
         for(let i=0 ; i< this.grid.length; i++) {
-            this.htmlGrid.innerHTML += "<div class='mask'><div class='case'>"+this.grid[i]+"</div></div>"
+            this.htmlGrid.innerHTML += "<div class='case'><div class='mask' data-value='"+this.grid[i]+"'></div><div class='valueCase'>"+this.grid[i]+"</div></div>"
         }
+        this.htmlEventListener()
+    }
+
+    htmlEventListener() {
+        //Utilisation d'une fonction pur (Arrow function ) au lieu d'utiliser le mot clé function pour accéder au attribut de la classe mère 
+        this.htmlGrid.addEventListener('click', (e) => {
+            e.target.classList.add('hideMask')
+            if(!this.firstClick) {
+                if(e.target.getAttribute("data-value") == this.firstValue) {
+                    const allhiddenMask = document.querySelectorAll(".hideMask")
+                        for(let i=0; i < allhiddenMask.length; i++) {
+                            allhiddenMask[i].classList.remove('hideMask')
+                            allhiddenMask[i].classList.add('found')
+                        }
+                }
+                else {
+                    setTimeout(() => {
+                        const allhiddenMask = document.querySelectorAll(".hideMask")
+                        for(let i=0; i < allhiddenMask.length; i++) {
+                            allhiddenMask[i].classList.remove('hideMask')
+                        }
+                       
+                    },1000)
+                }             
+                this.firstClick = !this.firstClick
+                this.firstValue = undefined
+            }
+            else {
+                this.firstValue = e.target.getAttribute("data-value")
+                this.firstClick = !this.firstClick
+            }
+            
+        })
+        
     }
 }
 
 
 const g = document.querySelector("#grid")
-let m = new Memory(16,g)
+let m = new Memory(8,g)
 
 m.generateHtml()
 // setTimeout(function(){
 //     alert("Bonjour après 2 sec")
 // },2000)
-g.addEventListener('click', function(e){
+// g.addEventListener('click', function(e){
     
-    e.target.classList.add("hideMask")
-})
+//     e.target.classList.add("hideMask")
+// })
