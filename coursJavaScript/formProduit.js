@@ -34,15 +34,22 @@ formProduit.addEventListener('submit', function(e) {
     }
     if(!error) {
         produits.push({
+            id : (produits[produits.length-1]!= undefined) ? (produits[produits.length-1].id+1) : 1,
             titre : titre,
             prix : prix,
             description : description
         })
-        affichage.innerHTML += "<div class='col'>"
-        affichage.innerHTML += "<div class='row'><div class='col'>"+titre+"</div></div>"
-        affichage.innerHTML += "<div class='row'><div class='col'>"+prix+"</div></div>"
-        affichage.innerHTML += "<div class='row'><div class='col'>"+description+"</div></div>"
-        affichage.innerHTML += "</div>"
+        
+        let produit = ""
+        produit += "<div class='col'>"
+        produit += "<div class='row'><div class='col'>"+titre+"</div></div>"
+        produit += "<div class='row'><div class='col'>"+prix+"</div></div>"
+        produit += "<div class='row'><div class='col'>"+description+"</div></div>"
+        produit += "</div>"
+        affichage.innerHTML += produit
+        document.querySelector('input[name="prix"]').value = ""
+        document.querySelector('input[name="titre"]').value = ""
+        document.querySelector('textarea').value = ""
     }
     else {
 
