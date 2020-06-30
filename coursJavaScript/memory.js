@@ -7,6 +7,7 @@ class Memory {
         this.htmlGrid = htmlGrid
         this.firstClick = true
         this.firstValue = undefined
+        this.compte = 0
     }
 
     init() {
@@ -47,6 +48,7 @@ class Memory {
                             allhiddenMask[i].classList.add('found')
                         }
                         this.firstClick = true
+                        this.compte++
                     }
                     else {
                         setTimeout(() => {
@@ -62,6 +64,10 @@ class Memory {
                 else {
                     this.firstValue = e.target.getAttribute("data-value")
                     this.firstClick = !this.firstClick
+                }
+                console.log(this.compte)
+                if(this.compte == this.length) {
+                    alert("Bravo vous avez gagné ")
                 }
             }
         })
