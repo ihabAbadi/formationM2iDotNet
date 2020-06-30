@@ -44,6 +44,7 @@ class Memory {
                             allhiddenMask[i].classList.remove('hideMask')
                             allhiddenMask[i].classList.add('found')
                         }
+                    this.firstClick = true
                 }
                 else {
                     setTimeout(() => {
@@ -51,10 +52,10 @@ class Memory {
                         for(let i=0; i < allhiddenMask.length; i++) {
                             allhiddenMask[i].classList.remove('hideMask')
                         }
-                       
+                        this.firstClick = true
                     },1000)
                 }             
-                this.firstClick = !this.firstClick
+               
                 this.firstValue = undefined
             }
             else {
