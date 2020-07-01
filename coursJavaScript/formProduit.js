@@ -69,11 +69,12 @@ class GestionProduits {
         //Attribut pour la zone d'affichage html
         this.affichageHtml = affichageHtml
         this.errors = []
+        this.editId = undefined
     }
 
 
     //Methode pour ajouter un produit dans l'attribut produits à partir du formulaire
-    ajouterProduit() {
+    validerProduit() {
         let error = false
         const titre = this.formulaire.querySelector('input[name="titre"]').value
         const prix = this.formulaire.querySelector('input[name="prix"]').value
@@ -94,12 +95,26 @@ class GestionProduits {
             this.formulaire.querySelector("textarea").classList.add("border-danger")
         }
         if (!error) {
-            this.produits.push({
-                id: (this.produits[this.produits.length - 1] != undefined) ? (this.produits[this.produits.length - 1].id + 1) : 1,
-                titre: titre,
-                prix: prix,
-                description: description
-            })
+            if(this.editId == undefined) {
+                this.produits.push({
+                    id: (this.produits[this.produits.length - 1] != undefined) ? (this.produits[this.produits.length - 1].id + 1) : 1,
+                    titre: titre,
+                    prix: prix,
+                    description: description
+                })
+            } else {
+                for(let produit of this.produits) {
+                    if(produit.id == this.editId) {
+                        produit.titre = titre
+                        produit.prix = prix
+                        produit.description = description
+                        break
+                    }
+                }
+                this.editId = undefined
+            }
+            
+
             this.affichageHtmlProduits()
             this.clearForm()
         }
@@ -133,7 +148,7 @@ class GestionProduits {
     eventListener() {
         this.formulaire.addEventListener('submit', (e) => {
             e.preventDefault()
-            this.ajouterProduit()
+            this.validerProduit()
         })
         this.formulaire.addEventListener('keydown', (e) => {
             e.target.classList.remove("border-danger")
@@ -155,8 +170,8 @@ class GestionProduits {
         let index = undefined
         for(let i=0; i < this.produits.length; i++) {
             if(this.produits[i].id == id) {
-                index = i;
-                break;
+                index = i
+                break
             }
         }
         if(index != undefined) {
@@ -168,8 +183,22 @@ class GestionProduits {
     //Méthode modification produit
     modifierProduit(id) {
         //Instruction pour la modification du produit
-        alert("modification produit "+id)
-        this.affichageHtmlProduits()
+        let produitFound = undefined
+        for(let produit of this.produits) {
+            if(produit.id == id){
+                produitFound = produit
+                break
+            }
+        }
+        if(produitFound != undefined) {
+            this.formulaire.querySelector("input[name='titre']").value = produitFound.titre
+            this.formulaire.querySelector("input[name='prix']").value = produitFound.prix
+            this.formulaire.querySelector("textarea").value = produitFound.description
+            this.editId = produitFound.id
+        }
+        else {
+            alert("Aucun produit avec cet id")
+        }
     }
 }
 const formProduit = document.querySelector("#formProduit")
