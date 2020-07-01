@@ -27,4 +27,7 @@ header.addEventListener('click', (e) => {
             // console.log(contenuPages)
         })
     }
+    else {
+        main.innerHTML += "<div><a>Modifier</a></div>"
+    }
 })
