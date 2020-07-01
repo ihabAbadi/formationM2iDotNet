@@ -8,5 +8,10 @@ const header = document.querySelector("header")
 const main = document.querySelector("main")
 
 for(let page in contenuPages) {
-    header.innerHTML += "<a>"+page+"</a>"
+    header.innerHTML += "<a href='"+page+"'>"+page+"</a>"
 }
+header.addEventListener('click', (e) => {
+    e.preventDefault()
+    const page = e.target.getAttribute("href")
+    main.innerHTML = contenuPages[page]
+})
