@@ -1,4 +1,4 @@
-const contenuPages = {
+let contenuPages = {
     formulaire: "<form><div><input placeholder='titre page' type='text' name='titre' /></div><div><textarea placeholder='contenu page' name='contenu'></textarea></div><div><button type='submit'>Valider</button></div></form>",
     page1: 'contenuPage 1',
     page2: 'contenuPage 2',
@@ -29,6 +29,7 @@ header.addEventListener('click', (e) => {
     }
     else {
         main.innerHTML += "<div><a class='edit' href='" + page + "'>Modifier</a></div>"
+        main.innerHTML += "<div><a class='delete' href='" + page + "'>supprimer</a></div>"
     }
 })
 
@@ -46,5 +47,20 @@ main.addEventListener('click', (e) => {
             const contenuPage = form.querySelector('textarea').value
             contenuPages[titrePage] = contenuPage
         })
+    }
+    else if(e.target.classList.contains('delete')) {
+        e.preventDefault()
+        let tmpObject = {}
+        for(let key in contenuPages) {
+            if(key != e.target.getAttribute('href')) {
+                tmpObject[key] = contenuPages[key]
+            }
+        }
+        contenuPages = tmpObject
+        header.innerHTML = ""
+        for (let page in contenuPages) {
+            header.innerHTML += "<a href='" + page + "'>" + page + "</a>"
+        }
+        main.innerHTML = ""
     }
 })
