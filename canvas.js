@@ -83,16 +83,30 @@ let x = 10
 let y = 10
 let dx = 0
 let dy = 0
+let prop = 1
 let gameOver = false
-const width = 50
-const height = 50
+let generateRect = true
+let cibleCase = {
+    x : 0,
+    y : 0,
+}
+const width = 10
+const height = 10
 const drawRect = (i, j) => {
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    ctx.clearRect(i-(dx * prop), j-dy, width, height)
     ctx.beginPath()
     ctx.rect(i, j, width, height)
     ctx.fillStyle = "#cd2127"
     ctx.fill()
     ctx.closePath()
+}
+
+const drawRandomRect = () => {
+    let randomX = Math.floor(Math.random() * (canvas.width-width))
+    let randomY = Math.floor(Math.random() * (canvas.height - height))
+    cibleCase.x = randomX
+    cibleCase.y = randomY
+    drawRect(randomX, randomY)
 }
 setInterval(() => {
     if (!gameOver) {
@@ -102,11 +116,21 @@ setInterval(() => {
             alert("game over")
             gameOver = true
         }
+        else if((x >= (cibleCase.x-width) && x <= (cibleCase.x+width)) && (y >= (cibleCase.y-height) && y <= (cibleCase.y+height))) {
+            ctx.clearRect(cibleCase.x, cibleCase.y, width, height)
+            prop++
+            console.log("test")
+            generateRect = true
+        }
         else {
             drawRect(x, y)
         }
+        if(generateRect) {
+            drawRandomRect()
+            generateRect = false
+        }
     }
-}, 10);
+}, 20);
 document.addEventListener('keyup', (e) => {
     if (e.keyCode == 37) {
         dy = 0
