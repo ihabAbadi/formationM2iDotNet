@@ -281,7 +281,7 @@ class snake {
                     this.direction = "top"
                     break;
                 case 40:
-                    this.direction = "bottom"
+                    this.direction = "bottom" 
                     break;
             }
             this.cases[this.cases.length-1].direction = this.direction
