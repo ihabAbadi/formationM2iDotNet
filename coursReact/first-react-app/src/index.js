@@ -7,7 +7,7 @@ import { FirstComponent } from './FirstComponent';
 
 ReactDOM.render(
   <React.StrictMode>
-   <FirstComponent></FirstComponent>
+   <App></App>
   </React.StrictMode>,
   document.getElementById('root')
 );
