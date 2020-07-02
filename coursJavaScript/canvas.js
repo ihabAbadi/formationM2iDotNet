@@ -196,31 +196,32 @@ class snake {
             y: 0,
             direction: this.direction
         })
-        this.cases.push({
-            x: this.widthCase,
-            y: this.heightCase,
-            direction: this.direction
-        })
+        
     }
 
     makeCible() {
         let cible = {
-            x: Math.floor(Math.random() * (this.width-this.widthCase)),
-            y: Math.floor(Math.random() * (this.height-this.heightCase))
+            x: Math.floor(Math.random() * (this.width - this.widthCase)),
+            y: Math.floor(Math.random() * (this.height - this.heightCase))
         }
 
         return cible
     }
 
     changeDirection(c) {
-        if(c.x == this.cases[this.cases.length-1].x && c.y == this.cases[this.cases.length-1].y){
+        if (c.x == this.cases[this.cases.length - 1].x && c.y == this.cases[this.cases.length - 1].y) {
+            console.log("test")
             c.direction = this.direction
         }
     }
 
-    drawAll() {
+    drawAll() {    
         this.ctx.clearRect(0, 0, this.width, this.height)
-        for (let c of this.cases) {
+        for (let i = 0; i < this.cases.length; i++) {
+            let c = this.cases[i]
+            if (i < this.cases.length - 1) {
+                this.changeDirection(c)
+            }
             switch (c.direction) {
                 case "left":
                     c.x -= this.delta
@@ -236,7 +237,8 @@ class snake {
                     break;
             }
             this.drawCase(c.x, c.y)
-            this.changeDirection(c)
+            
+
         }
         this.drawCase(this.cible.x, this.cible.y)
     }
@@ -252,24 +254,43 @@ class snake {
     init() {
         this.eventListener()
         setInterval(() => {
-           this.drawAll() 
-           this.reachCible()
+            this.drawAll()
+            this.reachCible()
         }, 20);
     }
 
     reachCible() {
-        if(this.cases[this.cases.length-1].x == this.cible.x && this.cases[this.cases.length-1].y == this.cible.y){
+        if ((this.cases[this.cases.length - 1].x <= (this.cible.x + this.widthCase) && this.cases[this.cases.length - 1].x >= this.cible.x) && (this.cases[this.cases.length - 1].y <= (this.cible.y + this.heightCase) && this.cases[this.cases.length - 1].y >= this.cible.y)) { 
+            let nx = this.cases[this.cases.length - 1].x, ny = this.cases[this.cases.length - 1].y
+            switch (this.direction) {
+                case "left":
+                    nx = this.cases[this.cases.length - 1].x + this.widthCase
+                    break;
+                case "right":
+                    nx = this.cases[this.cases.length - 1].x - this.widthCase
+                    break;
+                case "top":
+                    ny = this.cases[this.cases.length - 1].y + this.height
+                    break;
+                case "bottom":
+                    ny = this.cases[this.cases.length - 1].y - this.height
+                    break;
+                default:
+                    break;
+            }
             this.cases.push({
-                x : this.cible.x,
-                y : this.cible.y,
-                direction : this.direction
+                x: nx,
+                y: ny,
+                direction: this.direction
             })
             this.cible = this.makeCible()
+            console.log(this.cases)
         }
     }
 
     eventListener() {
         document.addEventListener('keyup', (e) => {
+           
             switch (e.keyCode) {
                 case 37:
                     this.direction = "left"
@@ -281,14 +302,14 @@ class snake {
                     this.direction = "top"
                     break;
                 case 40:
-                    this.direction = "bottom" 
+                    this.direction = "bottom"
                     break;
             }
-            this.cases[this.cases.length-1].direction = this.direction
+            this.cases[this.cases.length - 1].direction = this.direction
         })
     }
 }
 let canvas = document.querySelector('canvas')
 let ctx = canvas.getContext("2d")
-let s = new snake(ctx,canvas.width, canvas.height)
+let s = new snake(ctx, canvas.width, canvas.height)
 s.init()
