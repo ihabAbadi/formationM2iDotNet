@@ -78,73 +78,101 @@ let ctx = canvas.getContext("2d")
 //     }
 
 // })
+
+const cases = []
 const delta = 2
 let x = 10
 let y = 10
 let dx = 0
 let dy = 0
-let prop = 1
+let prop = 0
 let gameOver = false
 let generateRect = true
+let direction = undefined
 let cibleCase = {
     x: 0,
     y: 0,
 }
 const width = 10
 const height = 10
-const drawRect = (i, j, p) => {
+const drawRect = (i, j) => {
     ctx.beginPath()
-    ctx.rect(i, j, width*p, height)
+    ctx.rect(i, j, width, height)
     ctx.fillStyle = "#cd2127"
     ctx.fill()
     ctx.closePath()
 }
 
 const drawRandomRect = () => {
-    
     if (generateRect) {
         cibleCase.x = Math.floor(Math.random() * (canvas.width - width))
         cibleCase.y = Math.floor(Math.random() * (canvas.height - height))
         generateRect = false
     }
     console.log(cibleCase)
-    drawRect(cibleCase.x, cibleCase.y,1)
+    drawRect(cibleCase.x, cibleCase.y)
 }
+cases.push({
+    x: 0,
+    y: 0,
+    direction: "right"
+})
 setInterval(() => {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     if (!gameOver) {
-        x += dx
-        y += dy
+
         if (x >= canvas.width - width || x <= 0 || y >= canvas.height - height || y <= 0) {
             alert("game over")
             gameOver = true
         }
-        else if ((x >= (cibleCase.x - width) && x <= (cibleCase.x + width)) && (y >= (cibleCase.y - height) && y <= (cibleCase.y + height))) { 
-            prop++
+        else if ((x >= (cibleCase.x - width) && x <= (cibleCase.x + width)) && (y >= (cibleCase.y - height) && y <= (cibleCase.y + height))) {
             console.log("test")
             generateRect = true
+            cases.push({
+                x: cibleCase.x,
+                y: cibleCase.y,
+                direction: direction
+            })
         }
         else {
-            drawRect(x, y, prop)
+            for (let c of cases) {
+                switch (c.direction) {
+                    case "right":
+                        c.x += delta
+                        break;
+                    case "left":
+                        c.x -= delta
+                        break;
+                    case "top":
+                        c.y -= delta
+                        break;
+                    case "bottom":
+                        c.y += delta
+                        break;
+                }
+                drawRect(c.x, c.y)
+                if(c.x == dx && c.y == dy) {
+                    c.direction = direction
+                }
+                
+            }
         }
         drawRandomRect()
     }
 }, 20);
 document.addEventListener('keyup', (e) => {
     if (e.keyCode == 37) {
-        dy = 0
-        dx = -delta
+        direction = "left"
     }
     else if (e.keyCode == 39) {
-        dy = 0
-        dx = delta
+        direction = "right"
     }
     else if (e.keyCode == 38) {
-        dx = 0
-        dy = -delta
+        direction = "top"
     }
     else if (e.keyCode == 40) {
-        dx = 0
-        dy = delta
+        direction = "bottom"
     }
+    dx = cases[cases.length - 1].x
+    dy = cases[cases.length - 1].y
 })
