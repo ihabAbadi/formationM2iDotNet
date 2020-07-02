@@ -1,5 +1,5 @@
-let canvas = document.querySelector('canvas')
-let ctx = canvas.getContext("2d")
+// let canvas = document.querySelector('canvas')
+// let ctx = canvas.getContext("2d")
 // ctx.beginPath()
 // ctx.rect(10, 100, 50, 80)
 // ctx.fillStyle = "#cd2127"
@@ -79,7 +79,7 @@ let ctx = canvas.getContext("2d")
 
 // })
 
-const cases = []
+/*const cases = []
 const delta = 2
 let x = 10
 let y = 10
@@ -125,7 +125,7 @@ setInterval(() => {
             alert("game over")
             gameOver = true
         }
-        else if ((x >= (cibleCase.x - width) && x <= (cibleCase.x + width)) && (y >= (cibleCase.y - height) && y <= (cibleCase.y + height))) {
+        else if (cases[cases.length - 1].x == cibleCase.x && cases[cases.length - 1].y == cibleCase.y) {
             console.log("test")
             generateRect = true
             cases.push({
@@ -136,6 +136,9 @@ setInterval(() => {
         }
         else {
             for (let c of cases) {
+                if(c.x == dx && c.y == dy) {
+                    c.direction = direction
+                }
                 switch (c.direction) {
                     case "right":
                         c.x += delta
@@ -151,10 +154,7 @@ setInterval(() => {
                         break;
                 }
                 drawRect(c.x, c.y)
-                if(c.x == dx && c.y == dy) {
-                    c.direction = direction
-                }
-                
+                     
             }
         }
         drawRandomRect()
@@ -173,6 +173,122 @@ document.addEventListener('keyup', (e) => {
     else if (e.keyCode == 40) {
         direction = "bottom"
     }
-    dx = cases[cases.length - 1].x
-    dy = cases[cases.length - 1].y
-})
+    if(cases.length > 1) {
+        dx = cases[cases.length - 1].x
+        dy = cases[cases.length - 1].y
+    }
+    
+})*/
+
+class snake {
+    constructor(ctx, width, height) {
+        this.ctx = ctx
+        this.width = width
+        this.height = height
+        this.widthCase = 50
+        this.heightCase = 50
+        this.cases = []
+        this.direction = undefined
+        this.delta = 2
+        this.cible = this.makeCible()
+        this.cases.push({
+            x: 0,
+            y: 0,
+            direction: this.direction
+        })
+        this.cases.push({
+            x: this.widthCase,
+            y: this.heightCase,
+            direction: this.direction
+        })
+    }
+
+    makeCible() {
+        let cible = {
+            x: Math.floor(Math.random() * (this.width-this.widthCase)),
+            y: Math.floor(Math.random() * (this.height-this.heightCase))
+        }
+
+        return cible
+    }
+
+    changeDirection(c) {
+        if(c.x == this.cases[this.cases.length-1].x && c.y == this.cases[this.cases.length-1].y){
+            c.direction = this.direction
+        }
+    }
+
+    drawAll() {
+        this.ctx.clearRect(0, 0, this.width, this.height)
+        for (let c of this.cases) {
+            switch (c.direction) {
+                case "left":
+                    c.x -= this.delta
+                    break;
+                case "right":
+                    c.x += this.delta
+                    break;
+                case "top":
+                    c.y -= this.delta
+                    break;
+                case "bottom":
+                    c.y += this.delta
+                    break;
+            }
+            this.drawCase(c.x, c.y)
+            this.changeDirection(c)
+        }
+        this.drawCase(this.cible.x, this.cible.y)
+    }
+
+    drawCase(x, y) {
+        this.ctx.beginPath()
+        this.ctx.rect(x, y, this.widthCase, this.heightCase)
+        this.ctx.fillStyle = "#cd2127"
+        this.ctx.fill()
+        this.ctx.closePath()
+    }
+
+    init() {
+        this.eventListener()
+        setInterval(() => {
+           this.drawAll() 
+           this.reachCible()
+        }, 20);
+    }
+
+    reachCible() {
+        if(this.cases[this.cases.length-1].x == this.cible.x && this.cases[this.cases.length-1].y == this.cible.y){
+            this.cases.push({
+                x : this.cible.x,
+                y : this.cible.y,
+                direction : this.direction
+            })
+            this.cible = this.makeCible()
+        }
+    }
+
+    eventListener() {
+        document.addEventListener('keyup', (e) => {
+            switch (e.keyCode) {
+                case 37:
+                    this.direction = "left"
+                    break;
+                case 39:
+                    this.direction = "right"
+                    break;
+                case 38:
+                    this.direction = "top"
+                    break;
+                case 40:
+                    this.direction = "bottom"
+                    break;
+            }
+            this.cases[this.cases.length-1].direction = this.direction
+        })
+    }
+}
+let canvas = document.querySelector('canvas')
+let ctx = canvas.getContext("2d")
+let s = new snake(ctx,canvas.width, canvas.height)
+s.init()
