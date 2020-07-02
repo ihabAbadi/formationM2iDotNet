@@ -87,28 +87,31 @@ let prop = 1
 let gameOver = false
 let generateRect = true
 let cibleCase = {
-    x : 0,
-    y : 0,
+    x: 0,
+    y: 0,
 }
 const width = 10
 const height = 10
-const drawRect = (i, j) => {
-    ctx.clearRect(i-(dx * prop), j-dy, width, height)
+const drawRect = (i, j, p) => {
     ctx.beginPath()
-    ctx.rect(i, j, width, height)
+    ctx.rect(i, j, width*p, height)
     ctx.fillStyle = "#cd2127"
     ctx.fill()
     ctx.closePath()
 }
 
 const drawRandomRect = () => {
-    let randomX = Math.floor(Math.random() * (canvas.width-width))
-    let randomY = Math.floor(Math.random() * (canvas.height - height))
-    cibleCase.x = randomX
-    cibleCase.y = randomY
-    drawRect(randomX, randomY)
+    
+    if (generateRect) {
+        cibleCase.x = Math.floor(Math.random() * (canvas.width - width))
+        cibleCase.y = Math.floor(Math.random() * (canvas.height - height))
+        generateRect = false
+    }
+    console.log(cibleCase)
+    drawRect(cibleCase.x, cibleCase.y,1)
 }
 setInterval(() => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
     if (!gameOver) {
         x += dx
         y += dy
@@ -116,19 +119,15 @@ setInterval(() => {
             alert("game over")
             gameOver = true
         }
-        else if((x >= (cibleCase.x-width) && x <= (cibleCase.x+width)) && (y >= (cibleCase.y-height) && y <= (cibleCase.y+height))) {
-            ctx.clearRect(cibleCase.x, cibleCase.y, width, height)
+        else if ((x >= (cibleCase.x - width) && x <= (cibleCase.x + width)) && (y >= (cibleCase.y - height) && y <= (cibleCase.y + height))) { 
             prop++
             console.log("test")
             generateRect = true
         }
         else {
-            drawRect(x, y)
+            drawRect(x, y, prop)
         }
-        if(generateRect) {
-            drawRandomRect()
-            generateRect = false
-        }
+        drawRandomRect()
     }
 }, 20);
 document.addEventListener('keyup', (e) => {
