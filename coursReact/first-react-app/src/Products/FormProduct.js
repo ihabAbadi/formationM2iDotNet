@@ -6,7 +6,8 @@ export class FormProduct extends Component {
         this.state = {
             product : {
                 images : []
-            }
+            },
+            numberImageInput : 1
         }
     }
 
@@ -28,6 +29,10 @@ export class FormProduct extends Component {
         this.props.addProduct(this.state.product)
     }
     render() {
+        const inputs = []
+        for(let i=1; i <= this.state.numberImageInput; i++ ){
+            inputs.push(<div><input type='text' placeholder="Url Image" /></div>)
+        }
         return(
             <div>
                 <form onSubmit={this.submitForm}>
@@ -40,6 +45,12 @@ export class FormProduct extends Component {
                     <div>
                         <input type="text" onChange={this.onChangeField} name="price" placeholder="Prix  du produit" />
                     </div>
+                    <div><button onClick={()=>{
+                        this.setState({
+                            numberImageInput:this.state.numberImageInput+1
+                        })
+                    }}>Ajouter image</button></div>
+                    {inputs}
                     <div>
                         <button type="submit">Valider</button>
                     </div>
