@@ -10,10 +10,11 @@ export class Person extends Component {
     render() {
         return(
             <div>
-                <div>Nom {this.props.nom}</div>
-                <div>Prénom {this.props.prenom}</div>
-                <div>Téléphone {this.props.tel}</div>
-                <Address rue={this.props.rue} ville={this.props.ville} pays={this.props.pays}></Address>
+                <div>Nom {this.props.personne.nom}</div>
+                <div>Prénom {this.props.personne.prenom}</div>
+                <div>Téléphone {this.props.personne.tel}</div>
+                {/* <Address rue={this.props.rue} ville={this.props.ville} pays={this.props.pays}></Address> */}
+                <Address adresse = {this.props.personne.address} />
             </div>
         )
     }
