@@ -5,8 +5,8 @@ export class Product extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            qty : 1,
-            total : this.props.price * 1,
+            qty : 0,
+            total : this.props.price * 0,
             error : undefined
         }
     }
@@ -31,6 +31,7 @@ export class Product extends Component {
     editQty = (e) => {
         let val = parseInt(e.target.value)
         if(!isNaN(val) && val > 0) {
+            this.props.updateTotal(this.props.price * (val - this.state.qty))
             this.setState({
                 qty : val,
                 total : this.props.price * val,
