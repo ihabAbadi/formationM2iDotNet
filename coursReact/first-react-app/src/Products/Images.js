@@ -8,7 +8,9 @@ export class Images extends Component {
     render() {
         return (
             <div>
-                <img src={this.props.uri} />
+                {this.props.uri.map((image) => {
+                    return (<img src={image} />)
+                })}
             </div>
         )
     }

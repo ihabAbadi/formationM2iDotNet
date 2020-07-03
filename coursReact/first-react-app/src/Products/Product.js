@@ -17,7 +17,7 @@ export class Product extends Component {
                     {this.props.price}
                 </div>
                 <div>
-                    <Images uri={this.props.image}></Images>
+                    <Images uri={this.props.images}></Images>
                 </div>
             </div>
         )
