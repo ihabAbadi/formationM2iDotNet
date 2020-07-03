@@ -70,6 +70,9 @@ export class Product extends Component {
                 <div>
                 <button onClick={this.less}>moin</button><button onClick={this.more}>Plus</button>
                 </div>
+                <div>
+                    <button onClick={() => {this.props.delete(this.props.title)}}>Supprimer</button>
+                </div>
                 {/* <div onClick={this.clickProduit}>
                     Je clique sur le produit
                 </div> */}
