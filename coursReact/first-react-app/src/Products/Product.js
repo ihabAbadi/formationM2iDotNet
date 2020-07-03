@@ -6,7 +6,8 @@ export class Product extends Component {
         super(props)
         this.state = {
             qty : 1,
-            total : this.props.price * 1
+            total : this.props.price * 1,
+            error : undefined
         }
     }
 
@@ -26,6 +27,23 @@ export class Product extends Component {
             total : this.props.price * (this.state.qty-1)
         })
     }
+
+    editQty = (e) => {
+        let val = parseInt(e.target.value)
+        if(!isNaN(val) && val > 0) {
+            this.setState({
+                qty : val,
+                total : this.props.price * val,
+                error : undefined
+            })
+        }
+        else {
+            this.setState({
+                error : 'merci de saisir une qty valide'
+            })
+        }
+        
+    }
     render() {
         return (
             <div>
@@ -38,6 +56,10 @@ export class Product extends Component {
                 </div>
                 <div>
                     Qty : {this.state.qty}
+                </div>
+                {(this.state.error) != undefined ? <div>{this.state.error}</div> : ''}
+                <div>
+                    <input type="text" onChange={this.editQty} />
                 </div>
                 <div>
                     Total : {this.state.total}
