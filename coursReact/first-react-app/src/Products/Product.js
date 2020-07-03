@@ -31,6 +31,7 @@ export class Product extends Component {
     editQty = (e) => {
         let val = parseInt(e.target.value)
         if(!isNaN(val) && val > 0) {
+            //Update total
             this.props.updateTotal(this.props.price * (val - this.state.qty))
             this.setState({
                 qty : val,

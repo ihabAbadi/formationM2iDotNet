@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { Product } from "./Product"
+import { FormProduct } from "./FormProduct"
 
 export class ListProduct extends Component {
     constructor(props) {
@@ -31,12 +32,26 @@ export class ListProduct extends Component {
     updateTotal = (montant) => {
         let total = this.state.total + montant
         this.setState({
-            total : total
+            total: total
+        })
+    }
+
+    addProduct = (newProduct) => {
+        // let tmpProducts = []
+        // for (let product of this.state.products) {
+        //     tmpProducts.push(product)
+        // }
+        // tmpProducts.push(newProduct)
+        
+        let tmpProducts = [...this.state.products, newProduct]
+        this.setState({
+            products: tmpProducts
         })
     }
     render() {
         return (
             <div>
+                <FormProduct addProduct={this.addProduct} />
                 <h1>Liste des produits</h1>
                 <div>Total : {this.state.total}</div>
                 {this.state.products.map((element) => {
