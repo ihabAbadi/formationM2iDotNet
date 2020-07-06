@@ -51,6 +51,19 @@ export class ListToDos extends Component {
         })
     }
 
+    editToDo = (id, newContent) => {
+        let tmpTodos = []
+        for(let todo of this.state.todos) {
+            if(todo.id == id){
+                todo.content = newContent
+            }
+            tmpTodos.push(todo)
+        }
+        this.setState({
+            todos : tmpTodos
+        })
+    }
+
     render() {
         return(
             <div className="container">
@@ -59,7 +72,7 @@ export class ListToDos extends Component {
                 <NotificationToDo numberTask={this.state.todos.length}></NotificationToDo>
                 {this.state.todos.map(todo => {
                     return(
-                        <ToDo deleteToDo={this.deleteToDo} changeStatus={this.changeStatus} todo={todo}></ToDo>
+                        <ToDo editToDo={this.editToDo} deleteToDo={this.deleteToDo} changeStatus={this.changeStatus} todo={todo}></ToDo>
                     )
                 })}
             </div>
