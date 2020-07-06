@@ -25,6 +25,19 @@ export class ListToDos extends Component {
         })
     }
 
+    deleteToDo = (id) => {
+        let tmpTodos = []
+        for(let todo of this.state.todos) {
+            if(todo.id != id){
+                tmpTodos.push(todo)
+            }
+            
+        }
+        this.setState({
+            todos : tmpTodos
+        })
+    }
+
     changeStatus = (id, newStatus) => {
         let tmpTodos = []
         for(let todo of this.state.todos) {
@@ -46,7 +59,7 @@ export class ListToDos extends Component {
                 <NotificationToDo numberTask={this.state.todos.length}></NotificationToDo>
                 {this.state.todos.map(todo => {
                     return(
-                        <ToDo changeStatus={this.changeStatus} todo={todo}></ToDo>
+                        <ToDo deleteToDo={this.deleteToDo} changeStatus={this.changeStatus} todo={todo}></ToDo>
                     )
                 })}
             </div>

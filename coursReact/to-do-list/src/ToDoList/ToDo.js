@@ -35,7 +35,9 @@ export class ToDo extends Component {
                     <button className='btn btn-primary'>edit</button>
                 </div>
                 <div className='col-2'>
-                    <button className='btn btn-primary'>delete</button>
+                    <button className='btn btn-primary' onClick ={() => {
+                        this.props.deleteToDo(this.props.todo.id)
+                    }}>delete</button>
                 </div>
             </div>
         )
