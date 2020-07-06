@@ -5,22 +5,27 @@ export class ToDo extends Component {
         super(props)
         //Dans les props, on va avoir un objet todo avec content, status
     }
+
+    changeStatus = () => {
+        const status = this.props.todo.status == 'done' ? 'undone' : 'done'
+        this.props.changeStatus(this.props.todo.id,status)
+    }
     renderDoneOrUnDoneButton = () => {
         if(this.props.todo.status == 'done') {
             return(
-                <button className='btn btn-success m-1'>done</button>
+                <button onClick={this.changeStatus} className='btn btn-success m-1'>done</button>
             )
         }
         else {
             return(
-                <button className='btn btn-danger m-1'>undone</button>
+                <button onClick={this.changeStatus} className='btn btn-danger m-1'>undone</button>
             )
         }
     }
     render() {
         return(
             <div className="row">
-                <div className={(this.props.todo.status == 'done') ? 'col-6 text-success' : 'col-6 text-danger'}>
+                <div onClick={this.changeStatus} className={(this.props.todo.status == 'done') ? 'btn col-6 text-success' : 'btn col-6 text-danger'}>
                     {this.props.todo.content}
                 </div>
                 <div className='col-2'>

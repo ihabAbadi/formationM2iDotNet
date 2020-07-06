@@ -25,15 +25,28 @@ export class ListToDos extends Component {
         })
     }
 
+    changeStatus = (id, newStatus) => {
+        let tmpTodos = []
+        for(let todo of this.state.todos) {
+            if(todo.id == id){
+                todo.status = newStatus
+            }
+            tmpTodos.push(todo)
+        }
+        this.setState({
+            todos : tmpTodos
+        })
+    }
+
     render() {
         return(
             <div className="container">
                 <h1 className="text-center">React ToDo List</h1>
                 <FormToDo addToDo={this.addToDo}></FormToDo>
-                <NotificationToDo></NotificationToDo>
+                <NotificationToDo numberTask={this.state.todos.length}></NotificationToDo>
                 {this.state.todos.map(todo => {
                     return(
-                        <ToDo todo={todo}></ToDo>
+                        <ToDo changeStatus={this.changeStatus} todo={todo}></ToDo>
                     )
                 })}
             </div>
