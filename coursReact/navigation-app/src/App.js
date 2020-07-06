@@ -2,7 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import { BrowserRouter, Link, Switch, Route } from "react-router-dom"
 import './App.css';
-import { ComponentA, ComponentB, Home } from './Components';
+import { ComponentA, Home } from './Components';
+import ComponentB from "./Components"
 
 function App() {
   return (
