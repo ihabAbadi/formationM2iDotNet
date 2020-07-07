@@ -1,24 +1,43 @@
 import React, { Component } from "react"
-import {JobService} from "./../services/JobService"
+import { JobService } from "./../services/JobService"
 export class Confirmation extends Component {
-    
+
     constructor(props) {
         super(props)
-        console.log(JobService.data)
+        this.state = {
+            data: JobService.data
+        }
     }
 
     render() {
-        
-        return(
+
+        return (
             <div className="container">
-                <div className="row">First Name : {JobService.dataContact.firstName}</div>
-                <div className="row">Last Name : {JobService.dataContact.lastName}</div>
-                <div className="row">Birth Day: {JobService.dataContact.birthDay}</div>
-                <div className="row">Email: {JobService.dataContact.email}</div>
-                <div className="row">Phone Number: {JobService.dataContact.phoneNumber}</div>
-                <div className="row">Linkedin: {JobService.dataContact.linkedin}</div>
-                <div className="row">Location: {JobService.dataContact.location}</div>
-                <div className="row">Industry Like: {JobService.dataContact.industryLike}</div>
+                <div className="row">
+                    <div className="col">First Name</div>
+                    <div className="col">Last Name</div>
+                    <div className="col">Birth Day</div>
+                    <div className="col">Email</div>
+                    <div className="col">Phone Number</div>
+                    <div className="col">Linkedin</div>
+                    <div className="col">Location</div>
+                    <div className="col">Industry Like</div>
+                </div>
+                {this.state.data.map((c) => {
+                    return (
+                        <div className="row">
+                            <div className="col">{c.firstName}</div>
+                            <div className="col">{c.lastName}</div>
+                            <div className="col">{c.birthDay}</div>
+                            <div className="col">{c.email}</div>
+                            <div className="col">{c.phoneNumber}</div>
+                            <div className="col">{c.linkedin}</div>
+                            <div className="col">{c.location}</div>
+                            <div className="col">{c.industryLike}</div>
+                        </div>
+                    )
+                })}
+
             </div>
         )
     }
