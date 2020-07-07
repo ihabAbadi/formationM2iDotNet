@@ -9,10 +9,26 @@ export class Confirmation extends Component {
         }
     }
 
+    search = (e) => {
+        if(e.target.value != ''){
+            this.setState({
+                data : JobService.data.filter(element => (element.firstName.includes(e.target.value) || element.lastName.includes(e.target.value)))
+            })
+        }
+        else {
+            this.setState({
+                data : JobService.data
+            })
+        }
+    }
+
     render() {
 
         return (
             <div className="container">
+                <div className="row m-1">
+                    <input type="text" className="form-control col" onChange={this.search} />
+                </div>
                 <div className="row">
                     <div className="col">First Name</div>
                     <div className="col">Last Name</div>
