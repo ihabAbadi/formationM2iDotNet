@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import {BrowserRouter, Route, Switch} from "react-router-dom"
-import { BasicInformation } from "./BasicInformation"
-import { ContactDetail } from "./ContactDetail"
+import  BasicInformation from "./BasicInformation"
+import  ContactDetail  from "./ContactDetail"
 import  JobPreferences  from "./JobPreferences"
 import { Confirmation } from "./Confirmation"
 export class Home extends Component {

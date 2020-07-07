@@ -1,9 +1,14 @@
 import React, { Component } from "react"
-import {Link} from "react-router-dom"
+import {Link, withRouter} from "react-router-dom"
 import {JobService} from "./../services/JobService"
 
-export class ContactDetail extends Component {
-
+class ContactDetail extends Component {
+    constructor(props) {
+        super(props)
+        if(JobService.etape != 1) {
+            this.props.history.push('/')
+        }
+    }
     changeField = (e) => {
         JobService.dataContact[e.target.name] = e.target.value
     }
@@ -23,9 +28,14 @@ export class ContactDetail extends Component {
             </div>
             <div className='row m-1'>
                 <Link to='/' className='col btn form-control btn-secondary'>Previous</Link>
-                <Link to='/step3' className='col btn form-control btn-primary'>Next</Link>
+                <button onClick={() => {
+                    JobService.etape = 2
+                    this.props.history.push('/step3')
+                }}  className='col btn form-control btn-primary'>Next</button>
             </div>
         </div>
         )
     }
 }
+
+export default withRouter(ContactDetail)

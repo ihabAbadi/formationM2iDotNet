@@ -5,6 +5,9 @@ import {JobService} from "./../services/JobService"
 class JobPreferences extends Component {
     constructor(props) {
         super(props)
+        if(JobService.etape != 2) {
+            this.props.history.push('/step2')
+        }
         
     }
     changeField = (e) => {
@@ -15,6 +18,7 @@ class JobPreferences extends Component {
         JobService.data.push(JobService.dataContact)
         //La métode rest est déclarée dans le Ficher service JobService, elle permet de reset l'objet dataContact dans le service 
         JobService.reset()
+        JobService.etape = 0
         //L'objet history est ajouté par lafonction withRouter, il permet d'utiliser la méthode push pour naviguer entre les composants de notre BrowserRouter
         this.props.history.push('/confirm')
     }

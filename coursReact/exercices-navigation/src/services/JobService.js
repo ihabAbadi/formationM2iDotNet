@@ -24,4 +24,6 @@ export class JobService {
             industryLike: ''
         }
     }
+
+    static etape = 0
 }
