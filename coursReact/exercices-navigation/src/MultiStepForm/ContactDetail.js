@@ -1,12 +1,13 @@
 import React, { Component } from "react"
 import {Link} from "react-router-dom"
+import {DataService} from "./../services/data.service"
 
 export class ContactDetail extends Component {
 
     render() {
         return(
             <div className="container">
-            <h2 class='row m-1'>Contact Détail</h2>
+            <h2 class='row m-1'>{DataService.objet.name}Contact Détail</h2>
             <div className='row m-1'>
                 <input type="text" className="form-control" placeholder='Your Email' />
             </div>

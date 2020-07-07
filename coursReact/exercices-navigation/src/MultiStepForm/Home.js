@@ -12,7 +12,7 @@ export class Home extends Component {
     render() {
        return( 
        <BrowserRouter>
-            <h1>Create your account to Apply</h1>
+            <h1> Create your account to Apply</h1>
             <Switch>
                 <Route path='/' exact>
                     <BasicInformation></BasicInformation>
