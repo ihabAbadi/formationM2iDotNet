@@ -3,6 +3,7 @@ import {BrowserRouter, Route, Switch} from "react-router-dom"
 import { BasicInformation } from "./BasicInformation"
 import { ContactDetail } from "./ContactDetail"
 import { JobPreferences } from "./JobPreferences"
+import { Confirmation } from "./Confirmation"
 export class Home extends Component {
 
     constructor(props) {
@@ -22,6 +23,9 @@ export class Home extends Component {
                 </Route>
                 <Route path='/step3'>
                     <JobPreferences></JobPreferences>
+                </Route>
+                <Route path='/confirm'>
+                    <Confirmation></Confirmation>
                 </Route>
             </Switch>
         </BrowserRouter>
