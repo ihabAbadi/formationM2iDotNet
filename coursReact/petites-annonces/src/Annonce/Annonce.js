@@ -1,9 +1,15 @@
 import React, { Component } from "react"
-
+import {DataService} from "./../service/DataService"
+import {withRouter} from "react-router-dom"
 class Annonce extends Component {
     constructor(props) {
         super(props)
     }
+
+    redirectTo = () => {
+        DataService.annonce = this.props.annonce
+        this.props.history.push('/DetailAnnonce')
+    }   
 
     render() {
         return(
@@ -17,8 +23,11 @@ class Annonce extends Component {
                     </div>
                     <div className='row m-1'>
                         <div className='col'>
-                            {this.props.annonce.description}
+                            {this.props.annonce.description.substr(1,200)}
                         </div>
+                    </div>
+                    <div className="row m-1">
+                        <button onClick={this.redirectTo} className='col btn btn-primary'>Detail</button>
                     </div>
                 </div>
             </div>
@@ -26,4 +35,4 @@ class Annonce extends Component {
     }
 }
 
-export default Annonce
+export default withRouter(Annonce)
