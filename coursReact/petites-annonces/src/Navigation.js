@@ -11,8 +11,11 @@ export class Navigation extends Component {
             <BrowserRouter>
                 <Header></Header>
                 <Switch>
-                    <Route path='/' exact>
-                        <Home></Home>
+                    <Route render={() => <Home></Home>} path='/' exact>
+                        
+                    </Route>
+                    <Route render={() => <Home favoris={true}></Home>} path='/favoris' >
+                        
                     </Route>
                     <Route path='/FormAnnonce'>
                         <FormAnnonce maxImage='4'></FormAnnonce>

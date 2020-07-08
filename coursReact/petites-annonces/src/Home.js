@@ -6,9 +6,17 @@ class Home extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            annonces: DataService.annonces
+            annonces: []
         }
     }
+
+    componentDidMount() {
+        console.log(this.props.favoris)
+        this.setState({
+            annonces : (this.props.favoris != undefined && this.props.favoris == true) ? DataService.favorisAnnonces : DataService.annonces
+        })
+    }
+
 
     search = (text) => {
         let tmpAnnonces

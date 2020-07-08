@@ -14,6 +14,9 @@ class Header extends Component {
                         <li className="nav-item">
                             <Link to='/FormAnnonce' className="nav-link">Déposer une annonce</Link>
                         </li>
+                        <li className="nav-item">
+                            <Link to= '/favoris' className="nav-link">Favoris</Link>
+                        </li>
                     </ul>
                 </nav>
             </header>
