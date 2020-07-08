@@ -4,12 +4,28 @@ import {withRouter} from "react-router-dom"
 class Annonce extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            isFavoris : (DataService.favorisAnnonces.find(e => e.title == this.props.annonce.title) != undefined)
+        }
     }
 
     redirectTo = () => {
         DataService.annonce = this.props.annonce
         this.props.history.push('/DetailAnnonce')
-    }   
+    }
+    
+    clickFavoris = () => {
+        let tmpIsFavoris = !this.state.isFavoris
+        this.setState({
+            isFavoris : tmpIsFavoris
+        })
+        if(tmpIsFavoris) {
+            DataService.favorisAnnonces.push(this.props.annonce)
+        }
+        else {
+            DataService.favorisAnnonces = DataService.favorisAnnonces.filter(element => element.title != this.props.annonce.title)
+        }
+    }
 
     render() {
         return(
@@ -28,6 +44,9 @@ class Annonce extends Component {
                     </div>
                     <div className="row m-1">
                         <button onClick={this.redirectTo} className='col btn btn-primary'>Detail</button>
+                    </div>
+                    <div className="row m-1">
+                        <i onClick={this.clickFavoris} className={(this.state.isFavoris) ? 'col fa fa-heart' : 'col fa fa-heart-o'} aria-hidden="true"></i>
                     </div>
                 </div>
             </div>
