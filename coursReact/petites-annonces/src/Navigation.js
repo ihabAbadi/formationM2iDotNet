@@ -4,8 +4,12 @@ import Header from "./Header"
 import Home from "./Home"
 import FormAnnonce from "./Annonce/FormAnnonce"
 import DetailAnnonce from "./Annonce/DetailAnnonce"
+import faker from "faker"
 export class Navigation extends Component {
-
+    constructor(props) {
+        super(props)
+        console.log(faker.name.findName())
+    }
     render() {
         return(
             <BrowserRouter>
