@@ -1,6 +1,4 @@
-.slide-noactive {
-  display: none;
-}
+
 .bloc, .bloc-active {
   width: 25px;
   height: 25px;
@@ -10,4 +8,15 @@
 
 .bloc-active {
   background-color: #666;
+}
+
+.container-carousel {
+  position: relative;
+  overflow-x: hidden;
+}
+
+.container-carousel .slide {
+  float: left;
+  margin: 10px;
+
 }
