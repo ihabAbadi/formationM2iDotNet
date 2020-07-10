@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import {DataService} from "./service/DataService"
 import Annonces from "./Annonce/Annonces"
 import Search from "./Search"
+import axios from "axios"
 class Home extends Component {
     constructor(props) {
         super(props)
@@ -12,8 +13,15 @@ class Home extends Component {
 
     componentDidMount() {
         console.log(this.props.favoris)
-        this.setState({
-            annonces : (this.props.favoris != undefined && this.props.favoris == true) ? DataService.favorisAnnonces : DataService.annonces
+        // this.setState({
+        //     annonces : (this.props.favoris != undefined && this.props.favoris == true) ? DataService.favorisAnnonces : DataService.annonces
+        // })
+        axios.get('http://localhost:80/annonces').then(response=> {
+            console.log(response)
+            const res = response.data
+            this.setState({
+                annonces : res
+            })
         })
     }
 
