@@ -1,7 +1,8 @@
 import React, { Component } from "react"
 import {DataService} from "./../service/DataService"
 import {withRouter} from "react-router-dom"
-import axios from "axios"
+// import axios from "axios"
+import {ApiService} from "./../service/ApiService"
 class FormAnnonce extends Component {
     constructor(props) {
         super(props)
@@ -53,12 +54,14 @@ class FormAnnonce extends Component {
 
     addAnnonce = (e) => {
         e.preventDefault()
-        DataService.annonces.push(this.state.annonce)
-        axios.post('http://localhost:80/addAnnonce',this.state.annonce).then(res=> {
-            console.log(res)
+        //DataService.annonces.push(this.state.annonce)
+        // axios.post('http://localhost:80/addAnnonce',this.state.annonce).then(res=> {
+        //     console.log(res)
+        //     this.props.history.push('/')
+        // })
+        ApiService.post('addAnnonce', this.state.annonce).then(res=> {
             this.props.history.push('/')
-        })
-        
+        })        
     }
     render(){
         return(
