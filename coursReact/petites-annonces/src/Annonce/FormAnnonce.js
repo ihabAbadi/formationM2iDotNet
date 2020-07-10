@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import {DataService} from "./../service/DataService"
 import {withRouter} from "react-router-dom"
+import axios from "axios"
 class FormAnnonce extends Component {
     constructor(props) {
         super(props)
@@ -53,7 +54,11 @@ class FormAnnonce extends Component {
     addAnnonce = (e) => {
         e.preventDefault()
         DataService.annonces.push(this.state.annonce)
-        this.props.history.push('/')
+        axios.post('http://localhost:80/addAnnonce',this.state.annonce).then(res=> {
+            console.log(res)
+            this.props.history.push('/')
+        })
+        
     }
     render(){
         return(
