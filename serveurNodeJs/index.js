@@ -52,7 +52,13 @@ app.get('/annonces', (req, res) => {
     const annonces = JSON.parse(contenuFichierAnnonces)
     res.json(annonces)
 })
-
+app.get('/annonce/:title', (req, res) => {
+    const title = req.params.title
+    const contenuFichierAnnonces = fs.readFileSync('annonces.json')
+    const annonces = JSON.parse(contenuFichierAnnonces)
+    const annonce = annonces.find(element => element.title == title)
+    res.json(annonce)
+})
 app.listen(80,function(){
     // console.log("une nouvelle connexion")
 })

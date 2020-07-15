@@ -67,7 +67,7 @@ const Annonce = (props) => {
         let tmpIsFavoris = !isFavoris
         setIsFavoris(tmpIsFavoris)
         if (tmpIsFavoris) {
-            DataService.favorisAnnonces.push(this.props.annonce)
+            DataService.favorisAnnonces.push(props.annonce)
         }
         else {
             DataService.favorisAnnonces = DataService.favorisAnnonces.filter(element => element.title != props.annonce.title)

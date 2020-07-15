@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect } from "react"
 import { DataService } from "../service/DataService"
 import { useParams } from "react-router-dom"
+import { ApiService } from "./../service/ApiService"
 
 // class DetailAnnonce extends Component {
 //     constructor(props) {
@@ -39,9 +40,12 @@ import { useParams } from "react-router-dom"
 const DetailAnnonce = (props) => {
     const [annonce, setAnnonce] = useState({ title: '', description: '', images: [] })
     const {title} = useParams()
+    const [load,setLoad] = useState(false)
     useEffect(()=> {
-        alert(title)
-    })
+        ApiService.get('annonce/'+title).then(res=> {
+            setAnnonce(res.data)
+        })
+    },[load])
     const renderImages = () => {
         let images = []
         for (let i of annonce.images) {
