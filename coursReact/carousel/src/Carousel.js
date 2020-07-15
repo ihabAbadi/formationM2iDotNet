@@ -37,11 +37,10 @@ export class Carousel extends Component {
     }
     leftClick = () => {
         let tmpIndex = this.state.indexActivation - 1
-        let valueTranslate = -tmpIndex * 810
         if (this.state.indexActivation == 0) {
-            tmpIndex = 0
-            valueTranslate = 0
+            tmpIndex = this.state.slides.length - 1
         }
+        let valueTranslate = -tmpIndex * 810
         this.setState({
             indexActivation: tmpIndex
         })
