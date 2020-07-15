@@ -24,7 +24,10 @@ export class Navigation extends Component {
                     <Route path='/FormAnnonce'>
                         <FormAnnonce maxImage='4'></FormAnnonce>
                     </Route>
-                    <Route path='/DetailAnnonce'>
+                    {/* <Route path='/DetailAnnonce'>
+                        <DetailAnnonce></DetailAnnonce>
+                    </Route> */}
+                    <Route path='/DetailAnnonce/:title'>
                         <DetailAnnonce></DetailAnnonce>
                     </Route>
                 </Switch>
