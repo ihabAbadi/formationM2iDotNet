@@ -3,7 +3,9 @@ import {DataService} from "./../service/DataService"
 import {withRouter} from "react-router-dom"
 // import axios from "axios"
 import {ApiService} from "./../service/ApiService"
+import { ColorContext } from "../ColorContext"
 class FormAnnonce extends Component {
+    static contextType = ColorContext
     constructor(props) {
         super(props)
         this.state = {
@@ -78,7 +80,7 @@ class FormAnnonce extends Component {
                 </div>
                 {this.renderInputImage()}
                 <div className="row m-1">
-                    <button type='submit' className="col btn form-control btn-success">Valider</button>
+                    <button type='submit' style={{color:this.context}} className="col btn form-control btn-success">Valider</button>
                 </div>
             </form>
         )

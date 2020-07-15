@@ -1,6 +1,7 @@
-import React, { Component, useState } from "react"
+import React, { Component, useState, useContext } from "react"
 import { DataService } from "./../service/DataService"
 import { withRouter, useHistory } from "react-router-dom"
+import {ColorContext} from "./../ColorContext"
 // class Annonce extends Component {
 //     constructor(props) {
 //         super(props)
@@ -57,6 +58,7 @@ import { withRouter, useHistory } from "react-router-dom"
 
 const Annonce = (props) => {
     const history = useHistory()
+    const valueColor = useContext(ColorContext)
     const [isFavoris, setIsFavoris] = useState(false) 
     const redirectTo = () => {
         DataService.annonce = props.annonce
@@ -80,7 +82,7 @@ const Annonce = (props) => {
             <img className="col-3" src={props.annonce.images[0]} />
             <div className='col-9'>
                 <div className='row m-1'>
-                    <h2 className='col'>
+                    <h2 className='col' style={{color:valueColor}}>
                         {props.annonce.title}
                     </h2>
                 </div>
