@@ -54,5 +54,5 @@ app.get('/annonces', (req, res) => {
 })
 
 app.listen(80,function(){
-    console.log("une nouvelle connexion")
+    // console.log("une nouvelle connexion")
 })
