@@ -51,6 +51,21 @@ export class Carousel extends Component {
         })
     }
 
+    changeIndex = (index) => {
+        let tmpIndex = index
+        let valueTranslate = -tmpIndex * 810
+        if (this.state.indexActivation == this.state.slides.length-1) {
+            tmpIndex = 0
+            valueTranslate = 0
+        }
+        this.setState({
+            indexActivation: tmpIndex
+        })
+
+        this.setState({
+            styleContainer: {...this.state.styleContainer, transitionDuration : '1s', marginLeft : ''+valueTranslate+'px'}
+        })
+    }
     rightClick = () => {
         let tmpIndex = this.state.indexActivation + 1
         let valueTranslate = -tmpIndex * 810
@@ -84,7 +99,7 @@ export class Carousel extends Component {
 
                     <Arrow type='right' click={this.rightClick} />
                 </div>
-                <Indicator max={this.state.slides.length} indexActivation={this.state.indexActivation} />
+                <Indicator changeIndex={this.changeIndex} max={this.state.slides.length} indexActivation={this.state.indexActivation} />
             </div>
         )
     }
