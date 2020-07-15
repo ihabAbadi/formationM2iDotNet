@@ -3,13 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import { Navigation } from './Navigation';
-import {ColorContext} from "./ColorContext"
+import { ColorContext } from './ColorContext';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <ColorContext.Provider value="purple">
       <Navigation />
-    </ColorContext.Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

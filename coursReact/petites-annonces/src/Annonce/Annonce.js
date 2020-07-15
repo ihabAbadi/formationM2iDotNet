@@ -58,7 +58,7 @@ import {ColorContext} from "./../ColorContext"
 
 const Annonce = (props) => {
     const history = useHistory()
-    const valueColor = useContext(ColorContext)
+    
     const [isFavoris, setIsFavoris] = useState(false) 
     const redirectTo = () => {
         DataService.annonce = props.annonce
@@ -82,7 +82,7 @@ const Annonce = (props) => {
             <img className="col-3" src={props.annonce.images[0]} />
             <div className='col-9'>
                 <div className='row m-1'>
-                    <h2 className='col' style={{color:valueColor}}>
+                    <h2 className='col'>
                         {props.annonce.title}
                     </h2>
                 </div>
