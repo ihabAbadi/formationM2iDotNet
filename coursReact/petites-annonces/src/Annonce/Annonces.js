@@ -9,9 +9,9 @@ class Annonces extends Component {
     render() {
         return(
             <div className="container" style={this.context}>
-                {this.props.annonces.map((element)=>{
+                {this.props.annonces.map((element,index)=>{
                     return(
-                        <Annonce reload={this.props.reload} annonce={element}></Annonce>
+                        <Annonce key={index} reload={this.props.reload} annonce={element}></Annonce>
                     )
                 })}
             </div>
