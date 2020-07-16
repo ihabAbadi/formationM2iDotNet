@@ -59,6 +59,15 @@ app.get('/annonce/:title', (req, res) => {
     const annonce = annonces.find(element => element.title == title)
     res.json(annonce)
 })
+
+app.get('/delete-annonce/:title', (req,res) => {
+    const title = req.params.title
+    const contenuFichierAnnonces = fs.readFileSync('annonces.json')
+    const annonces = JSON.parse(contenuFichierAnnonces)
+    const tmpAnnonces = annonces.filter(x=> x.title != title)
+    fs.writeFileSync('annonces.json', JSON.stringify(tmpAnnonces))
+    res.json({msg : 'annonce suprimée', isDelete : true})
+})
 app.listen(80,function(){
     // console.log("une nouvelle connexion")
 })
