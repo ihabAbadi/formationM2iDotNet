@@ -11,7 +11,7 @@ class Annonces extends Component {
             <div className="container" style={this.context}>
                 {this.props.annonces.map((element)=>{
                     return(
-                        <Annonce annonce={element}></Annonce>
+                        <Annonce reload={this.props.reload} annonce={element}></Annonce>
                     )
                 })}
             </div>

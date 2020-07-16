@@ -2,6 +2,7 @@ import React, { Component, useState, useContext } from "react"
 import { DataService } from "./../service/DataService"
 import { withRouter, useHistory } from "react-router-dom"
 import {ColorContext} from "./../ColorContext"
+import { ApiService } from "../service/ApiService"
 // class Annonce extends Component {
 //     constructor(props) {
 //         super(props)
@@ -76,6 +77,16 @@ const Annonce = (props) => {
         }
     }
 
+    const deleteAnnonce = () => {
+        ApiService.get('delete-annonce/'+props.annonce.title).then(res=>{
+            const response = res.data
+            if(response.isDelete == true) {
+               
+                props.reload()
+            }
+        })
+    }
+
 
     return (
         <div className="row m-1">
@@ -93,6 +104,9 @@ const Annonce = (props) => {
                 </div>
                 <div className="row m-1">
                     <button onClick={redirectTo} className='col btn btn-primary'>Detail</button>
+                </div>
+                <div className="row m-1">
+                    <button onClick={deleteAnnonce} className='col btn btn-danger'>Supprimer</button>
                 </div>
                 <div className="row m-1">
                     <i onClick={clickFavoris} className={(isFavoris) ? 'col fa fa-heart' : 'col fa fa-heart-o'} aria-hidden="true"></i>

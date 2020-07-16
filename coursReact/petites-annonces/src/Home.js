@@ -75,13 +75,15 @@ const Home = (props) => {
         })
     },[loading])
 
+    const reload = () => {
+        setLoading(!loading)
+    }
+
     return (
         <main >
-            <button onClick = {() => {
-                setLoading(!loading)
-            }}>Reload</button>
+            <button onClick = {reload}>Reload</button>
             <Search textSearch='Rechercher une annonce...' search={search} />
-            <Annonces annonces={annonces}></Annonces>
+            <Annonces reload={reload} annonces={annonces}></Annonces>
         </main>
     )
 }
