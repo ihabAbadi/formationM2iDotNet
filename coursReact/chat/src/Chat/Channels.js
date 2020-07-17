@@ -17,31 +17,33 @@ const Channels = (props) => {
     }, [loading])
 
     const addChannel = (value) => {
-        post('channel', {name:value, user: LocalService.user}).then(res=>{
+        post('channel', { name: value, user: LocalService.user }).then(res => {
             const response = res.data
             alert(response.msg)
             setLoading(!loading)
         })
     }
+
     return (
-        <Layout>
-            <Sider style={{ backgroundColor: '#666', color: 'white', minHeight: '100vh' }}>
-                <Row justify="space-around">Channels</Row>
-                {channels.map((element, index) => (
-                    <Row justify="space-around" key={index}>
-                        <Col style={{ color: '#fefefe' }}>#{element.name}</Col>
-                    </Row>
-                ))}
-                <Row>
-                    <Search
-                        placeholder="nouveau channel"
-                        enterButton="Ajouter"
-                        size="large"
-                        onSearch={addChannel}
-                    />
+
+        <Sider style={{ backgroundColor: '#666', color: 'white', minHeight: '100vh' }}>
+            <Row justify="space-around" style={{ fontSize: '16px' }}>Channels</Row>
+            {channels.map((element, index) => (
+                <Row justify="space-around" key={index}>
+                    <Col onClick={() => {
+                        props.getMessages(element.name)
+                    }} style={{ color: '#fefefe', cursor: 'pointer' }}>#{element.name}</Col>
                 </Row>
-            </Sider>
-        </Layout>
+            ))}
+            <Row>
+                <Search
+                    placeholder="nouveau channel"
+                    enterButton="Ajouter"
+                    size="small"
+                    onSearch={addChannel}
+                />
+            </Row>
+        </Sider>
     )
 }
 
