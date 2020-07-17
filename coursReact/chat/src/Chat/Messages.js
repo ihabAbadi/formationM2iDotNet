@@ -1,7 +1,8 @@
 import React from "react"
-import { Layout, Row } from "antd"
+import { Layout, Row, Input } from "antd"
 import Message from "./Message"
 const { Content } = Layout
+const {Search} = Input
 const Messages = (props) => {
 
     return (
@@ -9,6 +10,14 @@ const Messages = (props) => {
             {props.messages.map((element, index) => (
                 <Message message={element} key={index}></Message>
             ))}
+            <Row>
+                <Search
+                    placeholder="nouveau message"
+                    enterButton="Envoyer"
+                    size="middle"
+                    onSearch={props.addMessage}
+                />
+            </Row>
         </Content>
     )
 }

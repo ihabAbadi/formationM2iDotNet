@@ -1,1 +1,1 @@
-[{"user":"abadi","channel":"channel 1","content":"message 1"},{"user":"abadi","channel":"channel 1","content":"message 2"},{"user":"abadi","channel":"channel 1","content":"message 3"}]
+[{"user":"abadi","channel":"channel 1","content":"message 1"},{"user":"abadi","channel":"channel 1","content":"message 2"},{"user":"abadi","channel":"channel 1","content":"message 3"},{"content":"bonjour","channel":"channel 1","user":"abadi"},{"content":"coucou","channel":"channel 2","user":"abadi"}]
