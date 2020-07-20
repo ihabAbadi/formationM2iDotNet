@@ -42,8 +42,10 @@ const HomeChat = (props) => {
     }
 
     useEffect(() => {
-        if (LocalService.user == undefined) {
-            history.push('/')
+        //if (LocalService.user == undefined) {
+        //Version avec localStorage
+        if(localStorage.getItem("user") == undefined) {
+        history.push('/')
         }
     }, [load])
 

@@ -10,7 +10,9 @@ const Home = (props) => {
         post("user",{name:value}).then(res=>{
             const response = res.data
             alert(response.msg)
-            LocalService.user = value
+            //LocalService.user = value
+            //Utilisation du localStorage
+            localStorage.setItem("user", value)
             history.push('/chat')
 
         })
