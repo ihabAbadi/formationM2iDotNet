@@ -22,7 +22,7 @@ const HomeChat = (props) => {
     }
 
     const addMessage = (message) => {
-        const sendMessage = { content: message, channel: currentChannel, user: LocalService.user }
+        const sendMessage = { content: message, channel: currentChannel, user: localStorage.getItem('user') }
         post('message', sendMessage).then(res => {
             // const tmpMessages = [...messages, sendMessage]
             // setMessages(tmpMessages)
