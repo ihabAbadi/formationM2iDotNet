@@ -1,7 +1,7 @@
 version: '3'
 services:
     s1:
-        build: .
+        image: ubuntu
         container_name: cb1
         ports: 
             - "3010:80"
@@ -11,8 +11,9 @@ services:
         # command: 
         #     - "-it"
         # restart: always
+        command: tail -F anything
     s2:
-        build: .
+        build: ./../chatNodeServer
         container_name: cb2
         depends_on: 
             - s1

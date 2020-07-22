@@ -1,3 +1,3 @@
 FROM node
-ENTRYPOINT [ "/bin/bash" ]
-CMD [""]
+# ENTRYPOINT [ "/bin/bash" ]
+# CMD ["tail -f anything"]
