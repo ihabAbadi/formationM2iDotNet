@@ -1,0 +1,12 @@
+version: '3'
+services: 
+    server:
+        image: chat_image
+        ports: 
+            - "80:80"
+        command: node index.js
+    websocket:
+        image: chat_socket
+        ports: 
+            - "3010:3010"
+        command: node webSocket.js
