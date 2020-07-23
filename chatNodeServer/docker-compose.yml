@@ -5,8 +5,20 @@ services:
         ports: 
             - "80:80"
         command: node index.js
+        network_mode: "bridge"
     websocket:
         image: chat_socket
         ports: 
             - "3010:3010"
         command: node webSocket.js
+        network_mode: "bridge"
+    react:
+        image: image_react_chat
+        ports: 
+            - "10:3000"
+        network_mode: "bridge"
+        depends_on: 
+            - server
+            - websocket
+        command: npm start
+        stdin_open: true
