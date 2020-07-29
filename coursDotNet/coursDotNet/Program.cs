@@ -550,6 +550,14 @@ namespace coursDotNet
             //            break;
             //    }
             //} while (choix != "0");
+            //generer un aléatoire
+            Random r = new Random();
+            for (int i = 1; i <= 10; i++)
+            {
+                int aleatoire = r.Next(-1);
+                Console.WriteLine(aleatoire);
+            }
+            
             #endregion
         }
     }
