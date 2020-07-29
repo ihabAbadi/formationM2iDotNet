@@ -318,48 +318,62 @@ namespace coursDotNet
             //            break;
             //    }
             //} while (choix != "0");
+            //Remplir un tableau avec des éléments des l'initialisation
+            //int[] tab = new int[] {1,2,3,5,9};
             //Exercice 2
-            Console.Write("Merci de saisir le nombre d'élément dans le tableau : ");
-            int nombre = Convert.ToInt32(Console.ReadLine());
-            string[] chaines = new string[nombre];
-            string choix;
-            do
+            //Console.Write("Merci de saisir le nombre d'élément dans le tableau : ");
+            //int nombre = Convert.ToInt32(Console.ReadLine());
+            //string[] chaines = new string[nombre];
+            //string choix;
+            //do
+            //{
+            //    Console.WriteLine("1---- Remplir le tableau : ");
+            //    Console.WriteLine("2---- Faire une recherche : ");
+            //    choix = Console.ReadLine();
+            //    switch(choix)
+            //    {
+            //        case "1":
+            //            for(int i=1; i <= chaines.Length; i++ )
+            //            {
+            //                Console.Write("Merci de saisir l'élément n° : "+i+" ");
+            //                chaines[i - 1] = Console.ReadLine();
+            //            }
+            //            break;
+            //        case "2":
+            //            Console.Write("L'élément à rechercher : ");
+            //            string recherche = Console.ReadLine();
+            //            int nombreOcc = 0;                        
+            //            for(int i=0; i < chaines.Length; i++)
+            //            {
+            //                if(chaines[i] == recherche)
+            //                {
+            //                    Console.WriteLine("Trouvé à la position : " + (i + 1));
+            //                    nombreOcc++;
+            //                }
+            //            }
+            //            if(nombreOcc != 0)
+            //            {
+            //                Console.WriteLine("Élément touvé : " + nombreOcc + " fois");
+            //            }
+            //            else
+            //            {
+            //                Console.WriteLine("Élément non trouvé");
+            //            }
+            //            break;
+            //    }
+            //} while (choix != "0");
+            //Exercice 3
+            Console.Write("Merci de saisir une chaine : ");
+            string chaine = Console.ReadLine();
+            string chaineTmp = "";
+            char tmp = chaine[0];
+            for(int i=1; i < chaine.Length;i++)
             {
-                Console.WriteLine("1---- Remplir le tableau : ");
-                Console.WriteLine("2---- Faire une recherche : ");
-                choix = Console.ReadLine();
-                switch(choix)
-                {
-                    case "1":
-                        for(int i=1; i <= chaines.Length; i++ )
-                        {
-                            Console.Write("Merci de saisir l'élément n° : "+i+" ");
-                            chaines[i - 1] = Console.ReadLine();
-                        }
-                        break;
-                    case "2":
-                        Console.Write("L'élément à rechercher : ");
-                        string recherche = Console.ReadLine();
-                        int nombreOcc = 0;
-                        for(int i=0; i < chaines.Length; i++)
-                        {
-                            if(chaines[i] == recherche)
-                            {
-                                Console.WriteLine("Trouvé à la position : " + (i + 1));
-                                nombreOcc++;
-                            }
-                        }
-                        if(nombreOcc != 0)
-                        {
-                            Console.WriteLine("Élément touvé : " + nombreOcc + " fois");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Élément non trouvé");
-                        }
-                        break;
-                }
-            } while (choix != "0");
+                chaineTmp += chaine[i];
+            }
+            chaineTmp += tmp;
+            chaine = chaineTmp;
+            Console.WriteLine(chaine);
             #endregion
         }
     }
