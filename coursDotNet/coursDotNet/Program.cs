@@ -363,17 +363,193 @@ namespace coursDotNet
             //    }
             //} while (choix != "0");
             //Exercice 3
-            Console.Write("Merci de saisir une chaine : ");
-            string chaine = Console.ReadLine();
-            string chaineTmp = "";
-            char tmp = chaine[0];
-            for(int i=1; i < chaine.Length;i++)
-            {
-                chaineTmp += chaine[i];
-            }
-            chaineTmp += tmp;
-            chaine = chaineTmp;
-            Console.WriteLine(chaine);
+            //Console.Write("Merci de saisir une chaine : ");
+            //string chaine = Console.ReadLine();
+            //string chaineTmp = "";
+            //char tmp = chaine[0];
+            //for (int i = 1; i < chaine.Length; i++)
+            //{
+            //    chaineTmp += chaine[i];
+            //}
+            //chaineTmp += tmp;
+            //chaine = chaineTmp;
+            //Console.WriteLine(chaine);
+            //Exercice 4
+            //int[] tab2018 = new int[12];
+            //int[] tab2019 = new int[12];
+            //string choix;
+            //int annee;
+            //int mois;
+            //int inflationMois;
+            //int nombreMoisInf = 0;
+            //int inflation2018 = 0;
+            //int inflation2019 = 0;
+            //do
+            //{
+            //    Console.WriteLine("1---- Saisir les inflations : ");
+            //    Console.WriteLine("2---- Afficher les inflations : ");
+            //    Console.WriteLine("3---- Calculer l'inflation à l'année : ");
+            //    Console.WriteLine("4---- Afficher les inflations inférieures à un mois : ");
+            //    Console.WriteLine("5---- Afficher les inflations inférieures pour chaque mois : ");
+            //    Console.WriteLine("0---- Quitter");
+            //    choix = Console.ReadLine();
+            //    switch (choix)
+            //    {
+            //        case "1":
+            //            Console.WriteLine("Pour quelle année voulez vous saisir les inflations ? ");
+            //            annee = Convert.ToInt32(Console.ReadLine());
+            //            if (annee == 2018)
+            //            {
+            //                Console.WriteLine("Pour l'année 2018 : ");
+            //                for (int i = 0; i < 12; i++)
+            //                {
+            //                    Console.WriteLine("Tapez le chiffre d'inflation du mois numéro " + (i + 1) + " : ");
+            //                    tab2018[i] = Convert.ToInt32(Console.ReadLine());
+            //                }
+            //            }
+            //            else if (annee == 2019)
+            //            {
+            //                Console.WriteLine("Pour l'année 2019 : ");
+            //                for (int i = 0; i < 12; i++)
+            //                {
+            //                    Console.WriteLine("Tapez le chiffre d'inflation du mois numéro " + (i + 1) + " : ");
+            //                    tab2019[i] = Convert.ToInt32(Console.ReadLine());
+            //                }
+            //            }
+            //            else
+            //            {
+            //                Console.WriteLine("Impossible de saisir les inflations pour cette année là...");
+            //            }
+            //            break;
+            //        case "2":
+            //            Console.WriteLine("Pour quelle année voulez vous afficher les inflations ? ");
+            //            annee = Convert.ToInt32(Console.ReadLine());
+            //            if (annee == 2018)
+            //            {
+            //                Console.WriteLine("Pour l'année 2018 : ");
+            //                for (int i = 0; i < 12; i++)
+            //                {
+            //                    Console.WriteLine("L'inflation du mois numéro " + (i + 1) + " est de " + tab2018[i]);
+            //                }
+            //            }
+            //            else if (annee == 2019)
+            //            {
+            //                Console.WriteLine("Pour l'année 2019 : ");
+            //                for (int i = 0; i < 12; i++)
+            //                {
+            //                    Console.WriteLine("L'inflation du mois numéro " + (i + 1) + " est de " + tab2019[i]);
+            //                }
+            //            }
+            //            else
+            //            {
+            //                Console.WriteLine("Impossible d'afficher les inflations pour cette année là...");
+            //            }
+            //            break;
+            //        case "3":
+            //            Console.WriteLine("Pour quelle année voulez vous calculer l'inflation ? ");
+            //            annee = Convert.ToInt32(Console.ReadLine());
+            //            if (annee == 2018)
+            //            {
+            //                inflation2018 = 0;
+            //                for (int i = 0; i < 12; i++)
+            //                {
+            //                    inflation2018 += tab2018[i];
+            //                }
+            //                Console.WriteLine("L'inflation pour l'année 2018 est de : " + inflation2018);
+            //            }
+            //            else if (annee == 2019)
+            //            {
+            //                inflation2019 = 0;
+            //                for (int i = 0; i < 12; i++)
+            //                {
+            //                    inflation2019 += tab2019[i];
+            //                }
+            //                Console.WriteLine("L'inflation pour l'année 2018 est de : " + inflation2019);
+            //            }
+            //            else
+            //            {
+            //                Console.WriteLine("Impossible d'afficher l'inflations pour cette année là...");
+            //            }
+            //            break;
+            //        case "4":
+            //            Console.WriteLine("Dans quelle année recherchez vous ? ");
+            //            annee = Convert.ToInt32(Console.ReadLine());
+            //            Console.WriteLine("Pour quel mois recherchez vous ? ");
+            //            mois = Convert.ToInt32(Console.ReadLine());
+            //            nombreMoisInf = 0;
+            //            if (annee == 2018)
+            //            {
+            //                inflationMois = tab2018[(mois - 1)];
+            //                for (int i = 0; i < 12; i++)
+            //                {
+            //                    if (tab2018[i] < inflationMois)
+            //                    {
+            //                        nombreMoisInf++;
+            //                    }
+            //                }
+            //                Console.WriteLine("Le nombre de mois dont l'inflation est plus petite est de : " + nombreMoisInf);
+            //            }
+            //            else if (annee == 2019)
+            //            {
+            //                inflationMois = tab2019[(mois - 1)];
+            //                for (int i = 0; i < 12; i++)
+            //                {
+            //                    if (tab2019[i] < inflationMois)
+            //                    {
+            //                        nombreMoisInf++;
+            //                    }
+            //                }
+            //                Console.WriteLine("Le nombre de mois dont l'inflation est plus petite est de : " + nombreMoisInf);
+            //            }
+            //            else
+            //            {
+            //                Console.WriteLine("Impossible d'afficher pour cette année là...");
+            //            }
+            //            break;
+            //        case "5":
+            //            Console.WriteLine("Dans quelle année recherchez vous ? ");
+            //            annee = Convert.ToInt32(Console.ReadLine());
+            //            nombreMoisInf = 0;
+            //            if (annee == 2018)
+            //            {
+            //                for (int i = 0; i < 12; i++)
+            //                {
+            //                    for (int j = 0; j < 12; j++)
+            //                    {
+            //                        if (tab2018[i] < tab2018[j])
+            //                        {
+            //                            nombreMoisInf++;
+            //                        }
+            //                    }
+            //                    Console.WriteLine("Pour le mois numéro " + (i + 1) + " le nombre de mois donc l'inflation est inférieur est de : " + nombreMoisInf);
+            //                    nombreMoisInf = 0;
+            //                }
+            //            }
+            //            else if (annee == 2019)
+            //            {
+            //                for (int i = 0; i < 12; i++)
+            //                {
+            //                    for (int j = 0; j < 12; j++)
+            //                    {
+            //                        if (tab2019[i] < tab2019[j])
+            //                        {
+            //                            nombreMoisInf++;
+            //                        }
+            //                    }
+            //                    Console.WriteLine("Pour le mois numéro " + (i + 1) + " le nombre de mois donc l'inflation est inférieur est de : " + nombreMoisInf);
+            //                    nombreMoisInf = 0;
+            //                }
+            //            }
+            //            else
+            //            {
+            //                Console.WriteLine("Impossible d'afficher pour cette année là...");
+            //            }
+            //            break;
+            //        default:
+            //            Console.WriteLine("Erreur de saisie, veuillez recommencer...");
+            //            break;
+            //    }
+            //} while (choix != "0");
             #endregion
         }
     }
