@@ -215,44 +215,109 @@ namespace coursDotNet
             //    a++;
             //} while (a < 10);
             //Exercice 3
-            Console.WriteLine("Merci de saisir le capital annuel : ");
-            decimal c = Convert.ToDecimal(Console.ReadLine());
-            Console.WriteLine("Merci de saisir le taux : ");
-            decimal t = Convert.ToDecimal(Console.ReadLine());
-            Console.WriteLine("Merci de saisir le nombre d'années : ");
-            int n = Convert.ToInt32(Console.ReadLine());
+            /* Console.WriteLine("Merci de saisir le capital annuel : ");
+             decimal c = Convert.ToDecimal(Console.ReadLine());
+             Console.WriteLine("Merci de saisir le taux : ");
+             decimal t = Convert.ToDecimal(Console.ReadLine());
+             Console.WriteLine("Merci de saisir le nombre d'années : ");
+             int n = Convert.ToInt32(Console.ReadLine());
 
 
-            decimal resultat = c;
+             decimal resultat = c;
 
 
-            if (n > 1)
-            {
-                for (int i = 1; i <= n; i++)
-                {
-                    resultat += resultat * t;
-                }
-            }
-            else
-            {
-                Console.WriteLine("Le nombre d'années doit être superieur à 1.");
-            }
-            Console.WriteLine("Le montant de capital pendant " + n + " années est " + resultat + ".");
+             if (n > 1)
+             {
+                 for (int i = 1; i <= n; i++)
+                 {
+                     resultat += resultat * t;
+                 }
+             }
+             else
+             {
+                 Console.WriteLine("Le nombre d'années doit être superieur à 1.");
+             }
+             Console.WriteLine("Le montant de capital pendant " + n + " années est " + resultat + ".");
 
 
-            int yearsDouble = 0;
-            decimal capitalDouble = c;
+             int yearsDouble = 0;
+             decimal capitalDouble = c;
 
 
+             do
+             {
+                 capitalDouble += capitalDouble * t;
+                 yearsDouble++;
+             }
+             while (capitalDouble < c * 2);
+
+
+             Console.WriteLine("Le capital sera doublé dans " + yearsDouble + " ans.");*/
+            //Tableau en c#
+            //déclaration de tableau
+            //int[] tab = new int[10];
+            //parcourir un tableau
+            //for (int i = 0; i <= tab.Length - 1; i++)
+            //{
+            //    tab[i] = i + 1 ;
+            //}
+            //for (int i = 0; i <= tab.Length-1; i++)
+            //{
+            //    Console.WriteLine(tab[i]);
+            //}
+            //Exercice tableau
+            Console.Write("Le nombre d'élèves : ");
+            int nombre = Convert.ToInt32(Console.ReadLine());
+            double[] notes = new double[nombre];
+            string choix;
             do
             {
-                capitalDouble += capitalDouble * t;
-                yearsDouble++;
-            }
-            while (capitalDouble < c * 2);
-
-
-            Console.WriteLine("Le capital sera doublé dans " + yearsDouble + " ans.");
+                Console.WriteLine("1---Saisir les notes : ");
+                Console.WriteLine("2---La moyenne des notes : ");
+                Console.WriteLine("3---le min et max: ");
+                Console.WriteLine("4---Afficher les notes: ");
+                choix = Console.ReadLine();
+                switch(choix)
+                {
+                    case "1":
+                        for(int i=0; i < notes.Length; i++)
+                        {
+                            Console.Write("Merci de saisir la note N° " + (i + 1) + " : ");
+                            notes[i] = Convert.ToDouble(Console.ReadLine());
+                        }
+                        break;
+                    case "2":
+                        double somme = 0;
+                        for (int i = 0; i < notes.Length; i++)
+                        {
+                            somme += notes[i];
+                        }
+                        double moyenne = somme / notes.Length;
+                        Console.WriteLine("La moyenne est de : " + moyenne);
+                        break;
+                    case "3":
+                        double min = notes[0];
+                        double max = notes[0];
+                        for (int i = 1; i < notes.Length; i++)
+                        {
+                            if(notes[i] < min)
+                            {
+                                min = notes[i];
+                            } else if(notes[i] > max)
+                            {
+                                max = notes[i];
+                            }
+                        }
+                        Console.WriteLine("Le min est de " + min + " et le max est de " + max);
+                        break;
+                    case "4":
+                        for (int i = 0; i < notes.Length; i++)
+                        {
+                            Console.WriteLine("la note N° " + (i + 1) + " : " + notes[i]); 
+                        }
+                        break;
+                }
+            } while (choix != "0");
             #endregion
         }
     }
