@@ -6,6 +6,7 @@ namespace coursDotNet
     {
         static void Main(string[] args)
         {
+            #region cours c# base
             //Console.WriteLine("Hello World!");
             //Déclaration de variable
             //Les types de variable primitive
@@ -74,39 +75,72 @@ namespace coursDotNet
             //Console.Write("Votre age : ");
             //int age = Convert.ToInt32(Console.ReadLine());
             //Console.WriteLine(age);
+            #endregion
+            #region correction exercice base c#
             //Ex 1
-            Console.WriteLine("Saisir AB");
-            double ab = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Saisir BC");
-            double bc = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Saisir AC");
-            double ac = Convert.ToDouble(Console.ReadLine());
-            if (ac == ab)
+            //Console.WriteLine("Saisir AB");
+            //double ab = Convert.ToDouble(Console.ReadLine());
+            //Console.WriteLine("Saisir BC");
+            //double bc = Convert.ToDouble(Console.ReadLine());
+            //Console.WriteLine("Saisir AC");
+            //double ac = Convert.ToDouble(Console.ReadLine());
+            //if (ac == ab)
+            //{
+            //    if (ac == bc)
+            //    {
+            //        Console.WriteLine("Triangle équilatéral");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Triange isocéle en A");
+            //    }
+            //}
+            //else
+            //{
+            //    if (ab == bc)
+            //    {
+            //        Console.WriteLine("Triangle isocéle en B");
+            //    }
+            //    else if (ac == bc)
+            //    {
+            //        Console.WriteLine("Triangel isocéle en C");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Ni isocéle ni équilatéral");
+            //    }
+            //}
+            //Ex 2
+            Console.WriteLine("veuillez saisir votre taille");
+            int taille = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Veuillez saisir votre poids");
+            int poids = Convert.ToInt32(Console.ReadLine());
+            if ((poids >= 43) && (poids <= 47) && (taille >= 145) && (taille <= 169) ||
+                 (poids >= 48) && (poids <= 53) && (taille >= 145) && (taille <= 166) ||
+                (poids >= 54) && (poids <= 59) && (taille >= 145) && (taille <= 163) ||
+                 (poids >= 60) && (poids <= 65) && (taille >= 145) && (taille <= 160))
             {
-                if (ac == bc)
-                {
-                    Console.WriteLine("Triangle équilatéral");
-                }
-                else
-                {
-                    Console.WriteLine("Triange isocéle en A");
-                }
+                Console.WriteLine("Taille: 01");
             }
-            else
+
+
+            else if (poids >= 48 && poids <= 53 && taille >= 169 && taille <= 178 ||
+                poids >= 54 && poids <= 59 && taille >= 166 && taille <= 175 ||
+                poids >= 60 && poids <= 65 && taille >= 163 && taille <= 172 ||
+                poids >= 66 && poids <= 71 && taille >= 160 && taille <= 169)
             {
-                if (ab == bc)
-                {
-                    Console.WriteLine("Triangle isocéle en B");
-                }
-                else if (ac == bc)
-                {
-                    Console.WriteLine("Triangel isocéle en C");
-                }
-                else
-                {
-                    Console.WriteLine("Ni isocéle ni équilatéral");
-                }
+                Console.WriteLine("Taille: 02");
             }
+
+
+            else if (poids >= 54 && poids <= 59 && taille >= 178 && taille <= 183 ||
+                 poids >= 60 && poids <= 65 && taille >= 175 && taille <= 183 ||
+                 poids >= 66 && poids <= 71 && taille >= 172 && taille <= 183 ||
+                 poids >= 72 && poids <= 77 && taille >= 163 && taille <= 183)
+            {
+                Console.WriteLine("Taille: 03");
+            }
+            #endregion
         }
     }
 }
