@@ -266,54 +266,96 @@ namespace coursDotNet
             //    Console.WriteLine(tab[i]);
             //}
             //Exercice tableau
-            Console.Write("Le nombre d'élèves : ");
+            //Console.Write("Le nombre d'élèves : ");
+            //int nombre = Convert.ToInt32(Console.ReadLine());
+            //double[] notes = new double[nombre];
+            //string choix;
+            //do
+            //{
+            //    Console.WriteLine("1---Saisir les notes : ");
+            //    Console.WriteLine("2---La moyenne des notes : ");
+            //    Console.WriteLine("3---le min et max: ");
+            //    Console.WriteLine("4---Afficher les notes: ");
+            //    choix = Console.ReadLine();
+            //    switch(choix)
+            //    {
+            //        case "1":
+            //            for(int i=0; i < notes.Length; i++)
+            //            {
+            //                Console.Write("Merci de saisir la note N° " + (i + 1) + " : ");
+            //                notes[i] = Convert.ToDouble(Console.ReadLine());
+            //            }
+            //            break;
+            //        case "2":
+            //            double somme = 0;
+            //            for (int i = 0; i < notes.Length; i++)
+            //            {
+            //                somme += notes[i];
+            //            }
+            //            double moyenne = somme / notes.Length;
+            //            Console.WriteLine("La moyenne est de : " + moyenne);
+            //            break;
+            //        case "3":
+            //            double min = notes[0];
+            //            double max = notes[0];
+            //            for (int i = 1; i < notes.Length; i++)
+            //            {
+            //                if(notes[i] < min)
+            //                {
+            //                    min = notes[i];
+            //                } else if(notes[i] > max)
+            //                {
+            //                    max = notes[i];
+            //                }
+            //            }
+            //            Console.WriteLine("Le min est de " + min + " et le max est de " + max);
+            //            break;
+            //        case "4":
+            //            for (int i = 0; i < notes.Length; i++)
+            //            {
+            //                Console.WriteLine("la note N° " + (i + 1) + " : " + notes[i]); 
+            //            }
+            //            break;
+            //    }
+            //} while (choix != "0");
+            //Exercice 2
+            Console.Write("Merci de saisir le nombre d'élément dans le tableau : ");
             int nombre = Convert.ToInt32(Console.ReadLine());
-            double[] notes = new double[nombre];
+            string[] chaines = new string[nombre];
             string choix;
             do
             {
-                Console.WriteLine("1---Saisir les notes : ");
-                Console.WriteLine("2---La moyenne des notes : ");
-                Console.WriteLine("3---le min et max: ");
-                Console.WriteLine("4---Afficher les notes: ");
+                Console.WriteLine("1---- Remplir le tableau : ");
+                Console.WriteLine("2---- Faire une recherche : ");
                 choix = Console.ReadLine();
                 switch(choix)
                 {
                     case "1":
-                        for(int i=0; i < notes.Length; i++)
+                        for(int i=1; i <= chaines.Length; i++ )
                         {
-                            Console.Write("Merci de saisir la note N° " + (i + 1) + " : ");
-                            notes[i] = Convert.ToDouble(Console.ReadLine());
+                            Console.Write("Merci de saisir l'élément n° : "+i+" ");
+                            chaines[i - 1] = Console.ReadLine();
                         }
                         break;
                     case "2":
-                        double somme = 0;
-                        for (int i = 0; i < notes.Length; i++)
+                        Console.Write("L'élément à rechercher : ");
+                        string recherche = Console.ReadLine();
+                        int nombreOcc = 0;
+                        for(int i=0; i < chaines.Length; i++)
                         {
-                            somme += notes[i];
-                        }
-                        double moyenne = somme / notes.Length;
-                        Console.WriteLine("La moyenne est de : " + moyenne);
-                        break;
-                    case "3":
-                        double min = notes[0];
-                        double max = notes[0];
-                        for (int i = 1; i < notes.Length; i++)
-                        {
-                            if(notes[i] < min)
+                            if(chaines[i] == recherche)
                             {
-                                min = notes[i];
-                            } else if(notes[i] > max)
-                            {
-                                max = notes[i];
+                                Console.WriteLine("Trouvé à la position : " + (i + 1));
+                                nombreOcc++;
                             }
                         }
-                        Console.WriteLine("Le min est de " + min + " et le max est de " + max);
-                        break;
-                    case "4":
-                        for (int i = 0; i < notes.Length; i++)
+                        if(nombreOcc != 0)
                         {
-                            Console.WriteLine("la note N° " + (i + 1) + " : " + notes[i]); 
+                            Console.WriteLine("Élément touvé : " + nombreOcc + " fois");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Élément non trouvé");
                         }
                         break;
                 }
