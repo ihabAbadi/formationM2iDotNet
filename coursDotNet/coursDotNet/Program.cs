@@ -111,7 +111,7 @@ namespace coursDotNet
             //    }
             //}
             //Ex 2
-            Console.WriteLine("veuillez saisir votre taille");
+            /*Console.WriteLine("veuillez saisir votre taille");
             int taille = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Veuillez saisir votre poids");
             int poids = Convert.ToInt32(Console.ReadLine());
@@ -139,7 +139,120 @@ namespace coursDotNet
                  poids >= 72 && poids <= 77 && taille >= 163 && taille <= 183)
             {
                 Console.WriteLine("Taille: 03");
+            }*/
+            #endregion
+            #region suite cours c# base
+            //Switch
+            /*int mois = 1;*/
+            //switch(mois)
+            //{
+            //    case 1:
+            //        Console.WriteLine("Janvier");
+            //        break;
+            //    case 2:
+            //        Console.WriteLine("Février");
+            //        break;
+            //    case 3:
+            //        Console.WriteLine("Mars");
+            //        break;
+            //    //....
+            //    default:
+            //        Console.WriteLine("Erreur mois");
+            //        break;
+            //}
+            /*switch(mois)
+            {
+                case int n when (n >= 1 && n <= 3):
+                    Console.WriteLine("L'hiver");
+                    break;
+                case int n when (n >= 4 && n <= 6):
+                    Console.WriteLine("printemps");
+                    break;
+                case int n when (n >= 7 && n <= 9):
+                    Console.WriteLine("été");
+                    break;
+                case int n when (n >= 10 && n <= 12):
+                    Console.WriteLine("automne");
+                    break;
+                default:
+                    Console.WriteLine("Erreur mois");
+                    break;
+            }*/
+            //Boucle
+            //boucle for
+            //Console.WriteLine("-----INCREMENTATION------");
+            //for(int i=1; i <= 10; i++)
+            //{
+            //    Console.WriteLine(i);
+            //}
+            //Console.WriteLine("-----DECREMENTATION------");
+            //for(int i=10; i >= 1; i = i - 2)
+            //{
+            //    Console.WriteLine(i);
+            //}
+            //Console.WriteLine("-----INCREMENTATION CHAR-------");
+            //for(char c='A'; c <= 'z'; c++)
+            //{
+            //    Console.WriteLine(c);
+            //}
+            //Boucle While
+            //int a = 1;
+            //while(a <= 10)
+            //{
+            //    Console.WriteLine(a);
+            //    a++;
+            //}
+            //int k = 10;
+            //while(k > 0)
+            //{
+            //    Console.WriteLine(k);
+            //    k--; 
+            //}
+            //int a = 10;
+            //do
+            //{
+            //    Console.WriteLine(a);
+            //    a++;
+            //} while (a < 10);
+            //Exercice 3
+            Console.WriteLine("Merci de saisir le capital annuel : ");
+            decimal c = Convert.ToDecimal(Console.ReadLine());
+            Console.WriteLine("Merci de saisir le taux : ");
+            decimal t = Convert.ToDecimal(Console.ReadLine());
+            Console.WriteLine("Merci de saisir le nombre d'années : ");
+            int n = Convert.ToInt32(Console.ReadLine());
+
+
+            decimal resultat = c;
+
+
+            if (n > 1)
+            {
+                for (int i = 1; i <= n; i++)
+                {
+                    resultat += resultat * t;
+                }
             }
+            else
+            {
+                Console.WriteLine("Le nombre d'années doit être superieur à 1.");
+            }
+            Console.WriteLine("Le montant de capital pendant " + n + " années est " + resultat + ".");
+
+
+            int yearsDouble = 0;
+            decimal capitalDouble = c;
+
+
+            do
+            {
+                capitalDouble += capitalDouble * t;
+                yearsDouble++;
+            }
+            while (capitalDouble < c * 2);
+
+
+            Console.WriteLine("Le capital sera doublé dans " + yearsDouble + " ans.");
             #endregion
         }
     }
