@@ -30,9 +30,9 @@ namespace coursDotNet.Classes
         //Constructeurs
         public Voiture()
         {
-            
+            nombreVoitures++;
         }
-        public Voiture(string m, string i)
+        public Voiture(string m, string i) : this()
         {
             model = m;
             Immatriculation = i;
@@ -67,6 +67,13 @@ namespace coursDotNet.Classes
             Afficher();
         }
 
+        //Destructeur
+        ~Voiture()
+        {
+            Console.WriteLine("Desctruction de l'objet");
+        }
+        //Eléments statiques
+        public static int nombreVoitures = 0; 
 
     }
 }

@@ -588,6 +588,7 @@ namespace coursDotNet
             Console.WriteLine(v1.Information());
             Voiture v3 = new Voiture("mercedes", "AE6000AR", 1000);
             v3.Afficher();
+            Console.WriteLine(Voiture.nombreVoitures);
             #endregion
         }
     }
