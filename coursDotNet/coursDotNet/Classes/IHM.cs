@@ -74,17 +74,27 @@ namespace coursDotNet.Classes
 
         private void AjouterTitre()
         {
-
+            Console.Write("Le nom du titre : ");
+            string n = Console.ReadLine();
+            Console.Write("La durée du titre en (s) : ");
+            int d = Convert.ToInt32(Console.ReadLine());
+            Titre titre = new Titre(n, d);
+            album.AjouterTitre(titre);
         }
 
         private void ListeTitres()
         {
-
+            Console.WriteLine("----Liste des titres----");
+            Console.WriteLine(album.ListesTitres());
         }
 
         private void RechercherTitre()
         {
-
+            Console.WriteLine("----Rechercher un titre----");
+            Console.Write("Le numéro du titre : ");
+            int n = Convert.ToInt32(Console.ReadLine());
+            Titre titre = album.GetTitre(n-1);
+            Console.WriteLine("Nom titre : " + titre.Nom + " Durée : " + titre.Duree);
         }
     }
 }

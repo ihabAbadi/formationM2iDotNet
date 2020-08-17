@@ -40,9 +40,10 @@ namespace coursDotNet.Classes
         public string ListesTitres()
         {
             string retour = "";
-            foreach(Titre t in titres)
+            //foreach(Titre t in titres)
+            for(int i=0; i < index; i++)
             {
-                retour += "Nom Titre : " + t.Nom + " Durée du titre : " + t.Duree;
+                retour += "Nom Titre : " + titres[i].Nom + " Durée du titre : " + titres[i].Duree;
             }
             return retour;
         }
