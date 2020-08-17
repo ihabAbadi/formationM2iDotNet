@@ -1,4 +1,8 @@
-﻿using System;
+﻿using coursDotNet.Classes;
+using System;
+using System.Collections.Generic;
+using System.Text.Json;
+
 
 namespace coursDotNet
 {
@@ -551,14 +555,42 @@ namespace coursDotNet
             //    }
             //} while (choix != "0");
             //generer un aléatoire
-            Random r = new Random();
-            for (int i = 1; i <= 10; i++)
-            {
-                int aleatoire = r.Next(-1);
-                Console.WriteLine(aleatoire);
-            }
-            
+            //Random r = new Random();
+            //for (int i = 1; i <= 10; i++)
+            //{
+            //    int aleatoire = r.Next(100);
+            //    Console.WriteLine(aleatoire);
+            //}
+
+            #endregion
+            #region POO en c#
+            Voiture v1 = new Voiture();
+            v1.immatriculation = "AA-000-AA";
+            v1.nombreKm = 10;
+            v1.model = "FORD";
+            //Console.WriteLine(v1.immatriculation);
+            //Console.WriteLine(v1.nombreKm);
+            //Console.WriteLine(v1.model);
+            v1.Afficher();
+            Voiture v2 = new Voiture();
+            v2.immatriculation = "AF-0001-AF";
+            v2.nombreKm = 100;
+            v2.model = "OPEL";
+            //Console.WriteLine(v2.immatriculation);
+            //Console.WriteLine(v2.nombreKm);
+            //Console.WriteLine(v2.model);
+            v2.Afficher();
+
+            v1.Rouler(100);
+            //v1.Afficher();
+            v2.Rouler(300);
+            //v2.Afficher();
+            Console.WriteLine(v1.Information());
+            Voiture v3 = new Voiture("mercedes", "AE6000AR", 1000);
+            v3.Afficher();
             #endregion
         }
     }
+
+    
 }
