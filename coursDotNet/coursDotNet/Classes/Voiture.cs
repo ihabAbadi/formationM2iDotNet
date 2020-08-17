@@ -7,9 +7,25 @@ namespace coursDotNet.Classes
     class Voiture
     {
         //atributs
-        public string model;
-        public string immatriculation;
-        public int nombreKm;
+        private string model;
+        private string immatriculation;
+        private int nombreKm;
+        //propriétés
+
+        public string Model
+        {
+            get
+            {
+                return model;
+            }
+            set
+            {
+                model = value;
+            }
+        }
+
+        public string Immatriculation { get => immatriculation; set => immatriculation = value; }
+        public int NombreKm { get => nombreKm; set => nombreKm = value; }
 
         //Constructeurs
         public Voiture()
@@ -19,35 +35,35 @@ namespace coursDotNet.Classes
         public Voiture(string m, string i)
         {
             model = m;
-            immatriculation = i;
+            Immatriculation = i;
         }
         public Voiture(string m, string i, int n) : this(m,i)
         {
             //model = m;
             //immatriculation = i;
-            nombreKm = n;
+            NombreKm = n;
         }
         //Méthodes
         public void Afficher()
         {
-            Console.WriteLine("Immatriculation : " + immatriculation);
-            Console.WriteLine("Model : " + model);
-            Console.WriteLine("nombre KM : " + nombreKm);
+            Console.WriteLine("Immatriculation : " + Immatriculation);
+            Console.WriteLine("Model : " + Model);
+            Console.WriteLine("nombre KM : " + NombreKm);
         }
 
         public string Information()
         {
             return "Immatriculation : " 
-                + immatriculation + 
+                + Immatriculation + 
                 " Model : " 
-                + model + 
+                + Model + 
                 " nombre KM " 
-                + nombreKm;
+                + NombreKm;
         }
 
         public void Rouler(int nombreKm)
         {
-            this.nombreKm += nombreKm;
+            this.NombreKm += nombreKm;
             Afficher();
         }
 

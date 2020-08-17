@@ -565,17 +565,17 @@ namespace coursDotNet
             #endregion
             #region POO en c#
             Voiture v1 = new Voiture();
-            v1.immatriculation = "AA-000-AA";
-            v1.nombreKm = 10;
-            v1.model = "FORD";
+            v1.Immatriculation = "AA-000-AA";
+            v1.NombreKm = 10;
+            v1.Model = "FORD";
             //Console.WriteLine(v1.immatriculation);
             //Console.WriteLine(v1.nombreKm);
             //Console.WriteLine(v1.model);
             v1.Afficher();
             Voiture v2 = new Voiture();
-            v2.immatriculation = "AF-0001-AF";
-            v2.nombreKm = 100;
-            v2.model = "OPEL";
+            v2.Immatriculation = "AF-0001-AF";
+            v2.NombreKm = 100;
+            v2.Model = "OPEL";
             //Console.WriteLine(v2.immatriculation);
             //Console.WriteLine(v2.nombreKm);
             //Console.WriteLine(v2.model);
