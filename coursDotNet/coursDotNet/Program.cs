@@ -599,8 +599,16 @@ namespace coursDotNet
             //Album a = new Album(10, "t", "t");
             //Titre t1 = new Titre("t1", 120);
             //a.AjouterTitre(t1);
-            IHM gestionAlbum = new IHM();
-            gestionAlbum.Start();
+            //IHM gestionAlbum = new IHM();
+            //gestionAlbum.Start();
+            //héritage
+            //Etudiant e = new Etudiant();
+            //e.Nom = "ne1";
+            //e.Prenom = "pe1";
+            Etudiant e2 = new Etudiant("toto", "tata");
+            e2.Niveau = 10;
+            e2.Afficher();
+            Console.WriteLine(e2);
             #endregion
         }
     }
