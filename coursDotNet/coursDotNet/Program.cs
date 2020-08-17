@@ -564,31 +564,37 @@ namespace coursDotNet
 
             #endregion
             #region POO en c#
-            Voiture v1 = new Voiture();
-            v1.Immatriculation = "AA-000-AA";
-            v1.NombreKm = 10;
-            v1.Model = "FORD";
-            //Console.WriteLine(v1.immatriculation);
-            //Console.WriteLine(v1.nombreKm);
-            //Console.WriteLine(v1.model);
-            v1.Afficher();
-            Voiture v2 = new Voiture();
-            v2.Immatriculation = "AF-0001-AF";
-            v2.NombreKm = 100;
-            v2.Model = "OPEL";
-            //Console.WriteLine(v2.immatriculation);
-            //Console.WriteLine(v2.nombreKm);
-            //Console.WriteLine(v2.model);
-            v2.Afficher();
-
-            v1.Rouler(100);
+            //Voiture v1 = new Voiture();
+            //v1.Immatriculation = "AA-000-AA";
+            //v1.NombreKm = 10;
+            //v1.Model = "FORD";
+            ////Console.WriteLine(v1.immatriculation);
+            ////Console.WriteLine(v1.nombreKm);
+            ////Console.WriteLine(v1.model);
             //v1.Afficher();
-            v2.Rouler(300);
+            //Voiture v2 = new Voiture();
+            //v2.Immatriculation = "AF-0001-AF";
+            //v2.NombreKm = 100;
+            //v2.Model = "OPEL";
+            ////Console.WriteLine(v2.immatriculation);
+            ////Console.WriteLine(v2.nombreKm);
+            ////Console.WriteLine(v2.model);
             //v2.Afficher();
-            Console.WriteLine(v1.Information());
-            Voiture v3 = new Voiture("mercedes", "AE6000AR", 1000);
-            v3.Afficher();
-            Console.WriteLine(Voiture.nombreVoitures);
+
+            //v1.Rouler(100);
+            ////v1.Afficher();
+            //v2.Rouler(300);
+            ////v2.Afficher();
+            //Console.WriteLine(v1.Information());
+            //Voiture v3 = new Voiture("mercedes", "AE6000AR", 1000);
+            //v3.Afficher();
+            //Console.WriteLine(Voiture.nombreVoitures);
+            //Correction ex1
+            ClsSalarie s1 = new ClsSalarie("m1", "c1", "s1", "toto", 10000);
+            ClsSalarie s2 = new ClsSalarie("m1", "c1", "s1", "tata", 5000);
+            s1.CalculerSalaire();
+            s2.CalculerSalaire();
+            Console.WriteLine(ClsSalarie.NombreSalarie);
             #endregion
         }
     }
