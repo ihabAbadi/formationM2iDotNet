@@ -11,5 +11,11 @@ namespace coursDotNet.Classes
 
         public string Nom { get => nom; set => nom = value; }
         public int Duree { get => duree; set => duree = value; }
+
+        public Titre(string nom, int duree)
+        {
+            Nom = nom;
+            Duree = duree;
+        }
     }
 }

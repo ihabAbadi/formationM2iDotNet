@@ -590,11 +590,17 @@ namespace coursDotNet
             //v3.Afficher();
             //Console.WriteLine(Voiture.nombreVoitures);
             //Correction ex1
-            ClsSalarie s1 = new ClsSalarie("m1", "c1", "s1", "toto", 10000);
-            ClsSalarie s2 = new ClsSalarie("m1", "c1", "s1", "tata", 5000);
-            s1.CalculerSalaire();
-            s2.CalculerSalaire();
-            Console.WriteLine(ClsSalarie.NombreSalarie);
+            //ClsSalarie s1 = new ClsSalarie("m1", "c1", "s1", "toto", 10000);
+            //ClsSalarie s2 = new ClsSalarie("m1", "c1", "s1", "tata", 5000);
+            //s1.CalculerSalaire();
+            //s2.CalculerSalaire();
+            //Console.WriteLine(ClsSalarie.NombreSalarie);
+
+            //Album a = new Album(10, "t", "t");
+            //Titre t1 = new Titre("t1", 120);
+            //a.AjouterTitre(t1);
+            IHM gestionAlbum = new IHM();
+            gestionAlbum.Start();
             #endregion
         }
     }
