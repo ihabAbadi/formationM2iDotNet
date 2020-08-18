@@ -680,9 +680,13 @@ namespace coursDotNet
 
             //}
             //les génériques
-            Salle<Prof> salleProf = new Salle<Prof>();
-            Salle<Etudiant> salleEtudiant = new Salle<Etudiant>();
-
+            //Salle<Prof> salleProf = new Salle<Prof>();
+            //Salle<Etudiant> salleEtudiant = new Salle<Etudiant>();
+            Pile<string> chaines = new Pile<string>(10);
+            chaines.Empiler("bonjour");
+            chaines.Empiler("tout le monde");
+            Console.WriteLine(chaines.GetElement(1));
+            chaines.Depiler();
             #endregion
         }
     }
