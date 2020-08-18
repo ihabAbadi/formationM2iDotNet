@@ -605,10 +605,12 @@ namespace coursDotNet
             //Etudiant e = new Etudiant();
             //e.Nom = "ne1";
             //e.Prenom = "pe1";
-            Etudiant e2 = new Etudiant("toto", "tata");
-            e2.Niveau = 10;
-            e2.Afficher();
-            Console.WriteLine(e2);
+            //Etudiant e2 = new Etudiant("toto", "tata");
+            //e2.Niveau = 10;
+            //e2.Afficher();
+            //Console.WriteLine(e2);
+            Maison m = new Maison(3, "Lille");
+            Console.WriteLine(m);
             #endregion
         }
     }
