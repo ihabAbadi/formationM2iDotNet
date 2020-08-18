@@ -631,16 +631,51 @@ namespace coursDotNet
             //Commerciale com = new Commerciale("aa", "info", "info", "toto", 1000, 100000, 3);
             //com.CalculerSalaire();
             //Exercice Véhicule héritage
-            Vehicule v1 = new Voiture(2010, 5000);
-            Vehicule v2 = new Voiture(2020, 25000);
-            Vehicule v3 = new Voiture(2015, 15000);
-            Vehicule v4 = new Camion(2005, 20000);
-            Vehicule v5 = new Camion(2018, 60000);
-            Vehicule[] tab = new Vehicule[] { v1, v2, v3, v4, v5 };
-            foreach(Vehicule v in tab)
+            //Vehicule v1 = new Voiture(2010, 5000);
+            //Vehicule v2 = new Voiture(2020, 25000);
+            //Vehicule v3 = new Voiture(2015, 15000);
+            //Vehicule v4 = new Camion(2005, 20000);
+            //Vehicule v5 = new Camion(2018, 60000);
+            //Vehicule[] tab = new Vehicule[] { v1, v2, v3, v4, v5 };
+            //foreach(Vehicule v in tab)
+            //{
+            //    v.Demarrer();
+            //    v.Accelerer();
+            //}
+            #endregion
+            #region suite POO en c#
+            Personne e1 = new Etudiant("toto", "tata", 1);
+            Personne e2 = new Etudiant("titi", "minet", 2);
+            Personne p1 = new Prof("titi", "tata", "math");
+            Personne p2 = new Prof("tyty", "tttt", "info");
+            Personne[] tab = new Personne[] { e1, e2, p1, p2 };
+            foreach(Personne p in tab)
             {
-                v.Demarrer();
-                v.Accelerer();
+                //Affichage du type de p
+                //Console.WriteLine(p.GetType());
+                //Vérification du type de p
+                //if(p.GetType() == typeof(Etudiant))
+                //{
+                //    //Convertir p en etudiant => si echec de convertion e égale à null
+                //    //Etudiant e = p as Etudiant;
+                //    //e.SpecialEtudiant();
+                //    (p as Etudiant).SpecialEtudiant();
+                //}
+                //else if(p.GetType() == typeof(Prof))
+                //{
+                //    //Convertir p en prof => si echec de convertion, le programme lève une exception
+                //    Prof pf = (Prof)p;
+                //    pf.SpecialProf();
+                //}
+                // <=> is
+                if(p is Etudiant e)
+                {
+                    e.SpecialEtudiant();
+                }
+                else if(p is Prof pf)
+                {
+                    pf.SpecialProf();
+                }
             }
             #endregion
         }

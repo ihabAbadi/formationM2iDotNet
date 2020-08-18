@@ -32,5 +32,10 @@ namespace coursDotNet.Classes
             base.Afficher();
             Console.WriteLine("Matière : " + Matiere);
         }
+
+        public void SpecialProf()
+        {
+            Console.WriteLine("Speciale Prof");
+        }
     }
 }
