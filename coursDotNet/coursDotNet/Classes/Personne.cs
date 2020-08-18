@@ -4,7 +4,7 @@ using System.Text;
 
 namespace coursDotNet.Classes
 {
-    class Personne
+    abstract class Personne
     {
         protected string nom;
         protected string prenom;

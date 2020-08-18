@@ -623,6 +623,7 @@ namespace coursDotNet
                 p.AfficherWithNew();
                 Console.WriteLine("------------------------");
             }
+            Personne person = new Personne();
             //Console.WriteLine(e2);
             //Maison m = new Maison(3, "Lille");
             //Console.WriteLine(m);

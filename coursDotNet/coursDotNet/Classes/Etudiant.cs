@@ -4,7 +4,7 @@ using System.Text;
 
 namespace coursDotNet.Classes
 {
-    class Etudiant : Personne
+    sealed class Etudiant : Personne
     {
         private int niveau;
 
