@@ -644,39 +644,45 @@ namespace coursDotNet
             //}
             #endregion
             #region suite POO en c#
-            Personne e1 = new Etudiant("toto", "tata", 1);
-            Personne e2 = new Etudiant("titi", "minet", 2);
-            Personne p1 = new Prof("titi", "tata", "math");
-            Personne p2 = new Prof("tyty", "tttt", "info");
-            Personne[] tab = new Personne[] { e1, e2, p1, p2 };
-            foreach(Personne p in tab)
-            {
-                //Affichage du type de p
-                //Console.WriteLine(p.GetType());
-                //Vérification du type de p
-                //if(p.GetType() == typeof(Etudiant))
-                //{
-                //    //Convertir p en etudiant => si echec de convertion e égale à null
-                //    //Etudiant e = p as Etudiant;
-                //    //e.SpecialEtudiant();
-                //    (p as Etudiant).SpecialEtudiant();
-                //}
-                //else if(p.GetType() == typeof(Prof))
-                //{
-                //    //Convertir p en prof => si echec de convertion, le programme lève une exception
-                //    Prof pf = (Prof)p;
-                //    pf.SpecialProf();
-                //}
-                // <=> is
-                if(p is Etudiant e)
-                {
-                    e.SpecialEtudiant();
-                }
-                else if(p is Prof pf)
-                {
-                    pf.SpecialProf();
-                }
-            }
+            //Personne e1 = new Etudiant("toto", "tata", 1);
+            //Personne e2 = new Etudiant("titi", "minet", 2);
+            //Personne p1 = new Prof("titi", "tata", "math");
+            //Personne p2 = new Prof("tyty", "tttt", "info");
+            //Personne[] tab = new Personne[] { e1, e2, p1, p2 };
+            //foreach(Personne p in tab)
+            //{
+            //    //Affichage du type de p
+            //    //Console.WriteLine(p.GetType());
+            //    //Vérification du type de p
+            //    //if(p.GetType() == typeof(Etudiant))
+            //    //{
+            //    //    //Convertir p en etudiant => si echec de convertion e égale à null
+            //    //    //Etudiant e = p as Etudiant;
+            //    //    //e.SpecialEtudiant();
+            //    //    (p as Etudiant).SpecialEtudiant();
+            //    //}
+            //    //else if(p.GetType() == typeof(Prof))
+            //    //{
+            //    //    //Convertir p en prof => si echec de convertion, le programme lève une exception
+            //    //    Prof pf = (Prof)p;
+            //    //    pf.SpecialProf();
+            //    //}
+            //    // <=> is
+            //    //if(p is Etudiant e)
+            //    //{
+            //    //    e.SpecialEtudiant();
+            //    //}
+            //    //else if(p is Prof pf)
+            //    //{
+            //    //    pf.SpecialProf();
+            //    //}
+            //    
+
+            //}
+            //les génériques
+            Salle<Prof> salleProf = new Salle<Prof>();
+            Salle<Etudiant> salleEtudiant = new Salle<Etudiant>();
+
             #endregion
         }
     }
