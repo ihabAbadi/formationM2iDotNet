@@ -628,8 +628,20 @@ namespace coursDotNet
             //Maison m = new Maison(3, "Lille");
             //Console.WriteLine(m);
             //Exercice commerciale héritage
-            Commerciale com = new Commerciale("aa", "info", "info", "toto", 1000, 100000, 3);
-            com.CalculerSalaire();
+            //Commerciale com = new Commerciale("aa", "info", "info", "toto", 1000, 100000, 3);
+            //com.CalculerSalaire();
+            //Exercice Véhicule héritage
+            Vehicule v1 = new Voiture(2010, 5000);
+            Vehicule v2 = new Voiture(2020, 25000);
+            Vehicule v3 = new Voiture(2015, 15000);
+            Vehicule v4 = new Camion(2005, 20000);
+            Vehicule v5 = new Camion(2018, 60000);
+            Vehicule[] tab = new Vehicule[] { v1, v2, v3, v4, v5 };
+            foreach(Vehicule v in tab)
+            {
+                v.Demarrer();
+                v.Accelerer();
+            }
             #endregion
         }
     }

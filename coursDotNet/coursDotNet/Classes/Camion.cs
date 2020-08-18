@@ -13,12 +13,12 @@ namespace coursDotNet.Classes
 
         public override void Accelerer()
         {
-            Console.WriteLine("Le camion immatrculé "+ Immatriculation+" accélère");
+            Console.WriteLine("Le camion immatriculé "+ Immatriculation+" accélère");
         }
 
         public override void Demarrer()
         {
-            Console.WriteLine("Le camion immatrculé "+ Immatriculation+" démarre");
+            Console.WriteLine("Le camion immatriculé "+ Immatriculation+" démarre");
         }
     }
 }

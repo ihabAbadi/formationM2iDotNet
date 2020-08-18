@@ -30,5 +30,10 @@ namespace coursDotNet.Classes
         abstract public void Demarrer();
 
         abstract public void Accelerer();
+
+        public override string ToString()
+        {
+            return "Immatriculation : " + Immatriculation + " Année : " + AnneeModel + " Prix : " + Prix;
+        }
     }
 }
