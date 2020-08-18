@@ -25,5 +25,10 @@ namespace coursDotNet.Classes
         {
             Console.WriteLine("Le nom est " + Nom + ", et le prénom : " + Prenom);
         }
+
+        public virtual void AfficherWithNew()
+        {
+            Console.WriteLine("Le nom est " + Nom + ", et le prénom : " + Prenom);
+        }
     }
 }

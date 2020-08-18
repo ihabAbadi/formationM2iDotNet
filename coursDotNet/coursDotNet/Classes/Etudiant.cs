@@ -14,15 +14,22 @@ namespace coursDotNet.Classes
         {
 
         }
-        public Etudiant(string n, string p) : base(n,p)
+        public Etudiant(string n, string p, int l) : base(n,p)
         {
-
+            Niveau = l;
         }
 
         public override void Afficher()
         {
             base.Afficher();
             Console.WriteLine("Niveau : " + Niveau);
+            Console.WriteLine("---Override with override---");
+        }
+        public new void AfficherWithNew()
+        {
+            base.AfficherWithNew();
+            Console.WriteLine("Niveau : " + Niveau);
+            Console.WriteLine("---Override with new---");
         }
         //public void AfficherInfo()
         //{
@@ -32,6 +39,11 @@ namespace coursDotNet.Classes
         public override string ToString()
         {
             return Nom + " "+ Prenom + " "+ Niveau;
+        }
+
+        public void SpecialEtudiant()
+        {
+            Console.WriteLine("Special etudiant");
         }
     } 
 }
