@@ -605,28 +605,31 @@ namespace coursDotNet
             //Etudiant e = new Etudiant();
             //e.Nom = "ne1";
             //e.Prenom = "pe1";
-            Personne e2 = new Etudiant("toto", "tata", 10);
-            Personne e3 = new Etudiant("titi", "minet", 15);
-            Personne p1 = new Prof("nom p1", "prenom p1", "math");
-            Personne p2 = new Prof("nom p2", "prenom p2", "info");
-            Personne[] tabPersonnes = new Personne[4];
-            tabPersonnes[0] = e2;
-            tabPersonnes[1] = e3;
-            tabPersonnes[2] = p1;
-            tabPersonnes[3] = p2;
-            foreach(Personne p in tabPersonnes)
-            {
-                Console.WriteLine("------------------------");
-                //Comme la méthode Afficher est surchargée en utilisant override, les objets utilseront la version définit dans leur propre classe
-                p.Afficher();
-                //Comme la méthode AfficherWithNew est surchagée en utilsant new, les objets utiliseront la version définit dans la classe mère
-                p.AfficherWithNew();
-                Console.WriteLine("------------------------");
-            }
-            Personne person = new Personne();
+            //Personne e2 = new Etudiant("toto", "tata", 10);
+            //Personne e3 = new Etudiant("titi", "minet", 15);
+            //Personne p1 = new Prof("nom p1", "prenom p1", "math");
+            //Personne p2 = new Prof("nom p2", "prenom p2", "info");
+            //Personne[] tabPersonnes = new Personne[4];
+            //tabPersonnes[0] = e2;
+            //tabPersonnes[1] = e3;
+            //tabPersonnes[2] = p1;
+            //tabPersonnes[3] = p2;
+            //foreach(Personne p in tabPersonnes)
+            //{
+            //    Console.WriteLine("------------------------");
+            //    //Comme la méthode Afficher est surchargée en utilisant override, les objets utilseront la version définit dans leur propre classe
+            //    p.Afficher();
+            //    //Comme la méthode AfficherWithNew est surchagée en utilsant new, les objets utiliseront la version définit dans la classe mère
+            //    p.AfficherWithNew();
+            //    Console.WriteLine("------------------------");
+            //}
+            //Personne person = new Personne();
             //Console.WriteLine(e2);
             //Maison m = new Maison(3, "Lille");
             //Console.WriteLine(m);
+            //Exercice commerciale héritage
+            Commerciale com = new Commerciale("aa", "info", "info", "toto", 1000, 100000, 3);
+            com.CalculerSalaire();
             #endregion
         }
     }

@@ -46,7 +46,7 @@ namespace coursDotNet.Classes
         {
             Console.WriteLine("Destruction d'un salarié");
         }
-        public void CalculerSalaire()
+        public virtual void CalculerSalaire()
         {
             Console.WriteLine("Le salaire de : " + Nom + " est : " + Salaire);
         }
