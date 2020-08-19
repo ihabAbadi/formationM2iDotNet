@@ -682,11 +682,30 @@ namespace coursDotNet
             //les génériques
             //Salle<Prof> salleProf = new Salle<Prof>();
             //Salle<Etudiant> salleEtudiant = new Salle<Etudiant>();
-            Pile<string> chaines = new Pile<string>(10);
-            chaines.Empiler("bonjour");
-            chaines.Empiler("tout le monde");
-            Console.WriteLine(chaines.GetElement(1));
-            chaines.Depiler();
+            //Pile<string> chaines = new Pile<string>(10);
+            //chaines.Empiler("bonjour");
+            //chaines.Empiler("tout le monde");
+            //Console.WriteLine(chaines.GetElement(1));
+            //chaines.Depiler();
+            //Liste est une classe générique
+            List<string> chaines = new List<string>();
+            List<string> sousChaines = new List<string>() { "toto", "titi" };
+            
+            //Ajouter un élément dans la liste
+            chaines.Add("coucou");
+            //Ajouter une sous liste
+            chaines.AddRange(sousChaines);
+            //supprimer un element
+            chaines.Remove("coucou");
+            //supprimer un element avec son index
+            chaines.RemoveAt(1);
+            //la taille de la liste
+            Console.WriteLine(chaines.Count);
+            //parcourir une liste
+            foreach (string s in chaines)
+            {
+                Console.WriteLine(s);
+            }
             #endregion
         }
     }
