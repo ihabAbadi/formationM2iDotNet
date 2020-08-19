@@ -10,7 +10,7 @@ namespace GestionCompteBancaire.Classes
 
         private Client client;
 
-        private decimal solde;
+        protected decimal solde;
 
         private List<Operation> operations;
 
@@ -29,7 +29,7 @@ namespace GestionCompteBancaire.Classes
             operations = new List<Operation>();
         }
 
-        public bool Depot(Operation o)
+        public virtual bool Depot(Operation o)
         {
             if(o.Montant <= 0)
             {
@@ -40,7 +40,7 @@ namespace GestionCompteBancaire.Classes
             return true;
         }
 
-        public bool Retrait(Operation o)
+        public virtual bool Retrait(Operation o)
         {
             if(Math.Abs(o.Montant) <= solde)
             {
