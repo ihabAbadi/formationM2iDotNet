@@ -7,7 +7,7 @@ namespace GestionCompteBancaire.Classes
     class IHM
     {
         private List<Compte> listeComptes;
-
+        private int numeroCompte;
         public IHM()
         {
             listeComptes = new List<Compte>();
@@ -34,6 +34,9 @@ namespace GestionCompteBancaire.Classes
                     case "4":
                         ActionAfficherOperationsEtSolde();
                         break;
+                    case "5":
+                        ActionCalculeInteretCompteEpargne();
+                        break;
                     case "0":
                         //Quitter la console
                         Environment.Exit(0);
@@ -51,6 +54,7 @@ namespace GestionCompteBancaire.Classes
             Console.WriteLine("2--Effectuer un dépot");
             Console.WriteLine("3--Effectuer un retrait");
             Console.WriteLine("4--Afficher un compte");
+            Console.WriteLine("5--Calcule Interet compte epargne");
             Console.WriteLine("0--Quitter");
         }
 
@@ -165,6 +169,29 @@ namespace GestionCompteBancaire.Classes
             if (compte != null)
             {
                 Console.WriteLine(compte);
+            }
+            else
+            {
+                Console.WriteLine("Aucun compte avec ce numéro");
+            }
+            Console.Read();
+        }
+
+        private void ActionCalculeInteretCompteEpargne()
+        {
+            Console.Clear();
+            Compte compte = ActionRechercheCompte();
+            if(compte != null)
+            {
+                if(compte is CompteEpargne compteEpargne)
+                {
+                    compteEpargne.UpdateSolde();
+                    Console.WriteLine("Le nouveau solde est de : " + compteEpargne.Solde);
+                }
+                else
+                {
+                    Console.WriteLine("Ce compte n'est pas un compte epargne");
+                }
             }
             else
             {
