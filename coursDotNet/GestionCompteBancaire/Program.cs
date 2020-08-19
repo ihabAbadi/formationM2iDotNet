@@ -7,7 +7,8 @@ namespace GestionCompteBancaire
     {
         static void Main(string[] args)
         {
-            
+            IHM ihm = new IHM();
+            ihm.Start();
         }
     }
 }
