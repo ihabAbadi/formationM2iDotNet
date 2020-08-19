@@ -33,8 +33,9 @@ namespace GestionCompteBancaire.Classes
         {
             if(Math.Abs(o.Montant)+ CoutOperation <= Solde)
             {
-                Operation oRetrait = new Operation(CoutOperation * -1);
-                return base.Retrait(o) && base.Retrait(oRetrait);
+                //Operation oRetrait = new Operation(CoutOperation * -1);
+                //return base.Retrait(o) && base.Retrait(oRetrait);
+                return base.Retrait(o) && base.Retrait(new Operation(CoutOperation * -1));
             }
             return false;
         }
