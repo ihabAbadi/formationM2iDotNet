@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "coursDotNet", "coursDotNet\coursDotNet.csproj", "{12536615-1989-4A6D-AC5D-BE1BEE0DA9A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionCompteBancaire", "GestionCompteBancaire\GestionCompteBancaire.csproj", "{6B23DF47-272E-4FC7-B651-1F2CE0D6E0BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestionCompteBancaire", "GestionCompteBancaire\GestionCompteBancaire.csproj", "{6B23DF47-272E-4FC7-B651-1F2CE0D6E0BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Forum", "Forum\Forum.csproj", "{0DC17991-AAA9-4B76-9DA9-F56745B118C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{6B23DF47-272E-4FC7-B651-1F2CE0D6E0BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B23DF47-272E-4FC7-B651-1F2CE0D6E0BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B23DF47-272E-4FC7-B651-1F2CE0D6E0BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DC17991-AAA9-4B76-9DA9-F56745B118C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DC17991-AAA9-4B76-9DA9-F56745B118C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DC17991-AAA9-4B76-9DA9-F56745B118C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DC17991-AAA9-4B76-9DA9-F56745B118C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

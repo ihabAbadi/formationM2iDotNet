@@ -688,23 +688,29 @@ namespace coursDotNet
             //Console.WriteLine(chaines.GetElement(1));
             //chaines.Depiler();
             //Liste est une classe générique
-            List<string> chaines = new List<string>();
-            List<string> sousChaines = new List<string>() { "toto", "titi" };
-            
-            //Ajouter un élément dans la liste
-            chaines.Add("coucou");
-            //Ajouter une sous liste
-            chaines.AddRange(sousChaines);
-            //supprimer un element
-            chaines.Remove("coucou");
-            //supprimer un element avec son index
-            chaines.RemoveAt(1);
-            //la taille de la liste
-            Console.WriteLine(chaines.Count);
-            //parcourir une liste
-            foreach (string s in chaines)
+            //List<string> chaines = new List<string>();
+            //List<string> sousChaines = new List<string>() { "toto", "titi" };
+
+            ////Ajouter un élément dans la liste
+            //chaines.Add("coucou");
+            ////Ajouter une sous liste
+            //chaines.AddRange(sousChaines);
+            ////supprimer un element
+            //chaines.Remove("coucou");
+            ////supprimer un element avec son index
+            //chaines.RemoveAt(1);
+            ////la taille de la liste
+            //Console.WriteLine(chaines.Count);
+            ////parcourir une liste
+            //foreach (string s in chaines)
+            //{
+            //    Console.WriteLine(s);
+            //}
+            //DateTime date = DateTime.Now;
+            //Console.WriteLine(date.Ticks);
+            foreach(string a in args)
             {
-                Console.WriteLine(s);
+                Console.WriteLine(a);
             }
             #endregion
         }
