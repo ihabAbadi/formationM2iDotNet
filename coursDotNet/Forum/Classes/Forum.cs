@@ -27,7 +27,7 @@ namespace Forum.Classes
             Abonnes = new List<Abonne>();
             Nouvelles = new List<Nouvelle>();
         }
-        public Forum(string nom, Moderateur moderateur)
+        public Forum(string nom, Moderateur moderateur) : this()
         {
             Nom = nom;
             Moderateur = moderateur;

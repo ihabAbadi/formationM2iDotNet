@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Forum.Classes;
+using System;
 
 namespace Forum
 {
@@ -6,7 +7,7 @@ namespace Forum
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            new IHM().Start();
         }
     }
 }

@@ -38,7 +38,8 @@ namespace Forum.Classes
         public override string ToString()
         {
             return "Id Nouvelle : "+Id+" \n" +
-                "Abonne : "+ Abonne.ToString() +" \n" +
+                "Statut : " + Statut + " \n" +
+                "Abonne : " + Abonne.ToString() +" \n" +
                 "Sujet : "+ Sujet +"\n" +
                 "Contenu : "+Contenu;
         }
