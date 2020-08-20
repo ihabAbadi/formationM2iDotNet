@@ -713,13 +713,21 @@ namespace coursDotNet
             //    Console.WriteLine(a);
             //}
             //Cours interface
-            List<IAffichable> listeAffichable = new List<IAffichable>();
-            listeAffichable.Add(new Camion(2010, 20000));
-            listeAffichable.Add(new Maison(10, "tourcoing"));
-            foreach(IAffichable affichable in listeAffichable)
+            //List<IAffichable> listeAffichable = new List<IAffichable>();
+            //listeAffichable.Add(new Camion(2010, 20000));
+            //listeAffichable.Add(new Maison(10, "tourcoing"));
+            //foreach(IAffichable affichable in listeAffichable)
+            //{
+            //    affichable.Afficher();
+            //}
+            List<ICri> listeICri = new List<ICri>();
+            listeICri.Add(new Chat());
+            listeICri.Add(new Lapin());
+            listeICri.Add(new Chien());
+            foreach(ICri a in listeICri)
             {
-                affichable.Afficher();
-            }
+                Console.WriteLine(a.Crier());
+            } 
             #endregion
         }
     }
