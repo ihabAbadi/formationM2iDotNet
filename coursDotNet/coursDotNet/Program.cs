@@ -720,14 +720,24 @@ namespace coursDotNet
             //{
             //    affichable.Afficher();
             //}
-            List<ICri> listeICri = new List<ICri>();
-            listeICri.Add(new Chat());
-            listeICri.Add(new Lapin());
-            listeICri.Add(new Chien());
-            foreach(ICri a in listeICri)
+            //List<ICri> listeICri = new List<ICri>();
+            //listeICri.Add(new Chat());
+            //listeICri.Add(new Lapin());
+            //listeICri.Add(new Chien());
+            //foreach(ICri a in listeICri)
+            //{
+            //    Console.WriteLine(a.Crier());
+            //} 
+            List<IDeformable> figures = new List<IDeformable>();
+            figures.Add(new Rectangle(10, 10, 10, 20));
+            figures.Add(new Carre(10, 10, 10));
+            figures.Add(new Triangle(10, 10, 10, 30));
+            foreach(IDeformable f in figures)
             {
-                Console.WriteLine(a.Crier());
-            } 
+                Figure figure = f.Deformation(2, 1);
+                figure.Afficher();
+                Console.WriteLine(figure.GetType());
+            }
             #endregion
         }
     }
