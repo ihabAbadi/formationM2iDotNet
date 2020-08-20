@@ -12,7 +12,10 @@ namespace Forum.Classes
         public void Start()
         {
             CreationForum();
-            ActionConnexion();
+            while(true)
+            {
+                ActionConnexion();
+            }
         }
 
         private void CreationForum()
@@ -87,12 +90,16 @@ namespace Forum.Classes
                         ActionAfficherNouvelle();
                         break;
                     case "5":
+                        ActionAjouterAbonne();
                         break;
                     case "6":
+                        ActionSupprimerNouvelle();
                         break;
                     case "7":
+                        ActionBannirAbonne();
                         break;
                     case "8":
+                        ActionListeAbonnes();
                         break;
                 }
             } while (choix != "0");
@@ -186,6 +193,68 @@ namespace Forum.Classes
             Console.ReadLine();
         } 
 
+        private void ActionAjouterAbonne()
+        {
+            Console.Write("Le nom de l'abonné : ");
+            string nom = Console.ReadLine();
+            Console.Write("Le prénom de l'abonné : ");
+            string prenom = Console.ReadLine();
+            Console.Write("L'age de l'abonné : ");
+            int age = Convert.ToInt32(Console.ReadLine());
+            Abonne a =forum.Moderateur.AjouterAbonne(forum, nom, prenom, age);
+            Console.WriteLine("Abonné crée");
+            Console.WriteLine(a);
+            Console.WriteLine("Continuer...");
+            Console.ReadLine();
+        }
+
+        private void ActionSupprimerNouvelle()
+        {
+            ActionAfficherNouvelle();
+            Console.Write("L'id de la nouvelle à supprimer : ");
+            int id = Convert.ToInt32(Console.ReadLine());
+            Nouvelle nouvelle = forum.GetNouvelleById(id);
+            if(nouvelle == null)
+            {
+                Console.WriteLine("Aucune nouvelle avec cet id");
+            }
+            else
+            {
+                forum.Moderateur.SupprimerNouvelle(forum, nouvelle);
+                Console.WriteLine("Nouvelle supprimée");
+            }
+            Console.WriteLine("Continuer...");
+            Console.ReadLine();
+        }
+
+        private void ActionBannirAbonne()
+        {
+            ActionListeAbonnes();
+            Console.Write("L'id de l'abonné à bannir : ");
+            int id = Convert.ToInt32(Console.ReadLine());
+            Abonne abonne = forum.GetAbonneById(id);
+            if(abonne == null)
+            {
+                Console.WriteLine("Aucun abonné avec cet id");
+            }
+            else
+            {
+                forum.Moderateur.BannirAbonne(abonne);
+                Console.WriteLine("Abonné banni");
+            }
+            Console.WriteLine("Continuer...");
+            Console.ReadLine();
+        }
+        private void ActionListeAbonnes()
+        {
+            Console.WriteLine("-----Liste des abonnés-----");
+            foreach(Abonne a in forum.Abonnes)
+            {
+                Console.WriteLine(a);
+            }
+            Console.WriteLine("Continuer....");
+            Console.ReadLine();
+        }
         private void ActionAfficherNouvelleAbonne(Abonne abonne, string statut = "Non publiée")
         {
             Console.WriteLine("---Vos nouvelles---");

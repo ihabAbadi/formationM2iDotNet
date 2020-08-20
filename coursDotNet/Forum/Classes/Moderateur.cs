@@ -16,11 +16,11 @@ namespace Forum.Classes
 
         }
 
-        public bool AjouterAbonne(Forum forum, string nom, string prenom, int age)
+        public Abonne AjouterAbonne(Forum forum, string nom, string prenom, int age)
         {
             Abonne abonne = new Abonne(nom, prenom, age);
             forum.Abonnes.Add(abonne);
-            return true;
+            return abonne;
         }
 
         public bool SupprimerNouvelle(Forum forum, Nouvelle nouvelle)
