@@ -4,7 +4,7 @@ using System.Text;
 
 namespace coursDotNet.Classes
 {
-    class Maison : Batiment
+    class Maison : Batiment, IAffichable
     {
         private int nbPieces;
 
@@ -25,6 +25,11 @@ namespace coursDotNet.Classes
             string retour = base.ToString();
             retour += " Nombre de pièces : " + NbPieces;
             return retour;
+        }
+
+        public void Afficher()
+        {
+            Console.WriteLine(this);
         }
     }
 }

@@ -708,9 +708,17 @@ namespace coursDotNet
             //}
             //DateTime date = DateTime.Now;
             //Console.WriteLine(date.Ticks);
-            foreach(string a in args)
+            //foreach(string a in args)
+            //{
+            //    Console.WriteLine(a);
+            //}
+            //Cours interface
+            List<IAffichable> listeAffichable = new List<IAffichable>();
+            listeAffichable.Add(new Camion(2010, 20000));
+            listeAffichable.Add(new Maison(10, "tourcoing"));
+            foreach(IAffichable affichable in listeAffichable)
             {
-                Console.WriteLine(a);
+                affichable.Afficher();
             }
             #endregion
         }

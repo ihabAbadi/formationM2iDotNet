@@ -4,7 +4,7 @@ using System.Text;
 
 namespace coursDotNet.Classes
 {
-    class Camion : Vehicule
+    class Camion : Vehicule, IAffichable
     {
         public Camion(int a, decimal p) : base(a, p)
         {
@@ -14,6 +14,12 @@ namespace coursDotNet.Classes
         public override void Accelerer()
         {
             Console.WriteLine("Le camion immatriculé "+ Immatriculation+" accélère");
+        }
+
+        public void Afficher()
+        {
+            Console.WriteLine("Coucou je suis un camion");
+            Console.WriteLine(this);
         }
 
         public override void Demarrer()
