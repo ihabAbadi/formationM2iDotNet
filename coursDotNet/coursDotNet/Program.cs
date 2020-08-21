@@ -1,6 +1,7 @@
 ﻿using coursDotNet.Classes;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text.Json;
 
 
@@ -757,7 +758,7 @@ namespace coursDotNet
             #endregion
 
             #region cours gestion des exceptions
-            bool error = false;
+            //bool error = false;
             //do
             //{
             //    try
@@ -794,16 +795,70 @@ namespace coursDotNet
             //{
             //    Console.WriteLine(ex.Message);
             //}
-            Console.Write("Merci de saisir un nombre : ");
-            int a;
-            //if(!Int32.TryParse(Console.ReadLine(), out a))
+            //Console.WriteLine(default(char));
+            //Console.Write("Merci de saisir un nombre : ");
+            //int a;
+            //if (!Int32.TryParse(Console.ReadLine(), out a))
             //{
             //    Console.WriteLine("Merci de saisir un entier");
             //}
-            if (!OurIntTryParse(Console.ReadLine(), out a))
+            //Console.WriteLine(a);
+            //if (!OurIntTryParse(Console.ReadLine(), out a))
+            //{
+            //    Console.WriteLine("Merci de saisir un entier");
+            //}
+            #endregion
+
+            #region cours gestion de fichier texte
+            //création d'un dossier file
+            string path = Directory.GetCurrentDirectory();
+            //string pathToFolder = path + @"\files";
+            string pathToFolder = Path.Combine(path, "files");
+            //Vérifier si dossier n'existe pas
+            if (!Directory.Exists(pathToFolder))
             {
-                Console.WriteLine("Merci de saisir un entier");
+                Directory.CreateDirectory(pathToFolder);
             }
+            //Ecrire dans un flux  => StreamWriter
+            //StreamWriter writer = new StreamWriter(Path.Combine(pathToFolder,"fichier.txt"));
+            //writer.Write("coucou \n bonjour tout le monde");
+            //writer.Close();
+            //StreamWriter writer = new StreamWriter(Path.Combine(pathToFolder, "fichier.csv"));
+            //writer.WriteLine("nom;prenom;telephone;");
+            //writer.WriteLine("toto;tata;06060606;");
+            //writer.Close();
+            //Lire un flux
+            //StreamReader reader = new StreamReader(Path.Combine(pathToFolder, "fichier.txt"));
+            //Console.WriteLine(reader.ReadToEnd());
+            //reader.Close();
+            StreamReader reader = new StreamReader(Path.Combine(pathToFolder, "fichier.csv"));
+            string data;
+            int nbLigne = 0;
+            do
+            {
+                data = reader.ReadLine();
+                
+                if(data != null)
+                {
+                    if(nbLigne > 0)
+                    {
+                        string[] ligne = data.Split(";");
+                        Etudiant e = new Etudiant(ligne[0], ligne[1], 1);
+                        //foreach (string s in ligne)
+                        //{
+                        //    Console.Write(s + " ");
+                        //}
+                        Console.WriteLine(e);
+                    }     
+                }
+                else
+                {
+                    Console.WriteLine("Fin");
+                }
+                nbLigne++;
+            } 
+            while (data != null);
+            reader.Close();
             #endregion
         }
         #region methodes pour cours passage paramètres
