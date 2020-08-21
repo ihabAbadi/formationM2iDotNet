@@ -1,4 +1,5 @@
 ﻿using coursDotNet.Classes;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -812,13 +813,13 @@ namespace coursDotNet
             #region cours gestion de fichier texte
             //création d'un dossier file
             string path = Directory.GetCurrentDirectory();
-            //string pathToFolder = path + @"\files";
+            ////string pathToFolder = path + @"\files";
             string pathToFolder = Path.Combine(path, "files");
-            //Vérifier si dossier n'existe pas
-            if (!Directory.Exists(pathToFolder))
-            {
-                Directory.CreateDirectory(pathToFolder);
-            }
+            ////Vérifier si dossier n'existe pas
+            //if (!Directory.Exists(pathToFolder))
+            //{
+            //    Directory.CreateDirectory(pathToFolder);
+            //}
             //Ecrire dans un flux  => StreamWriter
             //StreamWriter writer = new StreamWriter(Path.Combine(pathToFolder,"fichier.txt"));
             //writer.Write("coucou \n bonjour tout le monde");
@@ -831,33 +832,49 @@ namespace coursDotNet
             //StreamReader reader = new StreamReader(Path.Combine(pathToFolder, "fichier.txt"));
             //Console.WriteLine(reader.ReadToEnd());
             //reader.Close();
-            StreamReader reader = new StreamReader(Path.Combine(pathToFolder, "fichier.csv"));
-            string data;
-            int nbLigne = 0;
-            do
-            {
-                data = reader.ReadLine();
-                
-                if(data != null)
-                {
-                    if(nbLigne > 0)
-                    {
-                        string[] ligne = data.Split(";");
-                        Etudiant e = new Etudiant(ligne[0], ligne[1], 1);
-                        //foreach (string s in ligne)
-                        //{
-                        //    Console.Write(s + " ");
-                        //}
-                        Console.WriteLine(e);
-                    }     
-                }
-                else
-                {
-                    Console.WriteLine("Fin");
-                }
-                nbLigne++;
-            } 
-            while (data != null);
+            //StreamReader reader = new StreamReader(Path.Combine(pathToFolder, "fichier.csv"));
+            //string data;
+            //int nbLigne = 0;
+            //do
+            //{
+            //    data = reader.ReadLine();
+
+            //    if(data != null)
+            //    {
+            //        if(nbLigne > 0)
+            //        {
+            //            string[] ligne = data.Split(";");
+            //            Etudiant e = new Etudiant(ligne[0], ligne[1], 1);
+            //            //foreach (string s in ligne)
+            //            //{
+            //            //    Console.Write(s + " ");
+            //            //}
+            //            Console.WriteLine(e);
+            //        }     
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Fin");
+            //    }
+            //    nbLigne++;
+            //} 
+            //while (data != null);
+            //reader.Close();
+            //Convertir un objet en json et json en objet
+            //Etudiant e = new Etudiant("toto", "tata", 1);
+            //e.Age = 24;
+            //string chaineJson = JsonConvert.SerializeObject(e);
+            //Etudiant e2 = JsonConvert.DeserializeObject<Etudiant>(chaineJson);
+            //Ecriture d'une liste dans un fichier sous format json
+            //List<Etudiant> etudiants = new List<Etudiant>() { };
+            //etudiants.Add(new Etudiant { Nom = "abadi", Prenom="Ihab", Age=24});
+            //etudiants.Add(new Etudiant { Nom = "minet", Prenom="titi", Age=24});
+            //StreamWriter writer = new StreamWriter(Path.Combine(pathToFolder, "etudiants.json"));
+            //writer.WriteLine(JsonConvert.SerializeObject(etudiants));
+            //writer.Close();
+            //Lire json à partir d'un fichier et le convertir en objet
+            StreamReader reader = new StreamReader(Path.Combine(pathToFolder, "etudiants.json"));
+            List<Etudiant> etudiants = JsonConvert.DeserializeObject<List<Etudiant>>(reader.ReadToEnd());
             reader.Close();
             #endregion
         }
