@@ -753,10 +753,60 @@ namespace coursDotNet
             //Personne p = new Etudiant("titi", "minet", 1);
             //EditPersonne(p);
             //Console.WriteLine(p.Nom);
-            Console.WriteLine(Addition("coucou",-10,10, 20)) ;
+            //Console.WriteLine(Addition("coucou",-10,10, 20)) ;
+            #endregion
+
+            #region cours gestion des exceptions
+            bool error = false;
+            //do
+            //{
+            //    try
+            //    {
+            //        Console.Write("Merci de saisir un nombre : ");
+            //        int a = Convert.ToInt32(Console.ReadLine());
+            //        error = false;
+            //        Console.WriteLine(a);
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        Console.WriteLine("Merci de saisir un entier");
+            //        error = true;
+            //    }
+            //    //finally
+            //    //{
+            //    //    Console.WriteLine("Merci d'avoir essayé");
+            //    //}
+            //} while (error);
+            //Etudiant e = new Etudiant("toto", "tata", 1);
+
+            //try
+            //{
+            //    Console.Write("Merci de saisir un nombre : ");
+            //    int a = Convert.ToInt32(Console.ReadLine());
+            //    e.Age = 10; 
+            //} 
+            //catch(FormatException ex)
+            //{
+            //    Console.WriteLine("Vous avez une erreur de format");
+            //    Console.WriteLine(ex.Message);
+            //}
+            //catch(AgeException ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
+            Console.Write("Merci de saisir un nombre : ");
+            int a;
+            //if(!Int32.TryParse(Console.ReadLine(), out a))
+            //{
+            //    Console.WriteLine("Merci de saisir un entier");
+            //}
+            if (!OurIntTryParse(Console.ReadLine(), out a))
+            {
+                Console.WriteLine("Merci de saisir un entier");
+            }
             #endregion
         }
-
+        #region methodes pour cours passage paramètres
         //Passage par valeur et reference
         //static void MultiplierPar2(int a)
         //{
@@ -816,9 +866,23 @@ namespace coursDotNet
             }
             return 0;
         }
+        #endregion
 
 
+        static bool OurIntTryParse(string chaine, out int res)
+        {
+            bool result = false;
+            try
+            {
+                res = Convert.ToInt32(chaine);
+                result = true;
+            }catch(Exception e)
+            {
+                res = default(int);
+            }
+            return result;
+        }
     }
 
-    
+
 }

@@ -8,7 +8,17 @@ namespace coursDotNet.Classes
     {
         private int niveau;
 
+        private int age;
+
         public int Niveau { get => niveau; set => niveau = value; }
+        public int Age { get => age; set {
+                if (value >= 15 && value <= 25)
+                    age = value;
+                else
+                    throw new AgeException();
+            
+            } 
+        }
 
         public Etudiant()
         {
