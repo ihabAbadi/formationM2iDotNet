@@ -42,7 +42,7 @@ namespace Forum.Classes
         }
         public bool PublierNouvelle(Nouvelle nouvelle, Forum forum)
         {
-            nouvelle.Statut = "Publié";
+            nouvelle.Statut = StatutNouvelle.Publie;
             forum.Nouvelles.Add(nouvelle);
             return true;
         }

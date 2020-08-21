@@ -80,6 +80,7 @@ namespace coursDotNet
             //int age = Convert.ToInt32(Console.ReadLine());
             //Console.WriteLine(age);
             #endregion
+
             #region correction exercice base c#
             //Ex 1
             //Console.WriteLine("Saisir AB");
@@ -145,6 +146,7 @@ namespace coursDotNet
                 Console.WriteLine("Taille: 03");
             }*/
             #endregion
+
             #region suite cours c# base
             //Switch
             /*int mois = 1;*/
@@ -563,6 +565,7 @@ namespace coursDotNet
             //}
 
             #endregion
+
             #region POO en c#
             //Voiture v1 = new Voiture();
             //v1.Immatriculation = "AA-000-AA";
@@ -643,6 +646,7 @@ namespace coursDotNet
             //    v.Accelerer();
             //}
             #endregion
+
             #region suite POO en c#
             //Personne e1 = new Etudiant("toto", "tata", 1);
             //Personne e2 = new Etudiant("titi", "minet", 2);
@@ -728,18 +732,92 @@ namespace coursDotNet
             //{
             //    Console.WriteLine(a.Crier());
             //} 
-            List<IDeformable> figures = new List<IDeformable>();
-            figures.Add(new Rectangle(10, 10, 10, 20));
-            figures.Add(new Carre(10, 10, 10));
-            figures.Add(new Triangle(10, 10, 10, 30));
-            foreach(IDeformable f in figures)
-            {
-                Figure figure = f.Deformation(2, 1);
-                figure.Afficher();
-                Console.WriteLine(figure.GetType());
-            }
+            //List<IDeformable> figures = new List<IDeformable>();
+            //figures.Add(new Rectangle(10, 10, 10, 20));
+            //figures.Add(new Carre(10, 10, 10));
+            //figures.Add(new Triangle(10, 10, 10, 30));
+            //foreach(IDeformable f in figures)
+            //{
+            //    Console.WriteLine(f.GetType());
+            //    Figure figure = f.Deformation(2, 1);
+            //    figure.Afficher();
+            //    Console.WriteLine(figure.GetType());
+            //}
+            #endregion
+
+            #region cours passage de paramètres
+            //int nombre;
+            //MultiplierPar2(ref nombre);
+            //MultiplierPar2(out nombre);
+            //Console.WriteLine(nombre);
+            //Personne p = new Etudiant("titi", "minet", 1);
+            //EditPersonne(p);
+            //Console.WriteLine(p.Nom);
+            Console.WriteLine(Addition("coucou",-10,10, 20)) ;
             #endregion
         }
+
+        //Passage par valeur et reference
+        //static void MultiplierPar2(int a)
+        //{
+        //    a = a * 2;
+        //    Console.WriteLine(a);
+        //}
+
+        //Passage par reference
+        //static void MultiplierPar2(ref int a)
+        //{
+        //    a = a * 2;
+        //    Console.WriteLine(a);
+        //}
+        //static void MultiplierPar2(out int a)
+        //{
+        //    a = 20;
+        //    Console.WriteLine(a);
+        //}
+
+        //static void EditPersonne(Personne p)
+        //{
+        //    p.Nom = "New Name " + p.Nom;
+        //}
+
+        //Mulit params
+
+
+        //static int Addition(int a, int b)
+        //{
+        //    return a + b;
+        //}
+
+        static int Addition(params int[] tab)
+        {
+            if(tab.Length > 0)
+            {
+                int somme = tab[0];
+                for(int i=1; i < tab.Length; i++)
+                {
+                    somme += tab[i];
+                }
+                return somme;
+            }
+            return 0;
+        }
+        static int Addition(string message, params int[] tab)
+        {
+            Console.WriteLine(message);
+            if (tab.Length > 0)
+            {
+                int somme = tab[0];
+                for (int i = 1; i < tab.Length; i++)
+                {
+                    somme += tab[i];
+                }
+                return somme;
+            }
+            return 0;
+        }
+
+
     }
 
     

@@ -10,7 +10,7 @@ namespace Forum.Classes
         private string sujet;
         private string contenu;
         private DateTime dateCreation;
-        private string statut;
+        private StatutNouvelle statut;
         private Abonne abonne;
 
         private static int index = 0;
@@ -18,7 +18,7 @@ namespace Forum.Classes
         public string Sujet { get => sujet; set => sujet = value; }
         public string Contenu { get => contenu; set => contenu = value; }
         public DateTime DateCreation { get => dateCreation; }
-        public string Statut { get => statut; set => statut = value; }
+        public StatutNouvelle Statut { get => statut; set => statut = value; }
         internal Abonne Abonne { get => abonne; }
 
         public Nouvelle()
@@ -31,7 +31,7 @@ namespace Forum.Classes
         {
             Sujet = sujet;
             Contenu = contenu;
-            Statut = "Non publiée";
+            Statut = StatutNouvelle.NonPublie;
             this.abonne = abonne;
         }
 
@@ -43,5 +43,11 @@ namespace Forum.Classes
                 "Sujet : "+ Sujet +"\n" +
                 "Contenu : "+Contenu;
         }
+    }
+
+    enum StatutNouvelle
+    {
+        Publie,
+        NonPublie,
     }
 }
