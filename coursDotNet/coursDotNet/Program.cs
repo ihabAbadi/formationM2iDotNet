@@ -911,8 +911,10 @@ namespace coursDotNet
             //} while (true);
             #endregion
             #region méthode d'extension
-            string toto = "Bonjour tout le monde";
-            Console.WriteLine(toto.CountWord());
+            //string toto = "Bonjour tout le monde";
+            //Console.WriteLine(toto.CountWord());
+            List<string> liste = new List<string>() { "coucou", "tata", "titi", "minet" };
+            liste.Shuffle();
             #endregion
         }
         #region methodes pour cours passage paramètres
