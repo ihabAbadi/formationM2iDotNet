@@ -10,9 +10,11 @@ namespace GestionHotel.Classes
         private List<Client> clients;
         private List<Reservation> reservations;
 
-        private int MaxReservations = 5;
+        private int MaxReservations = 8;
 
         public event Action<string> HotelPlein;
+
+        public event Action<int, string> PlaceRest;
 
         public string Nom { get => nom; set => nom = value; }
         public List<Client> Clients { get => clients; set => clients = value; }
@@ -41,10 +43,14 @@ namespace GestionHotel.Classes
                 reservation.Id = (Reservations.Count == 0) ? 1 : Reservations[Reservations.Count - 1].Id + 1;
                 Reservations.Add(reservation);
                 Sauvegarde.Instance.SauvegardeReservations(this);
+                if(Reservations.Count == MaxReservations -1)
+                {
+                    PlaceRest?.Invoke(MaxReservations - Reservations.Count, Nom);
+                }
             }
             else
             {
-                HotelPlein(Nom);
+                HotelPlein?.Invoke(Nom);
             }
         }
 

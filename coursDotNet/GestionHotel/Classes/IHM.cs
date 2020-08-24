@@ -14,6 +14,7 @@ namespace GestionHotel.Classes
             string nom = Console.ReadLine();
             hotel = new Hotel(nom) ;
             hotel.HotelPlein += EnvoieMailHotelPlein;
+            hotel.PlaceRest += EnvoieMailPlaceRest;
             MenuPrincipal();
         }
 
@@ -232,6 +233,11 @@ namespace GestionHotel.Classes
         private void EnvoieMailHotelPlein(string nom)
         {
             Console.WriteLine("L'hotel " + nom + " est plein");
+        }
+
+        private void EnvoieMailPlaceRest(int nbrePlace, string nom)
+        {
+            Console.WriteLine("Il reste " + nbrePlace + " dans l'hotel " + nom);
         }
     }
 }
