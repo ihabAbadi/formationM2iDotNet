@@ -35,6 +35,7 @@ namespace GestionHotel.Classes
             reservation.Id = (Reservations.Count == 0) ? 1 : Reservations[Reservations.Count - 1].Id + 1;
             Reservations.Add(reservation);
             Sauvegarde.Instance.SauvegardeReservations(this);
+            Sauvegarde.Instance.SauvegardeClients(this);
         }
 
         public void UpdateStatutReservation()

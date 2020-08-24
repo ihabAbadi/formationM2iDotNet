@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Forum.Classes
@@ -35,16 +36,18 @@ namespace Forum.Classes
 
         public Abonne GetAbonneById(int id)
         {
-            Abonne abonne = null;
-            foreach(Abonne a in Abonnes)
-            {
-                if(a.Id== id)
-                {
-                    abonne = a;
-                    break;
-                }
-            }
-            return abonne;
+            //Abonne abonne = null;
+            //foreach(Abonne a in Abonnes)
+            //{
+            //    if(a.Id== id)
+            //    {
+            //        abonne = a;
+            //        break;
+            //    }
+            //}
+            //return abonne;
+            //Abonne abonne = Abonnes.FirstOrDefault((a) =>  a.Id == id);
+            return Abonnes.FirstOrDefault((a) => a.Id == id);
         }
 
         public Nouvelle GetNouvelleById(int id)

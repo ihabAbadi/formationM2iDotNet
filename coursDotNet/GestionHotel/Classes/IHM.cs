@@ -143,9 +143,9 @@ namespace GestionHotel.Classes
             DateTime debut = CreerDate();
             Console.WriteLine("La date de fin de séjour : ");
             DateTime fin = CreerDate();
-            Reservation reservation = new Reservation() { Client = client, DateDebut = debut, DateFin = fin, Statut = StatutReservation.Valide };
-            hotel.SauvegardeReservation(reservation);
+            Reservation reservation = new Reservation() { Client = client, DateDebut = debut, DateFin = fin, Statut = StatutReservation.Valide };    
             client.Reservations.Add(reservation);
+            hotel.SauvegardeReservation(reservation);
             Console.WriteLine("La réservation à été sauvgardée avec le numéro : "+ reservation.Id);
             RetourMenu();
         }

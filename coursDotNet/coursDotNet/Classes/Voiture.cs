@@ -79,6 +79,7 @@ namespace coursDotNet.Classes
         {
 
         }
+        public event Action<decimal> Promotion;
         public override void Accelerer()
         {
             Console.WriteLine("La voiture immatriculée " + Immatriculation + " accélère");
@@ -87,6 +88,14 @@ namespace coursDotNet.Classes
         public override void Demarrer()
         {
             Console.WriteLine("Le voiture immatriculée " + Immatriculation + " démarre");
+        }
+
+        public void Reduction(decimal reduc)
+        {
+            Prix -= reduc;
+            //if(Promotion != null)
+            //    Promotion(Prix);
+            Promotion?.Invoke(Prix);
         }
     }
 }

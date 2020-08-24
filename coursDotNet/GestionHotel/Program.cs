@@ -1,4 +1,5 @@
 ﻿using GestionHotel.Classes;
+using OurLibrairy;
 using System;
 
 namespace GestionHotel
@@ -9,6 +10,7 @@ namespace GestionHotel
         {
             IHM ihm = new IHM();
             ihm.Start();
+           
         }
     }
 }
