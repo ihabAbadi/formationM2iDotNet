@@ -879,36 +879,40 @@ namespace coursDotNet
             #endregion
 
             #region Delegate et event
-            //Calcule c = new Calcule();
-            ////c.Calculer(10, 10, c.Addition);
-            ////c.Calculer(10, 10, c.Soustraction);
-            ////c.Calculer(10, 10, Multiplication);
-            //c.AllCalcule = c.Addition;
-            //c.AllCalcule += c.Soustraction;
-            //c.AllCalcule += Multiplication;
-            //c.StartCalcule(10, 15);
-            //c.AllCalcule -= c.Addition;
-            //c.AllCalcule += (a, b) => { Console.WriteLine(a / b); };
-            //c.StartCalcule(20, 30);
-            Voiture v = new Voiture(2020, 20000);
-            v.Promotion += EnvoieSMS;
-            v.Promotion += EnvoieEmail;
-            decimal reduc;
-            int nbReduc = 0;
-            do
-            {
-                Console.WriteLine("Est ce qu'il y a une promotion ? ");
-                Decimal.TryParse(Console.ReadLine(), out reduc);
-                if(reduc != 0)
-                {
-                    nbReduc++;
-                    v.Reduction(reduc);
-                    if(nbReduc >= 3)
-                    {
-                        v.Promotion -= EnvoieSMS;
-                    }
-                }
-            } while (true);
+            ////Calcule c = new Calcule();
+            //////c.Calculer(10, 10, c.Addition);
+            //////c.Calculer(10, 10, c.Soustraction);
+            //////c.Calculer(10, 10, Multiplication);
+            ////c.AllCalcule = c.Addition;
+            ////c.AllCalcule += c.Soustraction;
+            ////c.AllCalcule += Multiplication;
+            ////c.StartCalcule(10, 15);
+            ////c.AllCalcule -= c.Addition;
+            ////c.AllCalcule += (a, b) => { Console.WriteLine(a / b); };
+            ////c.StartCalcule(20, 30);
+            //Voiture v = new Voiture(2020, 20000);
+            //v.Promotion += EnvoieSMS;
+            //v.Promotion += EnvoieEmail;
+            //decimal reduc;
+            //int nbReduc = 0;
+            //do
+            //{
+            //    Console.WriteLine("Est ce qu'il y a une promotion ? ");
+            //    Decimal.TryParse(Console.ReadLine(), out reduc);
+            //    if(reduc != 0)
+            //    {
+            //        nbReduc++;
+            //        v.Reduction(reduc);
+            //        if(nbReduc >= 3)
+            //        {
+            //            v.Promotion -= EnvoieSMS;
+            //        }
+            //    }
+            //} while (true);
+            #endregion
+            #region méthode d'extension
+            string toto = "Bonjour tout le monde";
+            Console.WriteLine(toto.CountWord());
             #endregion
         }
         #region methodes pour cours passage paramètres
