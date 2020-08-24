@@ -13,6 +13,7 @@ namespace GestionHotel.Classes
             Console.Write("Merci de saisir le nom de l'hotel : ");
             string nom = Console.ReadLine();
             hotel = new Hotel(nom) ;
+            hotel.HotelPlein += EnvoieMailHotelPlein;
             MenuPrincipal();
         }
 
@@ -146,7 +147,7 @@ namespace GestionHotel.Classes
             Reservation reservation = new Reservation() { Client = client, DateDebut = debut, DateFin = fin, Statut = StatutReservation.Valide };    
             client.Reservations.Add(reservation);
             hotel.SauvegardeReservation(reservation);
-            Console.WriteLine("La réservation à été sauvgardée avec le numéro : "+ reservation.Id);
+            Console.WriteLine("La réservation a été sauvgardée avec le numéro : "+ reservation.Id);
             RetourMenu();
         }
 
@@ -226,6 +227,11 @@ namespace GestionHotel.Classes
         {
             Console.WriteLine("Appuyez sur Entrée pour retourner au menu");
             Console.ReadLine();
+        }
+
+        private void EnvoieMailHotelPlein(string nom)
+        {
+            Console.WriteLine("L'hotel " + nom + " est plein");
         }
     }
 }
