@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestionCompteBancaire", "Ge
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forum", "Forum\Forum.csproj", "{0DC17991-AAA9-4B76-9DA9-F56745B118C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionHotel", "GestionHotel\GestionHotel.csproj", "{80891F5C-CE63-4305-9416-F064E4CCB6AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestionHotel", "GestionHotel\GestionHotel.csproj", "{80891F5C-CE63-4305-9416-F064E4CCB6AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OurLibrairy", "OurLibrairy\OurLibrairy.csproj", "{0F57C824-19CE-49BE-A598-AA1409F26172}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OurLibrairy", "OurLibrairy\OurLibrairy.csproj", "{0F57C824-19CE-49BE-A598-AA1409F26172}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoursAdoNet", "CoursAdoNet\CoursAdoNet.csproj", "{B462D939-573D-4557-BB90-868E3022BAAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{0F57C824-19CE-49BE-A598-AA1409F26172}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F57C824-19CE-49BE-A598-AA1409F26172}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F57C824-19CE-49BE-A598-AA1409F26172}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B462D939-573D-4557-BB90-868E3022BAAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B462D939-573D-4557-BB90-868E3022BAAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B462D939-573D-4557-BB90-868E3022BAAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B462D939-573D-4557-BB90-868E3022BAAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

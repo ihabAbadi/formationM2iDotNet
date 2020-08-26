@@ -11,13 +11,13 @@ namespace coursDotNet.Classes
             return chaine.Split(' ').Length;
         }
 
-        public static void Shuffle<T>(this List<T> liste)
+        public static void Shuffle<W>(this List<W> liste)
         {
             Random r = new Random();
             for(int i=0; i < liste.Count; i++)
             {
                 int indexTmp = r.Next(liste.Count);
-                T tmp = liste[indexTmp];
+                W tmp = liste[indexTmp];
                 liste[indexTmp] = liste[i];
                 liste[i] = tmp;
             }
