@@ -86,5 +86,10 @@ namespace Annuaire.Classes
             Connection.Instance.Close();
             return liste;
         }
+
+        public override string ToString()
+        {
+            return $"Id : {Id}, Mail : {Mail}";
+        }
     }
 }

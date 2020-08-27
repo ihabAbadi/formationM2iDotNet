@@ -57,7 +57,7 @@ namespace Annuaire.Classes
         public bool Update()
         {
             string request = "UPDATE contact set nom=@nom, prenom=@prenom, telephone=@telephone" +
-                "where id=@id";
+                " where id=@id";
             command = new SqlCommand(request, Connection.Instance);
             command.Parameters.Add(new SqlParameter("@nom", Nom));
             command.Parameters.Add(new SqlParameter("@prenom", Prenom));
@@ -71,7 +71,7 @@ namespace Annuaire.Classes
         }
         public bool Delete()
         {
-            string request = "DELETE FORM contact where id=@id";
+            string request = "DELETE FROM contact where id=@id";
             command = new SqlCommand(request, Connection.Instance);
             command.Parameters.Add(new SqlParameter("@id", Id));
             Connection.Instance.Open();
@@ -121,6 +121,41 @@ namespace Annuaire.Classes
                 c.Emails = Email.GetEmails(c.Id);
             });
             return contacts;
+        }
+
+        public static Contact GetContactById(int id)
+        {
+            Contact contact = null;
+            string request = "SELECT * FROM contact where id=@id";
+            command = new SqlCommand(request, Connection.Instance);
+            command.Parameters.Add(new SqlParameter("@id", id));
+            Connection.Instance.Open();
+            reader = command.ExecuteReader();
+            if(reader.Read())
+            {
+                contact = new Contact(reader.GetString(1), reader.GetString(2), reader.GetString(3))
+                {
+                    Id = reader.GetInt32(0)
+                };
+            }
+            reader.Close();
+            command.Dispose();
+            Connection.Instance.Close();
+            if (contact != null)
+                contact.Emails = Email.GetEmails(id);
+            return contact;
+        }
+
+        public override string ToString()
+        {
+            string retour = "";
+            retour += $"Id : {Id}, Nom : {Nom}, Prénom : {Prenom}, Téléphone : {Telephone}\n";
+            retour += "Emails : \n";
+            Emails.ForEach((e) =>
+            {
+                retour += $"Id : {e.Id}, Mail : {e.Mail}\n";
+            });
+            return retour;
         }
     }
 }

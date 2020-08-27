@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Annuaire.Classes;
+using System;
 
 namespace Annuaire
 {
@@ -6,7 +7,8 @@ namespace Annuaire
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            IHM ihm = new IHM();
+            ihm.Start();
         }
     }
 }
