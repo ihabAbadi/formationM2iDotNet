@@ -12,8 +12,8 @@ namespace Annuaire.Classes
         private string prenom;
         private string telephone;
         private List<Email> emails;
-        private SqlCommand command;
-        private SqlDataReader reader;
+        private static SqlCommand command;
+        private static SqlDataReader reader;
         public int Id { get => id; set => id = value; }
         public string Nom { get => nom; set => nom = value; }
         public string Prenom { get => prenom; set => prenom = value; }
@@ -56,16 +56,71 @@ namespace Annuaire.Classes
 
         public bool Update()
         {
-            return false;
+            string request = "UPDATE contact set nom=@nom, prenom=@prenom, telephone=@telephone" +
+                "where id=@id";
+            command = new SqlCommand(request, Connection.Instance);
+            command.Parameters.Add(new SqlParameter("@nom", Nom));
+            command.Parameters.Add(new SqlParameter("@prenom", Prenom));
+            command.Parameters.Add(new SqlParameter("@telephone", Telephone));
+            command.Parameters.Add(new SqlParameter("@id", Id));
+            Connection.Instance.Open();
+            int nbRow = command.ExecuteNonQuery();
+            command.Dispose();
+            Connection.Instance.Close();
+            return nbRow == 1;
         }
         public bool Delete()
         {
-            return false;
+            string request = "DELETE FORM contact where id=@id";
+            command = new SqlCommand(request, Connection.Instance);
+            command.Parameters.Add(new SqlParameter("@id", Id));
+            Connection.Instance.Open();
+            int nbRow = command.ExecuteNonQuery();
+            command.Dispose();
+            Connection.Instance.Close();
+            if(nbRow == 1)
+            {
+                Emails.ForEach(e => e.Delete());
+                //foreach(Email e in Emails)
+                //{
+                //    e.Delete();
+                //}
+            }
+            return nbRow == 1;
         }
 
-        public static List<Contact> GetContacts(string telephone)
+        public static List<Contact> GetContacts(string telephone= null)
         {
-            return null;
+            List<Contact> contacts = new List<Contact>();
+            string request = "SELECT * FROM contact";
+            if(telephone != null)
+            {
+                request += " where telephone like @telephone";
+            }
+            command = new SqlCommand(request, Connection.Instance);
+            if(telephone != null)
+            {
+                command.Parameters.Add(new SqlParameter("@telephone", telephone + "%"));
+            }
+            Connection.Instance.Open();
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                Contact c = new Contact(reader.GetString(1), reader.GetString(2), reader.GetString(3))
+                {
+                    Id = reader.GetInt32(0)
+                };
+                contacts.Add(c);
+                //contacts.Add(new Contact(reader.GetString(1), reader.GetString(2), reader.GetString(3)) { Id = reader.GetInt32(0) });
+            }
+            reader.Close();
+            command.Dispose();
+            Connection.Instance.Close();
+            contacts.ForEach(c =>
+            {
+                c.Emails = Email.GetEmails(c.Id);
+            });
+            return contacts;
         }
     }
 }
