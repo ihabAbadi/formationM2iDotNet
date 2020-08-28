@@ -43,37 +43,33 @@ namespace AnnuaireDeconnecte.Classes
 
         public bool Update()
         {
-            string request = "UPDATE contact set nom=@nom, prenom=@prenom, telephone=@telephone" +
-                " where id=@id";
-            command = new SqlCommand(request, Connection.Instance);
-            command.Parameters.Add(new SqlParameter("@nom", Nom));
-            command.Parameters.Add(new SqlParameter("@prenom", Prenom));
-            command.Parameters.Add(new SqlParameter("@telephone", Telephone));
-            command.Parameters.Add(new SqlParameter("@id", Id));
-            Connection.Instance.Open();
-            int nbRow = command.ExecuteNonQuery();
-            command.Dispose();
-            Connection.Instance.Close();
-            return nbRow == 1;
+            bool retour = false;
+            DataTable contacts = Data.Instance.Tables["contact"];
+            foreach(DataRow r in contacts.Rows)
+            {
+                if ((int)r["Id"] == Id)
+                {
+                    r["Nom"] = Nom;
+                    r["Prenom"] = Prenom;
+                    r["Telephone"] = Telephone;
+                    retour = true;
+                }
+            }
+            return retour;
         }
         public bool Delete()
         {
-            string request = "DELETE FROM contact where id=@id";
-            command = new SqlCommand(request, Connection.Instance);
-            command.Parameters.Add(new SqlParameter("@id", Id));
-            Connection.Instance.Open();
-            int nbRow = command.ExecuteNonQuery();
-            command.Dispose();
-            Connection.Instance.Close();
-            if (nbRow == 1)
+            bool retour = false;
+            DataTable contacts = Data.Instance.Tables["contact"];
+            foreach (DataRow r in contacts.Rows)
             {
-                Emails.ForEach(e => e.Delete());
-                //foreach(Email e in Emails)
-                //{
-                //    e.Delete();
-                //}
+                if ((int)r["Id"] == Id)
+                {
+                    r.Delete();
+                    retour = true;
+                }
             }
-            return nbRow == 1;
+            return retour;
         }
 
         public static List<Contact> GetContacts(string telephone = null)
@@ -82,7 +78,7 @@ namespace AnnuaireDeconnecte.Classes
 
             foreach (DataRow r in Data.Instance.Tables["contact"].Rows)
             {
-                if (telephone == null || (telephone != null && r["Telephone"].ToString().Contains(telephone)))
+                if ((telephone == null || (telephone != null && r["Telephone"].ToString().Contains(telephone))) && (r.RowState != DataRowState.Deleted))
                 {
                     Contact c = new Contact(r["Nom"].ToString(), r["Prenom"].ToString(), r["Telephone"].ToString())
                     {
@@ -97,23 +93,17 @@ namespace AnnuaireDeconnecte.Classes
         public static Contact GetContactById(int id)
         {
             Contact contact = null;
-            string request = "SELECT * FROM contact where id=@id";
-            command = new SqlCommand(request, Connection.Instance);
-            command.Parameters.Add(new SqlParameter("@id", id));
-            Connection.Instance.Open();
-            reader = command.ExecuteReader();
-            if (reader.Read())
+            DataTable contacts = Data.Instance.Tables["contact"];
+            foreach (DataRow r in contacts.Rows)
             {
-                contact = new Contact(reader.GetString(1), reader.GetString(2), reader.GetString(3))
+                if ((int)r["Id"] == id && (r.RowState != DataRowState.Deleted))
                 {
-                    Id = reader.GetInt32(0)
-                };
+                    contact = new Contact(r["Nom"].ToString(), r["Prenom"].ToString(), r["Telephone"].ToString())
+                    {
+                        Id = (int)r["Id"]
+                    };
+                }
             }
-            reader.Close();
-            command.Dispose();
-            Connection.Instance.Close();
-            if (contact != null)
-                contact.Emails = Email.GetEmails(id);
             return contact;
         }
 

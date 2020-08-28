@@ -151,13 +151,13 @@ namespace AnnuaireDeconnecte.Classes
                         contact.Telephone = Console.ReadLine();
                         break;
                     case "4":
-                        ModifierMail(contact);
+                        //ModifierMail(contact);
                         break;
                     case "5":
                         Console.WriteLine("Nouveau email :");
                         Email newEmail = new Email(Console.ReadLine(), contact.Id);
                         contact.Emails.Add(newEmail);
-                        newEmail.Save();
+                        //newEmail.Save();
                         break;
                 }
                 contact.Update();

@@ -33,6 +33,15 @@ namespace AnnuaireDeconnecte.Classes
             contactAdapter.InsertCommand.Parameters.Add("@nom", SqlDbType.VarChar, 50, "Nom");
             contactAdapter.InsertCommand.Parameters.Add("@prenom", SqlDbType.VarChar, 50, "Prenom");
             contactAdapter.InsertCommand.Parameters.Add("@telephone", SqlDbType.VarChar, 10, "Telephone");
+            string updateRequest = "UPDATE contact set nom=@nom, prenom=@prenom, telephone=@telephone where id=@id";
+            contactAdapter.UpdateCommand = new SqlCommand(updateRequest, Connection.Instance);
+            contactAdapter.UpdateCommand.Parameters.Add("@nom", SqlDbType.VarChar, 50, "Nom");
+            contactAdapter.UpdateCommand.Parameters.Add("@prenom", SqlDbType.VarChar, 50, "Prenom");
+            contactAdapter.UpdateCommand.Parameters.Add("@telephone", SqlDbType.VarChar, 10, "Telephone");
+            contactAdapter.UpdateCommand.Parameters.Add("@id", SqlDbType.Int, 11, "Id");
+            string deleteRequest = "DELETE from contact where id=@id";
+            contactAdapter.DeleteCommand = new SqlCommand(deleteRequest, Connection.Instance);
+            contactAdapter.DeleteCommand.Parameters.Add("@id", SqlDbType.Int, 11, "Id");
             Connection.Instance.Open();
             contactAdapter.Fill(Instance, "contact");
             Connection.Instance.Close();
