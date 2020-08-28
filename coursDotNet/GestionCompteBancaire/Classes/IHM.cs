@@ -101,7 +101,8 @@ namespace GestionCompteBancaire.Classes
             }
             if(compte != null)
             {
-                listeComptes.Add(compte);
+                //listeComptes.Add(compte);
+                Sauvegarde.Instance.CreationCompte(compte);
                 Console.WriteLine("Compte crée avec le numéro : " + compte.Numero);
             }
             else
@@ -204,7 +205,7 @@ namespace GestionCompteBancaire.Classes
         {
             Compte compte = null;
             Console.Write("Merci de saisir le numéro de compte : ");
-            int numero = Convert.ToInt32(Console.ReadLine());
+            string numero = Console.ReadLine();
             foreach(Compte c in listeComptes)
             {
                 if(c.Numero == numero)

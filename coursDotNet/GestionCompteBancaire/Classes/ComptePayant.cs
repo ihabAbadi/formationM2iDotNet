@@ -6,11 +6,13 @@ namespace GestionCompteBancaire.Classes
 {
     class ComptePayant : Compte
     {
-        private int coutOperation;
+        private int compteId;
+        private decimal coutOperation;
 
-        public int CoutOperation { get => coutOperation; set => coutOperation = value; }
+        public decimal CoutOperation { get => coutOperation; set => coutOperation = value; }
+        public int CompteId { get => compteId; set => compteId = value; }
 
-        public ComptePayant(Client c, int cOperation = 2, decimal s = 0) : base(c,s)
+        public ComptePayant(Client c, decimal cOperation = 2, decimal s = 0) : base(c,s)
         {
             coutOperation = cOperation;
         }

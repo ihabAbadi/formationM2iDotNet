@@ -6,24 +6,25 @@ namespace GestionCompteBancaire.Classes
 {
     class Compte
     {
-        private int numero;
-
+        private string numero;
+        private int id;
         private Client client;
 
         protected decimal solde;
 
         private List<Operation> operations;
 
-        private static int index = 0;
-
-        public int Numero { get => numero; }
+        
+        public string Numero { get => numero; }
         public decimal Solde { get => solde; }
         public Client Client { get => client; }
         public List<Operation> Operations { get => operations; }
+        public int Id { get => id; set => id = value; }
 
         public Compte(Client c, decimal s = 0 )
         {
-            numero = ++index;
+            //Génaration d'une chaine de caractère unique
+            numero = Guid.NewGuid().ToString();
             client = c;
             solde = s;
             operations = new List<Operation>();
