@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestionHotel", "GestionHote
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OurLibrairy", "OurLibrairy\OurLibrairy.csproj", "{0F57C824-19CE-49BE-A598-AA1409F26172}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoursAdoNet", "CoursAdoNet\CoursAdoNet.csproj", "{B462D939-573D-4557-BB90-868E3022BAAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoursAdoNet", "CoursAdoNet\CoursAdoNet.csproj", "{B462D939-573D-4557-BB90-868E3022BAAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Annuaire", "Annuaire\Annuaire.csproj", "{32CD0D3F-233E-4190-A160-FB254D1C3E03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Annuaire", "Annuaire\Annuaire.csproj", "{32CD0D3F-233E-4190-A160-FB254D1C3E03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoursAdoNetDeconnecte", "CoursAdoNetDeconnecte\CoursAdoNetDeconnecte.csproj", "{EBB6C2C4-FE5D-4426-AC69-BCD261E29709}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{32CD0D3F-233E-4190-A160-FB254D1C3E03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32CD0D3F-233E-4190-A160-FB254D1C3E03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32CD0D3F-233E-4190-A160-FB254D1C3E03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBB6C2C4-FE5D-4426-AC69-BCD261E29709}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBB6C2C4-FE5D-4426-AC69-BCD261E29709}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBB6C2C4-FE5D-4426-AC69-BCD261E29709}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBB6C2C4-FE5D-4426-AC69-BCD261E29709}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
