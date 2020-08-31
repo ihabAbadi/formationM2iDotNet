@@ -35,7 +35,7 @@ namespace AnnuaireDeconnecte.Classes
             row["Nom"] = Nom;
             row["Prenom"] = Prenom;
             row["Telephone"] = Telephone;
-            row["Id"] = (contacts.Rows.Count == 0) ? 1 : (int)contacts.Rows[contacts.Rows.Count - 1]["id"] + 1;
+            //row["Id"] = (contacts.Rows.Count == 0) ? 1 : (int)contacts.Rows[contacts.Rows.Count - 1]["id"] + 1;
             contacts.Rows.Add(row);
             Id = (int)row["Id"];
             return Id > 0;
@@ -84,7 +84,9 @@ namespace AnnuaireDeconnecte.Classes
                     {
                         Id = (int)r["Id"]
                     };
+                    c.Emails = Email.GetEmails(c.Id);
                     contacts.Add(c);
+                    
                 }
             }
             return contacts;

@@ -10,6 +10,7 @@ namespace AnnuaireDeconnecte.Classes
         public void Start()
         {
             Data.Init();
+            Data.InitMail();
             MenuPrincipal();
         }
 
@@ -78,9 +79,10 @@ namespace AnnuaireDeconnecte.Classes
             Console.WriteLine("Merci de saisir votre numéro de téléphone : ");
             string telephone = Console.ReadLine();
             Contact contact = new Contact(nom, prenom, telephone);
-            //AjouterEmail(contact);
+           
             if(contact.Save())
             {
+                AjouterEmail(contact);
                 Console.WriteLine("Contact enregistré avec l'id : " + contact.Id);
             }
         }
@@ -151,13 +153,13 @@ namespace AnnuaireDeconnecte.Classes
                         contact.Telephone = Console.ReadLine();
                         break;
                     case "4":
-                        //ModifierMail(contact);
+                        ModifierMail(contact);
                         break;
                     case "5":
                         Console.WriteLine("Nouveau email :");
                         Email newEmail = new Email(Console.ReadLine(), contact.Id);
                         contact.Emails.Add(newEmail);
-                        //newEmail.Save();
+                        newEmail.Save();
                         break;
                 }
                 contact.Update();
@@ -177,6 +179,7 @@ namespace AnnuaireDeconnecte.Classes
                 Console.WriteLine("2 -- NON");
                 choix = Console.ReadLine();
                 Email newEmail = new Email(email, contact.Id);
+                newEmail.Save();
                 contact.Emails.Add(newEmail);
             }
             while (choix != "2");
