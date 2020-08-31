@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Fenetre principale" Height="450" Width="800">
     <Grid x:Name="grille">
-        <Grid.RowDefinitions>
+        <!--<Grid.RowDefinitions>
             <RowDefinition Height="100" />
             <RowDefinition Height="*" />
             <RowDefinition Height="2*" />
@@ -19,10 +19,10 @@
             <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="auto" />
         </Grid.ColumnDefinitions>
-        <Button Grid.Row="1" Grid.Column="2" Content="first button" FontSize="20" Background="#FFB85B5B" />
+        <Button Grid.Row="1" Grid.Column="2" Content="first button" FontSize="20" Background="#FFB85B5B" Click="ClickButton" />
         <Button Grid.Row="3" Grid.Column="3" Content="second button" />
         <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Content="third button" />
-        <Button Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Content="fourth button" />
-        <Label Grid.Row="0" Grid.Column="2" Content="Contenu Label" />
+        <Button Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Content="fourth button" Click="ClickButton" />
+        <Label Grid.Row="0" Grid.Column="2" Content="Contenu Label" />-->
     </Grid>
 </Window>

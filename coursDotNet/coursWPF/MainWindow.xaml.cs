@@ -20,6 +20,7 @@ namespace coursWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        Label l;
         public MainWindow()
         {
             InitializeComponent();
@@ -43,6 +44,7 @@ namespace coursWPF
                 //Background = Brushes.Red
                 Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#cd2127"))
             };
+            b1.Click += ClickButton;
             //Ajout du bouton dans notre grille
             grille.Children.Add(b1);
 
@@ -56,16 +58,27 @@ namespace coursWPF
                 Content = "Second button"
             };
 
+            b2.Click += ClickButton;
+
             grille.Children.Add(b2);
             Grid.SetColumn(b2, 3);
             Grid.SetRow(b2, 3);
-            Label l = new Label
+            l = new Label
             {
                 Content = "Contenu label"
             };
             grille.Children.Add(l);
             Grid.SetColumn(l, 2);
             Grid.SetRow(l, 0);
+        }
+
+        private void ClickButton(object sender, RoutedEventArgs e)
+        {
+            if(sender is Button b)
+            {
+                MessageBox.Show(b.Content.ToString());
+                l.Content = b.Content.ToString();
+            }
         }
     }
 }
