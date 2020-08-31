@@ -17,9 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoursAdoNet", "CoursAdoNet\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Annuaire", "Annuaire\Annuaire.csproj", "{32CD0D3F-233E-4190-A160-FB254D1C3E03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoursAdoNetDeconnecte", "CoursAdoNetDeconnecte\CoursAdoNetDeconnecte.csproj", "{EBB6C2C4-FE5D-4426-AC69-BCD261E29709}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoursAdoNetDeconnecte", "CoursAdoNetDeconnecte\CoursAdoNetDeconnecte.csproj", "{EBB6C2C4-FE5D-4426-AC69-BCD261E29709}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnnuaireDeconnecte", "AnnuaireDeconnecte\AnnuaireDeconnecte.csproj", "{B3869A7E-2948-4851-A423-CF97C868F4E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnnuaireDeconnecte", "AnnuaireDeconnecte\AnnuaireDeconnecte.csproj", "{B3869A7E-2948-4851-A423-CF97C868F4E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "coursWPF", "coursWPF\coursWPF.csproj", "{081C2E9E-9DCA-4D05-B8E5-0C3DF0AA5E01}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{B3869A7E-2948-4851-A423-CF97C868F4E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3869A7E-2948-4851-A423-CF97C868F4E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3869A7E-2948-4851-A423-CF97C868F4E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{081C2E9E-9DCA-4D05-B8E5-0C3DF0AA5E01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{081C2E9E-9DCA-4D05-B8E5-0C3DF0AA5E01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{081C2E9E-9DCA-4D05-B8E5-0C3DF0AA5E01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{081C2E9E-9DCA-4D05-B8E5-0C3DF0AA5E01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
