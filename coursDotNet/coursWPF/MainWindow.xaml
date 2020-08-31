@@ -7,10 +7,7 @@
         mc:Ignorable="d"
         Title="Fenetre principale" Height="450" Width="800">
     <Grid x:Name="grille">
-        <!--<Button Content="Button" HorizontalAlignment="Left" Margin="144,120,0,0" VerticalAlignment="Top" Width="109" Height="34" RenderTransformOrigin="0.914,0.805"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="499,183,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.715,-1.362"/>
-        <Button Content="Notre bouton" />-->
-        <!--<Grid.RowDefinitions>
+        <Grid.RowDefinitions>
             <RowDefinition Height="100" />
             <RowDefinition Height="*" />
             <RowDefinition Height="2*" />
@@ -22,9 +19,10 @@
             <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="auto" />
         </Grid.ColumnDefinitions>
-        <Button Grid.Row="1" Grid.Column="2" Content="first button" />
+        <Button Grid.Row="1" Grid.Column="2" Content="first button" FontSize="20" Background="#FFB85B5B" />
         <Button Grid.Row="3" Grid.Column="3" Content="second button" />
         <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Content="third button" />
-        <Button Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Content="fourth button" />-->
+        <Button Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Content="fourth button" />
+        <Label Grid.Row="0" Grid.Column="2" Content="Contenu Label" />
     </Grid>
 </Window>
