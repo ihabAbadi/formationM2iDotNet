@@ -19,6 +19,8 @@ namespace coursWPF
     /// </summary>
     public partial class Calculatrice : Window
     {
+        private Label label;
+        private bool firstNumber = true;
         private string[] tab = new string[] { "C", "+/-", "%", "/", "7", "8", "9", "X", "4", "5", "6", "-", "1", "2", "3", "+", "0", ",", "=" };
         public Calculatrice()
         {
@@ -45,7 +47,7 @@ namespace coursWPF
 
         private void CreateLabel()
         {
-            Label l = new Label()
+            label = new Label()
             {
                 Content = "0",
                 Foreground = Brushes.White,
@@ -54,10 +56,10 @@ namespace coursWPF
                 VerticalContentAlignment = VerticalAlignment.Center,
                 FontSize = 30
             };
-            grille.Children.Add(l);
-            Grid.SetColumn(l, 0);
-            Grid.SetRow(l, 0);
-            Grid.SetColumnSpan(l, 4);
+            grille.Children.Add(label);
+            Grid.SetColumn(label, 0);
+            Grid.SetRow(label, 0);
+            Grid.SetColumnSpan(label, 4);
         }
 
         private void CreateButtons()
@@ -74,6 +76,7 @@ namespace coursWPF
                         Foreground = (j==3) ? Brushes.White : Brushes.Black,
                         FontSize=30
                     };
+                    b.Click += ClickButton;
                     grille.Children.Add(b);
                     Grid.SetColumn(b, j);
                     Grid.SetRow(b, i);
@@ -82,6 +85,33 @@ namespace coursWPF
                     {
                         Grid.SetColumnSpan(b, 2);
                         j++;
+                    }
+                }
+            }
+        }
+
+        private void ClickButton(object sender, RoutedEventArgs e)
+        {
+            if(sender is Button b)
+            {
+                string contenu = b.Content.ToString();
+                if(Int32.TryParse(contenu,out int nombre))
+                {
+                    if(firstNumber)
+                    {
+                        label.Content = nombre;
+                        firstNumber = !firstNumber;
+                    }else
+                    {
+                        label.Content += nombre.ToString();
+                    }
+                }
+                else
+                {
+                    firstNumber = true;
+                    switch(contenu)
+                    {
+                        //algo comme version javascript
                     }
                 }
             }
