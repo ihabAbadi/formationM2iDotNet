@@ -23,7 +23,7 @@ namespace GestionCompteBancaire.Classes
             {
                 if(base.Depot(o))
                 {
-                    Operation oRetrait = new Operation(CoutOperation * -1);
+                    Operation oRetrait = new Operation(CoutOperation * -1, compteId);
                     return base.Retrait(oRetrait);
                 }
                 return false;
@@ -37,7 +37,7 @@ namespace GestionCompteBancaire.Classes
             {
                 //Operation oRetrait = new Operation(CoutOperation * -1);
                 //return base.Retrait(o) && base.Retrait(oRetrait);
-                return base.Retrait(o) && base.Retrait(new Operation(CoutOperation * -1));
+                return base.Retrait(o) && base.Retrait(new Operation(CoutOperation * -1, compteId));
             }
             return false;
         }

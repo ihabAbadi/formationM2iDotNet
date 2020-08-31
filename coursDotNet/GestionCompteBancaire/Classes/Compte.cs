@@ -15,12 +15,16 @@ namespace GestionCompteBancaire.Classes
         private List<Operation> operations;
 
         
-        public string Numero { get => numero; }
-        public decimal Solde { get => solde; }
-        public Client Client { get => client; }
-        public List<Operation> Operations { get => operations; }
+        public string Numero { get => numero; set => numero = value; }
+        public decimal Solde { get => solde; set => solde = value; }
+        public Client Client { get => client; set => client = value; }
+        public List<Operation> Operations { get => operations; set => operations = value; }
         public int Id { get => id; set => id = value; }
 
+        public Compte()
+        {
+
+        }
         public Compte(Client c, decimal s = 0 )
         {
             //Génaration d'une chaine de caractère unique
@@ -36,7 +40,8 @@ namespace GestionCompteBancaire.Classes
             {
                 return false;
             }
-            operations.Add(o);
+            //operations.Add(o);
+            Sauvegarde.Instance.addOperation(o);
             solde += o.Montant;
             return true;
         }
@@ -45,7 +50,8 @@ namespace GestionCompteBancaire.Classes
         {
             if(Math.Abs(o.Montant) <= solde)
             {
-                operations.Add(o);
+                //operations.Add(o);
+                Sauvegarde.Instance.addOperation(o);
                 solde += o.Montant;
                 return true;
             }

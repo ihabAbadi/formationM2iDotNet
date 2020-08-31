@@ -120,7 +120,7 @@ namespace GestionCompteBancaire.Classes
             {
                 Console.Write("Le montant du dépot : ");
                 decimal montant = Convert.ToDecimal(Console.ReadLine());
-                Operation o = new Operation(montant);
+                Operation o = new Operation(montant, compte.Id);
                 if (compte.Depot(o))
                 {
                     Console.WriteLine("Dépot éfféctué");
@@ -146,7 +146,7 @@ namespace GestionCompteBancaire.Classes
             {
                 Console.Write("Le montant du retrait : ");
                 decimal montant = Convert.ToDecimal(Console.ReadLine());
-                Operation o = new Operation(montant*-1);
+                Operation o = new Operation(montant*-1, compte.Id);
                 if (compte.Retrait(o))
                 {
                     Console.WriteLine("Retrait éfféctué");
@@ -169,6 +169,7 @@ namespace GestionCompteBancaire.Classes
             Compte compte = ActionRechercheCompte();
             if (compte != null)
             {
+                compte.Operations = Sauvegarde.Instance.getOperations(compte.Id);
                 Console.WriteLine(compte);
             }
             else
@@ -206,14 +207,15 @@ namespace GestionCompteBancaire.Classes
             Compte compte = null;
             Console.Write("Merci de saisir le numéro de compte : ");
             string numero = Console.ReadLine();
-            foreach(Compte c in listeComptes)
-            {
-                if(c.Numero == numero)
-                {
-                    compte = c;
-                    break;
-                }
-            }
+            //foreach(Compte c in listeComptes)
+            //{
+            //    if(c.Numero == numero)
+            //    {
+            //        compte = c;
+            //        break;
+            //    }
+            //}
+            compte = Sauvegarde.Instance.ChercherCompte(numero);
             return compte;
         }
     }

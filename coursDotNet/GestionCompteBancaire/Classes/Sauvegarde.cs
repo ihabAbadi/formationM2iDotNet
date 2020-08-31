@@ -9,6 +9,7 @@ namespace GestionCompteBancaire.Classes
     {
         private static Sauvegarde _instance = null;
         private static SqlCommand command;
+        private static SqlDataReader reader;
         public static Sauvegarde Instance
         {
             get
@@ -92,6 +93,86 @@ namespace GestionCompteBancaire.Classes
             command.Dispose();
             Connection.Instance.Close();
             return compte.Id > 0;
+        }
+
+        public Compte ChercherCompte(string numero)
+        {
+            Compte compte = null;
+            string  request = "SELECT c.id, c.solde, cl.id, cl.Nom, cl.Prenom, cl.Telephone" +
+                " FROM compte as c " +
+                "inner join client as cl on c.client_id=cl.id " +
+                "where numero=@numero";
+            command = new SqlCommand(request, Connection.Instance);
+            command.Parameters.Add(new SqlParameter("@numero", numero));
+            Connection.Instance.Open();
+            reader = command.ExecuteReader();
+            if(reader.Read())
+            {
+                compte = new Compte()
+                {
+                    Id = reader.GetInt32(0),
+                    Solde = reader.GetDecimal(1),
+                    Numero = numero,
+                };
+                compte.Client = new Client()
+                {
+                    Id = reader.GetInt32(2),
+                    Nom = reader.GetString(3),
+                    Prenom = reader.GetString(4),
+                    Telephone = reader.GetString(5)
+                };
+            }
+            reader.Close();
+            command.Dispose();
+
+            Connection.Instance.Close();
+            return compte;
+        }
+
+        public List<Operation> getOperations(int compteId)
+        {
+            List<Operation> operations = new List<Operation>();
+            string request = "SELECT * FROM operation where compte_id=@compte_id";
+            command = new SqlCommand(request, Connection.Instance);
+            command.Parameters.Add(new SqlParameter("@compte_id", compteId));
+            Connection.Instance.Open();
+            reader = command.ExecuteReader();
+            while(reader.Read())
+            {
+                Operation o = new Operation(reader.GetDecimal(2), compteId)
+                {
+                    Id = reader.GetInt32(0)
+                };
+                operations.Add(o);
+            }
+            reader.Close();
+            command.Dispose();
+            Connection.Instance.Close();
+            return operations;
+        }
+
+        public bool addOperation(Operation operation)
+        {
+            string request = "INSERT INTO operation (compte_id, montant) OUTPUT INSERTED.ID " +
+                "values (@compte_id, @montant)";
+            command = new SqlCommand(request, Connection.Instance);
+            command.Parameters.Add(new SqlParameter("@compte_id", operation.CompteId));
+            command.Parameters.Add(new SqlParameter("@montant", operation.Montant));
+            Connection.Instance.Open();
+            operation.Id = (int)command.ExecuteScalar();
+            command.Dispose();
+            int nbRow = 0;
+            if(operation.Id > 0)
+            {
+                request = "UPDATE compte set solde=solde+@montant where id=@id";
+                command = new SqlCommand(request, Connection.Instance);
+                command.Parameters.Add(new SqlParameter("@montant", operation.Montant));
+                command.Parameters.Add(new SqlParameter("@id", operation.CompteId));
+                nbRow = command.ExecuteNonQuery();
+                command.Dispose();
+            }
+            Connection.Instance.Close();
+            return operation.Id > 0 && nbRow == 1;        
         }
 
     }
