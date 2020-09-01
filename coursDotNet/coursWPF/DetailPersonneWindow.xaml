@@ -1,0 +1,13 @@
+﻿<Window x:Class="coursWPF.DetailPersonneWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:coursWPF"
+        mc:Ignorable="d"
+        Title="DetailPersonneWindow" Height="352.869" Width="334.016">
+    <Grid>
+        <TextBlock x:Name="ResultPersonne" HorizontalAlignment="Left" Margin="24,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="117" Width="276"/>
+
+    </Grid>
+</Window>

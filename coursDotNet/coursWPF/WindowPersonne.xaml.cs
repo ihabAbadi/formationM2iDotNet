@@ -47,6 +47,8 @@ namespace coursWPF
             if(ListeBoxPersonne.SelectedItem is Personne p)
             {
                 ResultPersonne.Text = p.ToString();
+                DetailPersonneWindow window = new DetailPersonneWindow(p);
+                window.Show();
             }
         }
     }
