@@ -1,0 +1,37 @@
+﻿<Window x:Class="AnnuaireWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AnnuaireWPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="387.967" Width="766.803">
+    <Grid>
+        <Label Content="Nom : " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.076,0.516"/>
+        <TextBox x:Name="TextBoxNom" HorizontalAlignment="Left" Height="23" Margin="89,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Prénom : " HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.076,0.516"/>
+        <TextBox x:Name="TextBoxPrenom" HorizontalAlignment="Left" Height="23" Margin="89,38,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Téléphone : " HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.076,0.516"/>
+        <TextBox x:Name="TextBoxPhone" HorizontalAlignment="Left" Height="23" Margin="89,66,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Mail : " HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.076,0.516"/>
+        <TextBox x:Name="TextBoxMail" HorizontalAlignment="Left" Height="23" Margin="89,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Ajouter" HorizontalAlignment="Left" Margin="214,97,0,0" VerticalAlignment="Top" Width="75" Click="Ajout_Mail_Click"/>
+        <ListBox x:Name="listeBoxEmails" HorizontalAlignment="Left" Height="146" Margin="10,138,0,0" VerticalAlignment="Top" Width="329"/>
+        <Button Content="Valider" HorizontalAlignment="Left" Margin="10,310,0,0" VerticalAlignment="Top" Width="739" Height="37" Click="Valid_Click"/>
+        <Label Content="Rechercher contact" HorizontalAlignment="Left" Margin="397,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TextBoxSearch" HorizontalAlignment="Left" Height="26" Margin="524,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="145"/>
+        <Button Content="chercher" HorizontalAlignment="Left" Margin="674,10,0,0" VerticalAlignment="Top" Width="75" Height="26" Click="Search_Click"/>
+        <ListBox x:Name="listeBoxContacts" HorizontalAlignment="Left" Height="232" Margin="397,52,0,0" VerticalAlignment="Top" Width="352" MouseDoubleClick="listeBoxContacts_SelectionChanged"/>
+        <Separator HorizontalAlignment="Left" Height="100" Margin="230,103,0,0" VerticalAlignment="Top" Width="295" RenderTransformOrigin="0.5,0.5">
+            <Separator.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90.177"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Separator.RenderTransform>
+        </Separator>
+
+    </Grid>
+</Window>

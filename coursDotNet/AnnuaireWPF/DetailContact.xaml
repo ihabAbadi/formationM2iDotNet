@@ -1,0 +1,16 @@
+﻿<Window x:Class="AnnuaireWPF.DetailContact"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AnnuaireWPF"
+        mc:Ignorable="d"
+        Title="DetailContact" Height="404.508" Width="390.574">
+    <Grid>
+        <TextBlock x:Name="TextBlockNom" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="36" Width="363"/>
+        <TextBlock x:Name="TextBlockPrenom" HorizontalAlignment="Left" Margin="10,70,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="36" Width="363"/>
+        <TextBlock x:Name="TextBlockPhone" HorizontalAlignment="Left" Margin="10,111,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="36" Width="363"/>
+        <ListBox x:Name="listeBoxEmails" HorizontalAlignment="Left" Height="200" Margin="10,164,0,0" VerticalAlignment="Top" Width="363"/>
+
+    </Grid>
+</Window>
