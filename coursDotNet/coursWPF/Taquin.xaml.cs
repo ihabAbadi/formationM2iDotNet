@@ -19,7 +19,7 @@ namespace coursWPF
     /// </summary>
     public partial class Taquin : Window
     {
-        private int taille = 4;
+        private int taille = 3;
         private string winnerString = "";
         public Taquin()
         {
@@ -42,6 +42,7 @@ namespace coursWPF
             gridGame.Children.Clear();
             gridGame.RowDefinitions.Clear();
             gridGame.ColumnDefinitions.Clear();
+            winnerString = "";
         }
         private void CreateGrid()
         {
@@ -56,9 +57,10 @@ namespace coursWPF
             while(k < taille * taille-1)
             {
                 tab[k] = c;
+                winnerString += c;
                 c++;
                 k++;
-                winnerString += c;
+                
             }
             winnerString += "#";
             tab.Shuffle();
