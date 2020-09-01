@@ -19,7 +19,7 @@ namespace coursWPF
     /// </summary>
     public partial class Taquin : Window
     {
-        private int taille = 3;
+        private int taille;
         private string winnerString = "";
         public Taquin()
         {
@@ -33,8 +33,16 @@ namespace coursWPF
 
         private void StartGame()
         {
-            ClearGrid();
-            CreateGrid();
+            if(!Int32.TryParse(tailleGrille.Text, out taille))
+            {
+                MessageBox.Show("Merci de saisir un entier");
+            }
+            else
+            {
+                ClearGrid();
+                CreateGrid();
+            }
+            
         }
 
         private void ClearGrid()

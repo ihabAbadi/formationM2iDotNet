@@ -7,7 +7,12 @@
         mc:Ignorable="d"
         Title="Taquin" Height="450" Width="800">
     <StackPanel Orientation="Vertical">
-        <Button Content="Start" Click="ClickStartGame" />
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Start" Click="ClickStartGame" Width="250" />
+            <Label Content="Taille grille : " />
+            <TextBox x:Name="tailleGrille"  Width="200"/>
+        </StackPanel>
+        
         <Grid x:Name="gridGame" Height="395">
             
         </Grid>
