@@ -55,10 +55,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Personne.cs" />
     <Compile Include="Taquin.xaml.cs">
       <DependentUpon>Taquin.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tools\Extension.cs" />
+    <Compile Include="WindowPersonne.xaml.cs">
+      <DependentUpon>WindowPersonne.xaml</DependentUpon>
+    </Compile>
     <Page Include="Calculatrice.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -79,6 +83,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Taquin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowPersonne.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
