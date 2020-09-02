@@ -15,6 +15,14 @@
         <ListBox x:Name="ListeBoxPersonne" HorizontalAlignment="Left" Height="200" Margin="24,151,0,0" VerticalAlignment="Top" Width="221"/>
         <Button Content="Voir Personne" HorizontalAlignment="Left" Margin="24,368,0,0" VerticalAlignment="Top" Width="221" Height="27" Click="Button_Click_1"/>
         <TextBlock x:Name="ResultPersonne" HorizontalAlignment="Left" Margin="307,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="72" Width="461"/>
+        <ListView x:Name="ListeViewPersonne" HorizontalAlignment="Left" Height="198" Margin="287,153,0,0" VerticalAlignment="Top" Width="481">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Nom" Width="250" DisplayMemberBinding="{Binding Nom}"/>
+                    <GridViewColumn Header="Prénom" Width="250" DisplayMemberBinding="{Binding Prenom}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
     </Grid>
 </Window>

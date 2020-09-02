@@ -31,6 +31,7 @@ namespace coursWPF
             //List<Personne> tmpPersonnes = new List<Personne>();
             //tmpPersonnes.AddRange(listePersonnes);
             ListeBoxPersonne.ItemsSource = null;
+            ListeViewPersonne.ItemsSource = null;
             Personne p = new Personne
             {
                 Nom = TextBoxNom.Text,
@@ -39,6 +40,7 @@ namespace coursWPF
             //tmpPersonnes.Add(p);
             listePersonnes.Add(p);
             ListeBoxPersonne.ItemsSource = listePersonnes;
+            ListeViewPersonne.ItemsSource = listePersonnes;
 
         }
 

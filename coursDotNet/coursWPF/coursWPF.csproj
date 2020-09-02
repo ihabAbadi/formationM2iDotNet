@@ -63,8 +63,12 @@
       <DependentUpon>Taquin.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tools\Extension.cs" />
+    <Compile Include="ViewModels\ViewModelPersonne.cs" />
     <Compile Include="WindowPersonne.xaml.cs">
       <DependentUpon>WindowPersonne.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowPersonneBinding.xaml.cs">
+      <DependentUpon>WindowPersonneBinding.xaml</DependentUpon>
     </Compile>
     <Page Include="Calculatrice.xaml">
       <SubType>Designer</SubType>
@@ -94,6 +98,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowPersonne.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowPersonneBinding.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
