@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Text;
 
-namespace GestionCompteBancaire.Classes
+namespace CompteBancaireWPF.Classes
 {
-    class Sauvegarde
+    public class Sauvegarde
     {
         private static Sauvegarde _instance = null;
         private static SqlCommand command;
@@ -38,16 +39,16 @@ namespace GestionCompteBancaire.Classes
                 compte.Id = (int)command.ExecuteScalar();
                 command.Dispose();
                 Connection.Instance.Close();
-                if(compte is CompteEpargne compteEpargne)
-                {
-                    compteEpargne.CompteId = compte.Id;
-                    CreationCompteEpargne(compteEpargne);
-                }
-                else if(compte is ComptePayant comptePayant)
-                {
-                    comptePayant.CompteId = compte.Id;
-                    CreationComptePayant(comptePayant);
-                }
+                //if(compte is CompteEpargne compteEpargne)
+                //{
+                //    compteEpargne.CompteId = compte.Id;
+                //    CreationCompteEpargne(compteEpargne);
+                //}
+                //else if(compte is ComptePayant comptePayant)
+                //{
+                //    comptePayant.CompteId = compte.Id;
+                //    CreationComptePayant(comptePayant);
+                //}
             }
             return compte.Id > 0;
         }
@@ -67,33 +68,33 @@ namespace GestionCompteBancaire.Classes
             return client.Id > 0;
         }
 
-        public bool CreationCompteEpargne(CompteEpargne compte)
-        {
-            string request = "INSERT INTO compteEpargne (compte_id, taux) " +
-                "OUTPUT INSERTED.ID values(@compteId, @taux)";
-            command = new SqlCommand(request, Connection.Instance);
-            command.Parameters.Add(new SqlParameter("@compteId", compte.CompteId));
-            command.Parameters.Add(new SqlParameter("@taux", compte.Taux));
-            Connection.Instance.Open();
-            compte.Id = (int)command.ExecuteScalar();
-            command.Dispose();
-            Connection.Instance.Close();
-            return compte.Id > 0;
-        }
+        //public bool CreationCompteEpargne(CompteEpargne compte)
+        //{
+        //    string request = "INSERT INTO compteEpargne (compte_id, taux) " +
+        //        "OUTPUT INSERTED.ID values(@compteId, @taux)";
+        //    command = new SqlCommand(request, Connection.Instance);
+        //    command.Parameters.Add(new SqlParameter("@compteId", compte.CompteId));
+        //    command.Parameters.Add(new SqlParameter("@taux", compte.Taux));
+        //    Connection.Instance.Open();
+        //    compte.Id = (int)command.ExecuteScalar();
+        //    command.Dispose();
+        //    Connection.Instance.Close();
+        //    return compte.Id > 0;
+        //}
 
-        public bool CreationComptePayant(ComptePayant compte)
-        {
-            string request = "INSERT INTO comptePayant (compte_id, cout) " +
-                "OUTPUT INSERTED.ID values(@compteId, @cout)";
-            command = new SqlCommand(request, Connection.Instance);
-            command.Parameters.Add(new SqlParameter("@compteId", compte.CompteId));
-            command.Parameters.Add(new SqlParameter("@cout", compte.CoutOperation));
-            Connection.Instance.Open();
-            compte.Id = (int)command.ExecuteScalar();
-            command.Dispose();
-            Connection.Instance.Close();
-            return compte.Id > 0;
-        }
+        //public bool CreationComptePayant(ComptePayant compte)
+        //{
+        //    string request = "INSERT INTO comptePayant (compte_id, cout) " +
+        //        "OUTPUT INSERTED.ID values(@compteId, @cout)";
+        //    command = new SqlCommand(request, Connection.Instance);
+        //    command.Parameters.Add(new SqlParameter("@compteId", compte.CompteId));
+        //    command.Parameters.Add(new SqlParameter("@cout", compte.CoutOperation));
+        //    Connection.Instance.Open();
+        //    compte.Id = (int)command.ExecuteScalar();
+        //    command.Dispose();
+        //    Connection.Instance.Close();
+        //    return compte.Id > 0;
+        //}
 
         public Compte ChercherCompte(string numero)
         {
@@ -127,6 +128,44 @@ namespace GestionCompteBancaire.Classes
 
             Connection.Instance.Close();
             return compte;
+        }
+
+
+        public ObservableCollection<Compte> ChercherComptes(string numero = null)
+        {
+            ObservableCollection<Compte> liste = new ObservableCollection<Compte>();
+            string request = "SELECT c.id, c.solde, cl.id, cl.Nom, cl.Prenom, cl.Telephone" +
+                " FROM compte as c " +
+                "inner join client as cl on c.client_id=cl.id ";
+            if(numero != null)  
+                request +="where numero like @numero";
+            command = new SqlCommand(request, Connection.Instance);
+            command.Parameters.Add(new SqlParameter("@numero", numero +"%"));
+            Connection.Instance.Open();
+            reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                
+                Compte compte = new Compte()
+                {
+                    Id = reader.GetInt32(0),
+                    Solde = reader.GetDecimal(1),
+                    Numero = numero,
+                };
+                compte.Client = new Client()
+                {
+                    Id = reader.GetInt32(2),
+                    Nom = reader.GetString(3),
+                    Prenom = reader.GetString(4),
+                    Telephone = reader.GetString(5)
+                };
+                liste.Add(compte);
+            }
+            reader.Close();
+            command.Dispose();
+
+            Connection.Instance.Close();
+            return liste;
         }
 
         public List<Operation> getOperations(int compteId)

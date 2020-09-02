@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GestionCompteBancaire.Classes
+namespace CompteBancaireWPF.Classes
 {
-    class Compte
+    public class Compte
     {
         private string numero;
         private int id;
@@ -23,8 +23,10 @@ namespace GestionCompteBancaire.Classes
 
         public Compte()
         {
-            numero = Guid.NewGuid().ToString();
             Client = new Client();
+            numero = Guid.NewGuid().ToString();
+            operations = new List<Operation>();
+
         }
         public Compte(Client c, decimal s = 0 )
         {
