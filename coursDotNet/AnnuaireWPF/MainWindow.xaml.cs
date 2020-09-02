@@ -22,34 +22,50 @@ namespace AnnuaireWPF
     public partial class MainWindow : Window
     {
         private Contact contact;
+
+        private bool isEdit;
+
+        public Contact Contact { get => contact; set => contact = value; }
+        public bool IsEdit { get => isEdit; set => isEdit = value; }
+
         public MainWindow()
         {
             InitializeComponent();
-            contact = new Contact();
+            Contact = new Contact();
             GetContacts();
         }
 
         private void Ajout_Mail_Click(object sender, RoutedEventArgs e)
         {
             List<Email> listeTmp = new List<Email>();
-            contact.Emails.Add(new Email() { Mail = TextBoxMail.Text });
+            Contact.Emails.Add(new Email() { Mail = TextBoxMail.Text });
             TextBoxMail.Text = "";
-            listeTmp.AddRange(contact.Emails);
+            listeTmp.AddRange(Contact.Emails);
             listeBoxEmails.ItemsSource = listeTmp;
         }
 
         private void Valid_Click(object sender, RoutedEventArgs e)
         {
-            contact.Nom = TextBoxNom.Text;
-            contact.Prenom = TextBoxPrenom.Text;
-            contact.Telephone = TextBoxPhone.Text;
-            
-            if (contact.Save())
+            Contact.Nom = TextBoxNom.Text;
+            Contact.Prenom = TextBoxPrenom.Text;
+            Contact.Telephone = TextBoxPhone.Text;
+            bool error = (isEdit) ? !Contact.Update() : !Contact.Save();
+            //if(isEdit)
+            //{
+            //    error = !Contact.Update();
+            //}
+            //else
+            //{
+            //    error = !Contact.Save();
+            //}
+            if (!error)
             {
                 TextBoxPhone.Text = "";
                 TextBoxNom.Text = "";
                 TextBoxPrenom.Text = "";
                 listeBoxEmails.ItemsSource = null;
+                isEdit = false;
+                contact = new Contact();
                 MessageBox.Show("Contact validé");
                 GetContacts();
             }
@@ -57,6 +73,7 @@ namespace AnnuaireWPF
             {
                 MessageBox.Show("Erreur serveur");
             }
+
         }
 
         private void GetContacts()
@@ -73,7 +90,7 @@ namespace AnnuaireWPF
 
         private void listeBoxContacts_SelectionChanged(object sender, MouseButtonEventArgs e)
         {
-            DetailContact w = new DetailContact(listeBoxContacts.SelectedItem as Contact);
+            DetailContact w = new DetailContact(listeBoxContacts.SelectedItem as Contact, this);
             w.Show();
         }
     }

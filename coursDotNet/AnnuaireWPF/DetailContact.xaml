@@ -5,12 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AnnuaireWPF"
         mc:Ignorable="d"
-        Title="DetailContact" Height="404.508" Width="390.574">
+        Title="DetailContact" Height="433.244" Width="404.942">
     <Grid>
         <TextBlock x:Name="TextBlockNom" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="36" Width="363"/>
         <TextBlock x:Name="TextBlockPrenom" HorizontalAlignment="Left" Margin="10,70,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="36" Width="363"/>
         <TextBlock x:Name="TextBlockPhone" HorizontalAlignment="Left" Margin="10,111,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="36" Width="363"/>
-        <ListBox x:Name="listeBoxEmails" HorizontalAlignment="Left" Height="200" Margin="10,164,0,0" VerticalAlignment="Top" Width="363"/>
+        <ListBox x:Name="listeBoxEmails" HorizontalAlignment="Left" Height="200" Margin="10,164,0,0" VerticalAlignment="Top" Width="383"/>
+        <Button Content="Modifier" HorizontalAlignment="Left" Margin="10,369,0,0" VerticalAlignment="Top" Width="189" Height="24" Click="Edit_Click"/>
+        <Button Content="Supprimer" HorizontalAlignment="Left" Margin="204,369,-10,0" VerticalAlignment="Top" Width="189" Height="24" Click="Delete_Click"/>
 
     </Grid>
 </Window>

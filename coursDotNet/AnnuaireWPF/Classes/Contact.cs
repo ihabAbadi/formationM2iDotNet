@@ -73,6 +73,13 @@ namespace AnnuaireWPF.Classes
             int nbRow = command.ExecuteNonQuery();
             command.Dispose();
             Connection.Instance.Close();
+            Emails.ForEach(e => { 
+                if(e.Id < 1)
+                {
+                    e.ContactId = Id;
+                    e.Save();
+                }
+                });
             return nbRow == 1;
         }
         public bool Delete()
