@@ -20,7 +20,7 @@ namespace coursWPF.ViewModels
         public Personne Personne { get => personne; set => personne = value; }
         public ObservableCollection<Personne> ListePersonnes { get => listePersonnes; set => listePersonnes = value; }
 
-        public ViewModelPersonne()
+        public ViewModelPersonne() 
         {
             Personne = new Personne();
             ListePersonnes = new ObservableCollection<Personne>();
