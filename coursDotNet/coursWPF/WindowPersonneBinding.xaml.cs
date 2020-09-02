@@ -21,6 +21,7 @@ namespace coursWPF
     public partial class WindowPersonneBinding : Window
     {
         ViewModelPersonne viewModel;
+        private bool isEdit;
         public WindowPersonneBinding()
         {
            InitializeComponent();
@@ -30,8 +31,23 @@ namespace coursWPF
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(viewModel.Personne.Nom + " "+viewModel.Personne.Prenom);
-            viewModel.AddPersonne();
+            //MessageBox.Show(viewModel.Personne.Nom + " "+viewModel.Personne.Prenom);
+            if(isEdit)
+            {
+                viewModel.EditPersonne = new Personne();
+                viewModel.Personne = new Personne();
+                isEdit = false;
+            }
+            else
+            {
+                viewModel.AddPersonne();
+            }
+        }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.Personne = viewModel.EditPersonne;
+            isEdit = true;
         }
     }
 }

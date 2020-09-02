@@ -18,7 +18,7 @@
         <Button Content="Valider" HorizontalAlignment="Left" Margin="32,125,0,0" VerticalAlignment="Top" Width="354" Height="37" Grid.ColumnSpan="2" Click="Button_Click"/>
         <TextBlock HorizontalAlignment="Left" Margin="32,188,0,0" TextWrapping="Wrap" Text="{Binding Personne.Nom}" VerticalAlignment="Top" Height="29" Width="138"/>
         <TextBlock HorizontalAlignment="Left" Margin="224,188,0,0" TextWrapping="Wrap" Text="{Binding Personne.Prenom}" VerticalAlignment="Top" Height="29" Width="138" Grid.ColumnSpan="2"/>
-        <ListView ItemsSource="{Binding ListePersonnes}" HorizontalAlignment="Left" Height="133" Margin="32,222,0,0" VerticalAlignment="Top" Width="354" Grid.ColumnSpan="2">
+        <ListView SelectedItem="{Binding EditPersonne}" ItemsSource="{Binding ListePersonnes}" HorizontalAlignment="Left" Height="143" Margin="32,188,0,0" VerticalAlignment="Top" Width="354" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Nom" DisplayMemberBinding="{Binding Nom}" Width="175"/>
@@ -26,6 +26,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <Button Content="Editer" HorizontalAlignment="Left" Margin="32,336,0,0" VerticalAlignment="Top" Width="354" Grid.ColumnSpan="2" Height="47" Click="Edit_Click"/>
 
     </Grid>
 </Window>

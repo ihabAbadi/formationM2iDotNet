@@ -11,14 +11,14 @@ namespace coursWPF.ViewModels
     public class ViewModelPersonne : INotifyPropertyChanged
     {
         private Personne personne;
-
         //private List<Personne> listePersonnes;
         private ObservableCollection<Personne> listePersonnes;
-
+        private Personne editPersonne;
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Personne Personne { get => personne; set => personne = value; }
+        public Personne Personne { get => personne; set { personne = value; Notify("Personne"); } }
         public ObservableCollection<Personne> ListePersonnes { get => listePersonnes; set => listePersonnes = value; }
+        public Personne EditPersonne { get => editPersonne; set { editPersonne = value; Notify("EditPersonne"); } }
 
         public ViewModelPersonne() 
         {
@@ -26,7 +26,7 @@ namespace coursWPF.ViewModels
             ListePersonnes = new ObservableCollection<Personne>();
         }
 
-        private void Notify(string nameProperty)
+        public void Notify(string nameProperty)
         {
             if(PropertyChanged != null)
             {
@@ -39,7 +39,7 @@ namespace coursWPF.ViewModels
             ListePersonnes.Add(Personne);
             Personne = new Personne();
             //Notify("ListePersonnes");
-            Notify("Personne");
+           
         }
     }
 }
