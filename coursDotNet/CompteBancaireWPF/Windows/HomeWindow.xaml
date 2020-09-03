@@ -21,7 +21,7 @@
         <Label Content="Solde initial : " HorizontalAlignment="Left" Margin="27,69,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="118,72,0,0" TextWrapping="Wrap" Text="{Binding Compte.Solde}" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
         <Button Content="Ajouter compte" HorizontalAlignment="Left" Margin="64,72,0,0" VerticalAlignment="Top" Width="474" Height="23" Click="Ajouter_Compte_Click" Grid.Column="1"/>
-        <ListView ItemsSource="{Binding ListeComptes}" HorizontalAlignment="Left" Height="247" Margin="27,162,0,0" VerticalAlignment="Top" Width="711" Grid.ColumnSpan="2">
+        <ListView SelectedItem="{Binding CompteSelected}" ItemsSource="{Binding ListeComptes}" HorizontalAlignment="Left" Height="247" Margin="27,162,0,0" VerticalAlignment="Top" Width="711" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Nom" DisplayMemberBinding="{Binding Client.Nom}" Width="170"/>
@@ -34,9 +34,9 @@
         <Label Content="Recherche compte : " HorizontalAlignment="Left" Margin="27,121,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Height="26" Margin="158,121,0,0" TextWrapping="Wrap" Text="{Binding Search}" VerticalAlignment="Top" Width="345" Grid.ColumnSpan="2"/>
         <Button Content="Recherche" HorizontalAlignment="Left" Margin="328,121,0,0" VerticalAlignment="Top" Width="210" Height="26" Click="Search_Click" Grid.Column="1"/>
-        <Button Content="Effectuer un dépôt" HorizontalAlignment="Left" Margin="27,414,0,0" VerticalAlignment="Top" Width="234" Grid.ColumnSpan="2" Height="33"/>
-        <Button Content="Effectuer un retrait" HorizontalAlignment="Left" Margin="66,414,0,0" VerticalAlignment="Top" Width="237" Height="33" Grid.Column="1"/>
-        <Button Content="Voir liste opérations" HorizontalAlignment="Left" Margin="308,414,0,0" VerticalAlignment="Top" Width="230" Height="33" Grid.Column="1"/>
+        <Button Content="Effectuer un dépôt" HorizontalAlignment="Left" Margin="27,414,0,0" VerticalAlignment="Top" Width="234" Grid.ColumnSpan="2" Height="33" Click="Depot_Click"/>
+        <Button Content="Effectuer un retrait" HorizontalAlignment="Left" Margin="66,414,0,0" VerticalAlignment="Top" Width="237" Height="33" Grid.Column="1" Click="Retrait_Click"/>
+        <Button Content="Voir liste opérations" HorizontalAlignment="Left" Margin="308,414,0,0" VerticalAlignment="Top" Width="230" Height="33" Grid.Column="1" Click="Liste_Operations_Click"/>
 
     </Grid>
 </Window>

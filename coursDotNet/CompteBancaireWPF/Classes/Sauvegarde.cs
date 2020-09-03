@@ -134,7 +134,7 @@ namespace CompteBancaireWPF.Classes
         public ObservableCollection<Compte> ChercherComptes(string numero = null)
         {
             ObservableCollection<Compte> liste = new ObservableCollection<Compte>();
-            string request = "SELECT c.id, c.solde, cl.id, cl.Nom, cl.Prenom, cl.Telephone" +
+            string request = "SELECT c.id, c.solde, cl.id, cl.Nom, cl.Prenom, cl.Telephone, c.Numero" +
                 " FROM compte as c " +
                 "inner join client as cl on c.client_id=cl.id ";
             if(numero != null)  
@@ -150,7 +150,7 @@ namespace CompteBancaireWPF.Classes
                 {
                     Id = reader.GetInt32(0),
                     Solde = reader.GetDecimal(1),
-                    Numero = numero,
+                    Numero = reader.GetString(6),
                 };
                 compte.Client = new Client()
                 {

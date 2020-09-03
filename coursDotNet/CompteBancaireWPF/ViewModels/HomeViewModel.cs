@@ -12,6 +12,7 @@ namespace CompteBancaireWPF.ViewModels
     public class HomeViewModel : INotifyPropertyChanged
     {
         private Compte compte;
+        private Compte compteSelected;
         private string search;
         private ObservableCollection<Compte> listeComptes;
 
@@ -35,6 +36,8 @@ namespace CompteBancaireWPF.ViewModels
             }
         }
 
+        public Compte CompteSelected { get => compteSelected; set => compteSelected = value; }
+
         public HomeViewModel()
         {
             Compte = new Compte();
@@ -43,6 +46,10 @@ namespace CompteBancaireWPF.ViewModels
 
         public void NotifyPropertyChanged(string nameProperty)
         {
+            //if(PropertyChanged != null)
+            //{
+            //    PropertyChanged(this, new PropertyChangedEventArgs(nameProperty));
+            //}
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameProperty));
         }
     }

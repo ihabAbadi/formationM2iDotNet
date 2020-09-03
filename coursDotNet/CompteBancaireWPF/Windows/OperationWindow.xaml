@@ -1,0 +1,17 @@
+﻿<Window x:Class="CompteBancaireWPF.Windows.OperationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CompteBancaireWPF.Windows"
+        mc:Ignorable="d"
+        Title="OperationWindow" Height="239.754" Width="421.311">
+    <Grid>
+        <Label Visibility="{Binding VisiblityDepot}" Content="Effectuer un dépôt" HorizontalAlignment="Left" Margin="25,10,0,0" VerticalAlignment="Top" Height="40" Width="349"/>
+        <Label Visibility="{Binding VisiblityRetrait}" Content="Effectuer un retrait" HorizontalAlignment="Left" Margin="25,10,0,0" VerticalAlignment="Top" Height="40" Width="349"/>
+        <Label Content="Montant : " HorizontalAlignment="Left" Margin="25,55,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="34" Margin="95,55,0,0" TextWrapping="Wrap" Text="{Binding Montant}" VerticalAlignment="Top" Width="290"/>
+        <Button Content="Valider" HorizontalAlignment="Left" Margin="25,113,0,0" VerticalAlignment="Top" Width="360" Height="43" Click="Valider_Click"/>
+
+    </Grid>
+</Window>

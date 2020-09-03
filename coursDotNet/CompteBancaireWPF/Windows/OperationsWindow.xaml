@@ -1,0 +1,24 @@
+﻿<Window x:Class="CompteBancaireWPF.Windows.OperationsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CompteBancaireWPF.Windows"
+        mc:Ignorable="d"
+        Title="OperationsWindow" Height="461.066" Width="455.738">
+    <Grid>
+        <Label Content="Numéro compte : " HorizontalAlignment="Left" Margin="26,23,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.094,0.567"/>
+        <Label Content="{Binding Compte.Numero}" HorizontalAlignment="Left" Margin="155,23,0,0" VerticalAlignment="Top" Width="258"/>
+        <ListView ItemsSource="{Binding Compte.Operations}" HorizontalAlignment="Left" Height="291" Margin="26,81,0,0" VerticalAlignment="Top" Width="387">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}" Width="180"/>
+                    <GridViewColumn Header="Montant" DisplayMemberBinding="{Binding Montant}" Width="180"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label Content="Solde : " HorizontalAlignment="Left" Margin="26,377,0,0" VerticalAlignment="Top"/>
+        <Label Content="{Binding Compte.Solde}" HorizontalAlignment="Left" Margin="94,377,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

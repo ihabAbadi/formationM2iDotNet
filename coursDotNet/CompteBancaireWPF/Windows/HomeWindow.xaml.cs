@@ -43,5 +43,22 @@ namespace CompteBancaireWPF.Windows
         {
             viewModel.ListeComptes = Sauvegarde.Instance.ChercherComptes(viewModel.Search);
         }
+
+        private void Liste_Operations_Click(object sender, RoutedEventArgs e)
+        {
+            OperationsWindow window = new OperationsWindow(viewModel.CompteSelected);
+            window.Show();
+        }
+
+        private void Depot_Click(object sender, RoutedEventArgs e)
+        {
+            OperationWindow window = new OperationWindow(viewModel.CompteSelected, true, this);
+            window.Show();
+        }
+        private void Retrait_Click(object sender, RoutedEventArgs e)
+        {
+            OperationWindow window = new OperationWindow(viewModel.CompteSelected, false, this);
+            window.Show();
+        }
     }
 }

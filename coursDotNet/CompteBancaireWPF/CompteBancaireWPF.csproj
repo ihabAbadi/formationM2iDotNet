@@ -65,8 +65,16 @@
     <Compile Include="Classes\Operation.cs" />
     <Compile Include="Classes\Sauvegarde.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\OperationsViewModel.cs" />
+    <Compile Include="ViewModels\OperationViewModel.cs" />
     <Compile Include="Windows\HomeWindow.xaml.cs">
       <DependentUpon>HomeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\OperationsWindow.xaml.cs">
+      <DependentUpon>OperationsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\OperationWindow.xaml.cs">
+      <DependentUpon>OperationWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +105,14 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Windows\HomeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\OperationsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\OperationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
