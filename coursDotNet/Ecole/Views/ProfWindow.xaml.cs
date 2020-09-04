@@ -10,21 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Ecole.Tools;
 
-namespace Ecole
+namespace Ecole.Views
 {
     /// <summary>
-    /// Logique d'interaction pour MainWindow.xaml
+    /// Logique d'interaction pour ProfWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ProfWindow : Window
     {
-        public MainWindow()
+        public ProfWindow()
         {
             InitializeComponent();
-            Connection.Instance.Open();
         }
     }
 }

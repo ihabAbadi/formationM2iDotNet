@@ -1,0 +1,37 @@
+﻿<Window x:Class="Ecole.Views.InscriptionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ecole.Views"
+        mc:Ignorable="d"
+        Title="InscriptionWindow" Height="369.334" Width="447.333">
+    <Grid>
+        <Label Content="Nom :" HorizontalAlignment="Left" Margin="24,64,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.097,0.436" Width="52"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="81,67,0,0" TextWrapping="Wrap" Text="{Binding Nom}" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Prénom : " HorizontalAlignment="Left" Margin="232,64,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.097,0.436" Width="62"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="303,67,0,0" TextWrapping="Wrap" Text="{Binding Prenom}" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Adresse : " HorizontalAlignment="Left" Margin="26,105,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.097,0.436" Width="62"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="97,108,0,0" TextWrapping="Wrap" Text="{Binding Adresse}" VerticalAlignment="Top" Width="326"/>
+        <Label Content="Ville :" HorizontalAlignment="Left" Margin="24,149,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.097,0.436" Width="52"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="81,152,0,0" TextWrapping="Wrap" Text="{Binding Ville}" VerticalAlignment="Top" Width="198"/>
+        <Label Content="code postal :" HorizontalAlignment="Left" Margin="284,149,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.097,0.436" Width="97"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="360,152,0,0" TextWrapping="Wrap" Text="{Binding CodePostal}" VerticalAlignment="Top" Width="63"/>
+        <Label Content="Téléphone :" HorizontalAlignment="Left" Margin="24,190,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.097,0.436" Width="75"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="104,193,0,0" TextWrapping="Wrap" Text="{Binding Telephone}" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Email :" HorizontalAlignment="Left" Margin="236,190,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.097,0.436" Width="58"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="303,193,0,0" TextWrapping="Wrap" Text="{Binding Email}" VerticalAlignment="Top" Width="120"/>
+        <RadioButton GroupName="type" Content="Etudiant" IsChecked="{Binding IsEtudiant}" HorizontalAlignment="Left" Margin="26,29,0,0" VerticalAlignment="Top"/>
+        <RadioButton GroupName="type" Content="Prof" IsChecked="{Binding IsProf}" HorizontalAlignment="Left" Margin="104,29,0,0" VerticalAlignment="Top" Width="51"/>
+        <StackPanel Visibility="{Binding VEtudiant}" Orientation="Horizontal" Margin="26,221,0,84">
+            <Label Content="Classe : "/>
+            <ComboBox ItemsSource="{Binding Classes}" SelectedItem="{Binding SelectedClasse}" Width="344"/>
+        </StackPanel>
+        <StackPanel Visibility="{Binding VProf}" Orientation="Horizontal" Margin="26,221,0,84">
+            <Label Content="Matiere : "/>
+            <ComboBox ItemsSource="{Binding Matieres}" SelectedItem="{Binding SelectedMatiere}" Width="337"/>
+        </StackPanel>
+        <Button Content="Valider" Command="{Binding AddCommand}" HorizontalAlignment="Left" Margin="26,269,0,0" VerticalAlignment="Top" Width="397" Height="27"/>
+        <TextBlock HorizontalAlignment="Left" Margin="27,301,0,0" TextWrapping="Wrap" Text="{Binding Result}" VerticalAlignment="Top" Height="27" Width="396"/>
+    </Grid>
+</Window>

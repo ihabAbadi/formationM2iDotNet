@@ -18,7 +18,7 @@ namespace Ecole.Models
         public int Id { get => id; set => id = value; }
         public string Nom { get => nom; set => nom = value; }
 
-        public List<Classe> GetClasses()
+        public static List<Classe> GetClasses()
         {
             List<Classe> liste = new List<Classe>();
             string request = "SELECT * FROM Classe";
@@ -38,6 +38,11 @@ namespace Ecole.Models
             command.Dispose();
             Connection.Instance.Close();
             return liste;
+        }
+
+        public override string ToString()
+        {
+            return Nom;
         }
     }
 }
