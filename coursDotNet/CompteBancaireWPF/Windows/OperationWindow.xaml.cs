@@ -28,6 +28,7 @@ namespace CompteBancaireWPF.Windows
             InitializeComponent();
             viewModel = new OperationViewModel();
             DataContext = viewModel;
+            
         }
 
         public OperationWindow(Compte compte, bool isDepot, HomeWindow window) : this()

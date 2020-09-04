@@ -12,6 +12,6 @@
         <Label Content="Montant : " HorizontalAlignment="Left" Margin="25,55,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Height="34" Margin="95,55,0,0" TextWrapping="Wrap" Text="{Binding Montant}" VerticalAlignment="Top" Width="290"/>
         <Button Content="Valider" HorizontalAlignment="Left" Margin="25,113,0,0" VerticalAlignment="Top" Width="360" Height="43" Click="Valider_Click"/>
-
+        
     </Grid>
 </Window>
