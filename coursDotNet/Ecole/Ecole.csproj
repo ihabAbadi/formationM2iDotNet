@@ -74,31 +74,15 @@
     <Compile Include="Models\Matiere.cs" />
     <Compile Include="Tools\Connection.cs" />
     <Compile Include="Tools\Extension.cs" />
-    <Compile Include="ViewModels\EtudiantViewModel.cs" />
     <Compile Include="ViewModels\InscriptionViewModel.cs" />
-    <Compile Include="ViewModels\ProfViewModel.cs" />
-    <Compile Include="Views\EtudiantWindow.xaml.cs">
-      <DependentUpon>EtudiantWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\InscriptionWindow.xaml.cs">
       <DependentUpon>InscriptionWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ProfWindow.xaml.cs">
-      <DependentUpon>ProfWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\EtudiantWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\InscriptionWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ProfWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

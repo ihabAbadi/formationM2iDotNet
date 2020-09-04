@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -74,6 +75,9 @@ namespace Ecole.ViewModels
 
         public ObservableCollection<Matiere> Matieres { get; set; }
 
+        public ObservableCollection<Etudiant> Etudiants { get; set; }
+        public ObservableCollection<Prof> Profs { get; set; }
+
         public ICommand AddCommand { get; set; }
 
         //public Personne Personne { get; set; }
@@ -82,6 +86,8 @@ namespace Ecole.ViewModels
         {
             Classes = Classe.GetClasses().CastToObservable();
             Matieres = Matiere.getMatieres().CastToObservable();
+            Etudiants = Etudiant.GetEtudiants().CastToObservable();
+            Profs = Prof.GetProfs().CastToObservable();
             AddCommand = new RelayCommand(Inscription);
             IsEtudiant = true;
         }
@@ -104,7 +110,8 @@ namespace Ecole.ViewModels
                 if(e.Save())
                 {
                     Result = "Etudiant ajouté avec l'id : " + e.Id;
-                    
+                    Etudiants.Add(e);
+                    Clear();
                 }
                 else
                 {
@@ -127,7 +134,8 @@ namespace Ecole.ViewModels
                 if (p.Save())
                 {
                     Result = "Prof ajouté avec l'id : " + p.Id;
-
+                    Profs.Add(p);
+                    Clear();
                 }
                 else
                 {
@@ -136,6 +144,19 @@ namespace Ecole.ViewModels
             }
 
             RaisePropertyChanged("Result");
+        }
+
+        private void Clear()
+        {
+            Type t = typeof(InscriptionViewModel);
+            foreach(PropertyInfo p in t.GetProperties())
+            {
+                if(p.PropertyType == typeof(string))
+                {
+                    p.SetValue(this, "");
+                    RaisePropertyChanged(p.Name);
+                }
+            }
         }
 
     }
