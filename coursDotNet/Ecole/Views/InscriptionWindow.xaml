@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Ecole.Views"
         mc:Ignorable="d"
-        Title="InscriptionWindow" Height="390.667" Width="496.666">
+        Title="InscriptionWindow" Height="425.334" Width="496.666">
     <Grid>
 
         <TabControl HorizontalAlignment="Left" Height="349" Margin="10,1,0,0" VerticalAlignment="Top" Width="478">
-            <TabItem Header="Inscription">
+            <TabItem IsSelected="{Binding IsInscription}" Header="Inscription">
                 <Grid Background="#FFE5E5E5" Margin="0,0,0,-9">
                     <Label Content="Nom :" HorizontalAlignment="Left" Margin="24,64,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.097,0.436" Width="52"/>
                     <TextBox HorizontalAlignment="Left" Height="23" Margin="81,67,0,0" TextWrapping="Wrap" Text="{Binding Nom}" VerticalAlignment="Top" Width="120"/>
@@ -40,8 +40,8 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Liste Etudiants">
-                <Grid Background="#FFE5E5E5" Margin="0,0,0,-9">
-                    <ListView ItemsSource="{Binding Etudiants}">
+                <Grid Background="#FFE5E5E5" Margin="0,0,0,-37">
+                    <ListView SelectedItem="{Binding SelectedPersonne,Mode=OneWayToSource}" ItemsSource="{Binding Etudiants}" Margin="0,0,0,10">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Nom" DisplayMemberBinding="{Binding Nom}" Width="80"/>
@@ -52,12 +52,12 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-
+                    <Button Content="Modifier" Command="{Binding EditCommand}" Margin="0,292,0,36"></Button>
                 </Grid>
             </TabItem>
             <TabItem Header="Liste Prof">
-                <Grid Background="#FFE5E5E5" Margin="0,0,0,-9">
-                    <ListView ItemsSource="{Binding Profs}">
+                <Grid Background="#FFE5E5E5" Margin="0,0,0,-38">
+                    <ListView SelectedItem="{Binding SelectedPersonne,Mode=OneWayToSource}" ItemsSource="{Binding Profs}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Nom" DisplayMemberBinding="{Binding Nom}" Width="80"/>
@@ -68,7 +68,7 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-
+                    <Button Command="{Binding EditCommand}" Content="Modifier" Margin="0,292,0,36"></Button>
                 </Grid>
             </TabItem>
         </TabControl>

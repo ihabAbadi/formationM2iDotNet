@@ -48,5 +48,25 @@ namespace Ecole.Models
             Connection.Instance.Close();
             return Id > 0;
         }
+
+        public bool Update(int personneId)
+        {
+            string request = "UPDATE Personne set nom=@nom, prenom=@prenom, telephone=@telephone, email=@email, adresse=@adresse, code_postal=@code_postal, ville=@ville " +
+                "where id=@id";
+            command = new SqlCommand(request, Connection.Instance);
+            command.Parameters.Add(new SqlParameter("@nom", Nom));
+            command.Parameters.Add(new SqlParameter("@prenom", Prenom));
+            command.Parameters.Add(new SqlParameter("@telephone", Telephone));
+            command.Parameters.Add(new SqlParameter("@email", Email));
+            command.Parameters.Add(new SqlParameter("@adresse", Adresse));
+            command.Parameters.Add(new SqlParameter("@code_postal", CodePostal));
+            command.Parameters.Add(new SqlParameter("@ville", Ville));
+            command.Parameters.Add(new SqlParameter("@id", personneId));
+            Connection.Instance.Open();
+            int nbRow = command.ExecuteNonQuery();
+            command.Dispose();
+            Connection.Instance.Close();
+            return nbRow == 1;
+        }
     }
 }

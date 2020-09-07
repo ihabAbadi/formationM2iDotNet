@@ -24,8 +24,12 @@ namespace Ecole.ViewModels
         public string Adresse { get; set; }
         public string Ville { get; set; }
         public string CodePostal { get; set; }
+        public string Result { get; set; }
         public Classe SelectedClasse{ get; set; }
         public Matiere SelectedMatiere { get; set; }
+
+        public Personne SelectedPersonne { get; set; }
+        
         public bool IsEtudiant { 
             get
             {
@@ -49,6 +53,8 @@ namespace Ecole.ViewModels
             } 
         }
 
+        public bool IsInscription { get; set; }
+
         public Visibility VEtudiant { get
             {
                 if (IsEtudiant)
@@ -69,7 +75,7 @@ namespace Ecole.ViewModels
             }
         }
 
-        public string Result { get; set; }
+        
         
         public ObservableCollection<Classe> Classes { get; set; }
 
@@ -80,6 +86,8 @@ namespace Ecole.ViewModels
 
         public ICommand AddCommand { get; set; }
 
+        public ICommand EditCommand { get; set; }
+
         //public Personne Personne { get; set; }
 
         public InscriptionViewModel()
@@ -88,10 +96,53 @@ namespace Ecole.ViewModels
             Matieres = Matiere.getMatieres().CastToObservable();
             Etudiants = Etudiant.GetEtudiants().CastToObservable();
             Profs = Prof.GetProfs().CastToObservable();
-            AddCommand = new RelayCommand(Inscription);
+            AddCommand = new RelayCommand(Validation);
+            EditCommand = new RelayCommand(EditPersonne);
             IsEtudiant = true;
         }
 
+
+        private void Validation()
+        {
+            if(SelectedPersonne == null)
+            {
+                Inscription();
+            }
+            else
+            {
+                Modification();
+                SelectedPersonne = null;
+                RaisePropertyChanged("SelectedPersonne");
+            }
+        }
+
+        private void Modification()
+        {
+            SelectedPersonne.Nom = Nom;
+            SelectedPersonne.Prenom = Prenom;
+            SelectedPersonne.Telephone = Telephone;
+            SelectedPersonne.Adresse = Adresse;
+            SelectedPersonne.Email = Email;
+            SelectedPersonne.CodePostal = CodePostal;
+            SelectedPersonne.Ville = Ville;
+            if(SelectedPersonne is Etudiant e)
+            {
+                e.Classe = SelectedClasse;
+                e.Update();
+                Etudiants = Etudiant.GetEtudiants().CastToObservable();
+                RaisePropertyChanged("Etudiants");
+            }
+            else if(SelectedPersonne is Prof p)
+            {
+                p.Matiere = SelectedMatiere;
+                p.Update(); 
+                Profs = Prof.GetProfs().CastToObservable();
+                RaisePropertyChanged("Profs");
+            }
+            Clear();
+            Result = "Modification effectuée";
+            RaisePropertyChanged("Result");
+        }
         private void Inscription()
         {
             if(IsEtudiant)
@@ -109,9 +160,9 @@ namespace Ecole.ViewModels
                 };
                 if(e.Save())
                 {
+                    Clear();
                     Result = "Etudiant ajouté avec l'id : " + e.Id;
                     Etudiants.Add(e);
-                    Clear();
                 }
                 else
                 {
@@ -133,9 +184,9 @@ namespace Ecole.ViewModels
                 };
                 if (p.Save())
                 {
+                    Clear();
                     Result = "Prof ajouté avec l'id : " + p.Id;
                     Profs.Add(p);
-                    Clear();
                 }
                 else
                 {
@@ -159,5 +210,35 @@ namespace Ecole.ViewModels
             }
         }
 
+        private void EditPersonne()
+        {
+            Type t = typeof(InscriptionViewModel);
+            foreach (PropertyInfo p in t.GetProperties())
+            {
+                if (p.PropertyType == typeof(string) && p.Name != "Result")
+                {
+                    string value = SelectedPersonne.GetType().GetProperties().FirstOrDefault(pp => pp.Name == p.Name).GetValue(SelectedPersonne).ToString();
+                    p.SetValue(this, value);
+                    RaisePropertyChanged(p.Name);
+                }
+            }
+
+            if(SelectedPersonne is Etudiant e)
+            {
+                IsEtudiant = true;
+                RaisePropertyChanged("IsEtudiant");
+                SelectedClasse = Classes.FirstOrDefault((c) => c.Id == e.Classe.Id);
+                RaisePropertyChanged("SelectedClasse");
+            }
+            else if (SelectedPersonne is Prof p)
+            {
+                IsProf = true;
+                RaisePropertyChanged("IsProf");
+                SelectedMatiere = Matieres.FirstOrDefault((c) => c.Id == p.Matiere.Id);
+                RaisePropertyChanged("SelectedMatiere");
+            }
+            IsInscription = true;
+            RaisePropertyChanged("IsInscription");
+        }
     }
 }

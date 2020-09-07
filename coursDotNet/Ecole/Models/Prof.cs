@@ -34,6 +34,24 @@ namespace Ecole.Models
             return false;
         }
 
+        public bool Update()
+        {
+            if (Update(PersonneId))
+            {
+                string request = "UPDATE Prof set matiere_id=@matiere_id " +
+                "where id=@id";
+                command = new SqlCommand(request, Connection.Instance);
+                command.Parameters.Add(new SqlParameter("@matiere_id", Matiere.Id));
+                command.Parameters.Add(new SqlParameter("@id", Id));
+                Connection.Instance.Open();
+                int nbRow = command.ExecuteNonQuery();
+                command.Dispose();
+                Connection.Instance.Close();
+                return nbRow == 1;
+            }
+            return false;
+        }
+
         public static List<Prof> GetProfs()
         {
             List<Prof> liste = new List<Prof>();

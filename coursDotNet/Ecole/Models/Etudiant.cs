@@ -67,5 +67,23 @@ namespace Ecole.Models
             Connection.Instance.Close();
             return liste;
         }
+
+        public bool Update()
+        {
+            if(Update(PersonneId))
+            {
+                string request = "UPDATE Etudiant set classe_id=@classe_id " +
+                "where id=@id";
+                command = new SqlCommand(request, Connection.Instance);
+                command.Parameters.Add(new SqlParameter("@classe_id", Classe.Id));
+                command.Parameters.Add(new SqlParameter("@id", Id));
+                Connection.Instance.Open();
+                int nbRow = command.ExecuteNonQuery();
+                command.Dispose();
+                Connection.Instance.Close();
+                return nbRow == 1;
+            }
+            return false;
+        }
     }
 }
