@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Forms;
+
 
 namespace CoursMultithreadingWPF
 {
@@ -42,6 +43,23 @@ namespace CoursMultithreadingWPF
             //    });
 
             //});
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            //pour ouvir une boite de dialogue pour selectionner un fichier
+            OpenFileDialog open = new OpenFileDialog();
+            open.ShowDialog();
+
+            System.Windows.Forms.MessageBox.Show(open.FileName);
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            //Pour choisir un dossier
+            FolderBrowserDialog open = new FolderBrowserDialog();
+            open.ShowDialog();
+            System.Windows.MessageBox.Show(open.SelectedPath);
         }
     }
 }

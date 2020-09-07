@@ -10,6 +10,8 @@
         <Button Content="Button" HorizontalAlignment="Left" Margin="134,141,0,0" VerticalAlignment="Top" Width="499" Height="118" Click="Button_Click"/>
         <TextBox HorizontalAlignment="Left" Height="74" Margin="134,50,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="499"/>
         <Label x:Name="label" Content="Label" HorizontalAlignment="Left" Margin="134,19,0,0" VerticalAlignment="Top" Width="499"/>
+        <Button Content="Ouvrir un fichier" HorizontalAlignment="Left" Margin="134,277,0,0" VerticalAlignment="Top" Width="118" Height="27" Click="Button_Click_1"/>
+        <Button Content="Choisir un dossier" HorizontalAlignment="Left" Margin="408,277,0,0" VerticalAlignment="Top" Width="148" Height="27" Click="Button_Click_2"/>
 
     </Grid>
 </Window>
