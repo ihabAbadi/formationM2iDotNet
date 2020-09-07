@@ -183,16 +183,27 @@ namespace Ecole.ViewModels
                     Ville = Ville,
                     Classe = SelectedClasse
                 };
-                if(e.Save())
+                Task.Factory.StartNew(() =>
                 {
-                    Clear();
-                    Result = "Etudiant ajouté avec l'id : " + e.Id;
-                    Etudiants.Add(e);
-                }
-                else
-                {
-                    Result = "Erreur serveur";
-                }
+                    string tmpResult = "";
+                    if (e.Save())
+                    {
+                        Clear();
+                        tmpResult = "Etudiant ajouté avec l'id : " + e.Id;
+                    }
+                    else
+                    {
+                        tmpResult = "Erreur serveur";
+                    }
+                    Dispatcher.CurrentDispatcher.Invoke(() =>
+                    {
+                        Result = tmpResult;
+                        Etudiants = Etudiant.GetEtudiants().CastToObservable();
+                        RaisePropertyChanged("Etudiants");
+                        RaisePropertyChanged("Result");
+                    });
+                });
+                
             }
             else if(IsProf)
             {
