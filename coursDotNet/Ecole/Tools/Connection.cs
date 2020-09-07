@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Ecole.Tools
@@ -10,15 +11,18 @@ namespace Ecole.Tools
     class Connection
     {
         private static SqlConnection _instance;
+        private static Mutex m = new Mutex(); 
         public static SqlConnection Instance
         {
             get
             {
+                m.WaitOne();
                 if (_instance == null)
                 {
                     _instance = new SqlConnection(@"Data Source=(LocalDb)\coursM2I;Integrated Security=True");
                     //CreateTable();
                 }
+                m.ReleaseMutex();
                 return _instance;
             }
         }
