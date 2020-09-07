@@ -7,9 +7,11 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace Ecole.ViewModels
 {
@@ -92,15 +94,38 @@ namespace Ecole.ViewModels
 
         public InscriptionViewModel()
         {
-            Classes = Classe.GetClasses().CastToObservable();
-            Matieres = Matiere.getMatieres().CastToObservable();
-            Etudiants = Etudiant.GetEtudiants().CastToObservable();
-            Profs = Prof.GetProfs().CastToObservable();
+            InitialLoad();
             AddCommand = new RelayCommand(Validation);
             EditCommand = new RelayCommand(EditPersonne);
             IsEtudiant = true;
         }
 
+        private void InitialLoad()
+        {
+            Result = "chargement en cours...";
+            RaisePropertyChanged("Result");
+            Task.Factory.StartNew(() =>
+            {
+                Thread.Sleep(10000);
+                ObservableCollection<Classe> listeClasses = Classe.GetClasses().CastToObservable();
+                ObservableCollection<Matiere> listeMatieres = Matiere.getMatieres().CastToObservable();
+                ObservableCollection<Etudiant> listeEtudiants = Etudiant.GetEtudiants().CastToObservable();
+                ObservableCollection<Prof> listeProfs = Prof.GetProfs().CastToObservable();
+                Dispatcher.CurrentDispatcher.Invoke(() =>
+                {
+                    Classes = listeClasses;
+                    RaisePropertyChanged("Classes");
+                    Matieres = listeMatieres;
+                    RaisePropertyChanged("Matieres");
+                    Etudiants = listeEtudiants;
+                    RaisePropertyChanged("Etudiants");
+                    Profs = listeProfs;
+                    RaisePropertyChanged("Profs");
+                    Result = "";
+                    RaisePropertyChanged("Result");
+                });
+            });
+        }
 
         private void Validation()
         {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,17 +30,18 @@ namespace CoursMultithreadingWPF
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            label.Content = "En cours d'execution";
-            //Task sans resultat
-            Task.Factory.StartNew(() =>
-            {
-                Thread.Sleep(5000);
-                Dispatcher.Invoke(() =>
-                {
-                    label.Content = "Fin d'execution";
-                });
-                
-            });
+            //label.Content = "En cours d'execution";
+            ////Task sans resultat
+            //Task.Factory.StartNew(() =>
+            //{
+            //    Thread.Sleep(5000);
+            //    //Invoke main thread 
+            //    Dispatcher.Invoke(() =>
+            //    {
+            //        label.Content = "Fin d'execution";
+            //    });
+
+            //});
         }
     }
 }
