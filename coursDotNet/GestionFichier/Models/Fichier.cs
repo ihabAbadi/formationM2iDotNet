@@ -19,6 +19,7 @@ namespace GestionFichier.Models
 
         public Fichier(string chemin)
         {
+            Chemin = chemin;
             Nom = Path.GetFileNameWithoutExtension(chemin);
             Extension = new ExtensionFichier() { Nom = Path.GetExtension(chemin) };
         }

@@ -56,5 +56,11 @@ namespace GestionFichier.Models
                 }
             }
         }
+
+        public List<Fichier> GetFilesByExtension(ExtensionFichier e)
+        {
+            return Fichiers.FindAll(f => f.Extension.Nom == e.Nom);
+        }
+
     }
 }
