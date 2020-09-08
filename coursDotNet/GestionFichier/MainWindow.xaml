@@ -1,0 +1,19 @@
+﻿<Window x:Class="GestionFichier.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GestionFichier"
+        mc:Ignorable="d"
+        Title="Gestion Fichier" Height="233.607" Width="413.934">
+    <Grid>
+        <Button Command="{Binding OpenFolder}" Content="Choisir un dossier" HorizontalAlignment="Left" Margin="12,32,0,0" VerticalAlignment="Top" Width="122" Height="36"/>
+        <Label Content="{Binding Folder}" HorizontalAlignment="Left" Margin="154,32,0,0" VerticalAlignment="Top" Height="36" Width="235"/>
+        <Label Content="" HorizontalAlignment="Left" Margin="12,0,0,0" VerticalAlignment="Top"/>
+        <Label Content="Extensions" HorizontalAlignment="Left" Margin="12,84,0,0" VerticalAlignment="Top" Width="122"/>
+        <ComboBox ItemsSource="{Binding Extensions}" HorizontalAlignment="Left" Margin="154,88,0,0" VerticalAlignment="Top" Width="235"/>
+        <Button Content="Exporter" HorizontalAlignment="Left" Margin="12,126,0,0" VerticalAlignment="Top" Width="377" Height="36"/>
+        <Label Content="" HorizontalAlignment="Left" Margin="12,167,0,0" VerticalAlignment="Top" Height="30" Width="377"/>
+
+    </Grid>
+</Window>

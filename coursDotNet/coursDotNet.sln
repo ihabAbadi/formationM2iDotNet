@@ -29,9 +29,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompteBancaireWPF", "Compte
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecole", "Ecole\Ecole.csproj", "{807CE155-B96B-48B4-96FD-45A563654C25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoursMultiThreadingConsole", "CoursMultiThreadingConsole\CoursMultiThreadingConsole.csproj", "{4D7E6971-259F-4E51-986D-BD2EF316A2C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoursMultiThreadingConsole", "CoursMultiThreadingConsole\CoursMultiThreadingConsole.csproj", "{4D7E6971-259F-4E51-986D-BD2EF316A2C5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoursMultithreadingWPF", "CoursMultithreadingWPF\CoursMultithreadingWPF.csproj", "{5FDD5B43-01E7-42AD-9B0F-DC2644BD35C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionFichier", "GestionFichier\GestionFichier.csproj", "{B5F81906-D32B-449C-B8AB-59270FBB20A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +101,10 @@ Global
 		{5FDD5B43-01E7-42AD-9B0F-DC2644BD35C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FDD5B43-01E7-42AD-9B0F-DC2644BD35C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FDD5B43-01E7-42AD-9B0F-DC2644BD35C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5F81906-D32B-449C-B8AB-59270FBB20A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5F81906-D32B-449C-B8AB-59270FBB20A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5F81906-D32B-449C-B8AB-59270FBB20A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5F81906-D32B-449C-B8AB-59270FBB20A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
