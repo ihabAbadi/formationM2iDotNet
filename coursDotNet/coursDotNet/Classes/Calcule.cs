@@ -4,7 +4,7 @@ using System.Text;
 
 namespace coursDotNet.Classes
 {
-    class Calcule
+    public class Calcule
     {
         public delegate double CalculeDelegate(double a, double b);
         public delegate void AutreCalculeDelegate(double a, double b);

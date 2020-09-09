@@ -4,7 +4,7 @@ using System.Text;
 
 namespace coursDotNet.Classes
 {
-    class Camion : Vehicule, IAffichable
+    public class Camion : Vehicule, IAffichable
     {
         public Camion(int a, decimal p) : base(a, p)
         {

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace coursDotNet.Classes
 {
-    abstract class Vehicule
+    public abstract class Vehicule
     {
         private int immatriculation;
         private int anneeModel;

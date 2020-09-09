@@ -4,7 +4,7 @@ using System.Text;
 
 namespace coursDotNet.Classes
 {
-    class Voiture : Vehicule
+    public class Voiture : Vehicule
     {
         ////atributs
         //private string model;
