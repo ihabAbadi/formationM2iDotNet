@@ -29,7 +29,7 @@ namespace GestionCompteBancaire.Classes
             numero = Guid.NewGuid().ToString();
             Client = new Client();
         }
-        public Compte(Client c, decimal s = 0 )
+        public Compte(Client c, ISauvegarde sauvegarde, decimal s = 0 ): this(sauvegarde)
         {
             //Génaration d'une chaine de caractère unique
             numero = Guid.NewGuid().ToString();

@@ -86,7 +86,7 @@ namespace GestionCompteBancaire.Classes
             switch(choix)
             {
                 case "1":
-                    compte = new Compte(client, solde);
+                    compte = new Compte(client,Sauvegarde.Instance, solde);
                     break;
                 case "2":
                     Console.Write("Merci de saisir le taux : ");
