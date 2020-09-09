@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GestionCompteBancaire.Classes
 {
-    class Operation
+    public class Operation
     {
         //private int numero;
         private int id;

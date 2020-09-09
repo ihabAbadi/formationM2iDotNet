@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\coursDotNet\coursDotNet.csproj" />
+    <ProjectReference Include="..\GestionCompteBancaire\GestionCompteBancaire.csproj" />
   </ItemGroup>
 
 </Project>

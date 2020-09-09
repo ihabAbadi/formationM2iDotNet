@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GestionCompteBancaire.Classes
 {
-    class Compte
+    public class Compte
     {
         private string numero;
         private int id;
