@@ -19,6 +19,11 @@ namespace coursDotNet.Classes
             Console.WriteLine(a + b);
         }
 
+        public double Addition(double a, double b, double c)
+        {
+            return a + b + c;
+        }
+
         //public double Soustraction(double a, double b)
         //{
         //    return a - b;
