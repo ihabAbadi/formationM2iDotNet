@@ -14,6 +14,8 @@ namespace GestionCompteBancaire.Classes
 
         private List<Operation> operations;
 
+        private ISauvegarde sauvegarde;
+
         
         public string Numero { get => numero; set => numero = value; }
         public decimal Solde { get => solde; set => solde = value; }
@@ -21,8 +23,9 @@ namespace GestionCompteBancaire.Classes
         public List<Operation> Operations { get => operations; set => operations = value; }
         public int Id { get => id; set => id = value; }
 
-        public Compte()
+        public Compte(ISauvegarde s)
         {
+            sauvegarde = s;
             numero = Guid.NewGuid().ToString();
             Client = new Client();
         }
@@ -42,9 +45,12 @@ namespace GestionCompteBancaire.Classes
                 return false;
             }
             //operations.Add(o);
-            Sauvegarde.Instance.addOperation(o);
-            solde += o.Montant;
-            return true;
+            if(sauvegarde.addOperation(o))
+            {
+                solde += o.Montant;
+                return true;
+            }
+            return false;
         }
 
         public virtual bool Retrait(Operation o)
@@ -56,9 +62,12 @@ namespace GestionCompteBancaire.Classes
             if(Math.Abs(o.Montant) <= solde)
             {
                 //operations.Add(o);
-                Sauvegarde.Instance.addOperation(o);
-                solde += o.Montant;
-                return true;
+                if (sauvegarde.addOperation(o))
+                {
+                    solde += o.Montant;
+                    return true;
+                }
+                return false;
             }
             return false;
         }

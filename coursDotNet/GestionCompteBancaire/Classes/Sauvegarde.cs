@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GestionCompteBancaire.Classes
 {
-    class Sauvegarde
+    class Sauvegarde : ISauvegarde
     {
         private static Sauvegarde _instance = null;
         private static SqlCommand command;
@@ -108,7 +108,7 @@ namespace GestionCompteBancaire.Classes
             reader = command.ExecuteReader();
             if(reader.Read())
             {
-                compte = new Compte()
+                compte = new Compte(Sauvegarde.Instance)
                 {
                     Id = reader.GetInt32(0),
                     Solde = reader.GetDecimal(1),
