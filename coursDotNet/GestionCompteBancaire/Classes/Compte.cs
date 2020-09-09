@@ -49,6 +49,10 @@ namespace GestionCompteBancaire.Classes
 
         public virtual bool Retrait(Operation o)
         {
+            if(o.Montant > 0)
+            {
+                return false;
+            }
             if(Math.Abs(o.Montant) <= solde)
             {
                 //operations.Add(o);
