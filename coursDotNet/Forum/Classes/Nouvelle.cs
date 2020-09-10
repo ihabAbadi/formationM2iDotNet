@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Forum.Classes
 {
-    class Nouvelle
+    public class Nouvelle
     {
         private int id;
         private string sujet;
@@ -19,7 +19,7 @@ namespace Forum.Classes
         public string Contenu { get => contenu; set => contenu = value; }
         public DateTime DateCreation { get => dateCreation; }
         public StatutNouvelle Statut { get => statut; set => statut = value; }
-        internal Abonne Abonne { get => abonne; }
+        public Abonne Abonne { get => abonne; }
 
         public Nouvelle()
         {
@@ -45,7 +45,7 @@ namespace Forum.Classes
         }
     }
 
-    enum StatutNouvelle
+    public enum StatutNouvelle
     {
         Publie,
         NonPublie,

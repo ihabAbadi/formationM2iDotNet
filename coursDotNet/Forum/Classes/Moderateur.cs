@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Forum.Classes
 {
-    class Moderateur : Abonne
+    public class Moderateur : Abonne, IModerateur
     {
         public Moderateur() : base()
         {
@@ -16,14 +16,14 @@ namespace Forum.Classes
 
         }
 
-        public Abonne AjouterAbonne(Forum forum, string nom, string prenom, int age)
+        public Abonne AjouterAbonne(IForum forum, string nom, string prenom, int age)
         {
             Abonne abonne = new Abonne(nom, prenom, age);
             forum.Abonnes.Add(abonne);
             return abonne;
         }
 
-        public bool SupprimerNouvelle(Forum forum, Nouvelle nouvelle)
+        public bool SupprimerNouvelle(IForum forum, Nouvelle nouvelle)
         {
             forum.Nouvelles.Remove(nouvelle);
             return true;

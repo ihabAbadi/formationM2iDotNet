@@ -12,7 +12,7 @@ namespace GestionCompteBancaire.Classes
         public decimal CoutOperation { get => coutOperation; set => coutOperation = value; }
         public int CompteId { get => compteId; set => compteId = value; }
 
-        public ComptePayant(Client c, decimal cOperation = 2, decimal s = 0) : base(c,s)
+        public ComptePayant(Client c, decimal cOperation = 2, decimal s = 0) : base(c, Sauvegarde.Instance, s)
         {
             coutOperation = cOperation;
         }

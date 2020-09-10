@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Forum.Classes
 {
-    class Abonne
+    public class Abonne
     {
         private int id;
         private string nom;

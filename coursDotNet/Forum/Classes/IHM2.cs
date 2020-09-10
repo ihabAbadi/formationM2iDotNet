@@ -44,13 +44,13 @@ namespace Forum.Classes
                 switch (choix)
                 {
                     case "1":
-                        ActionCreationNouvelle(forum.Moderateur);
+                        ActionCreationNouvelle(forum.Moderateur as Moderateur);
                         break;
                     case "2":
-                        ActionPublierNouvelle(forum.Moderateur);
+                        ActionPublierNouvelle(forum.Moderateur as Moderateur);
                         break;
                     case "3":
-                        ActionRepondreNouvelle(forum.Moderateur);
+                        ActionRepondreNouvelle(forum.Moderateur as Moderateur);
                         break;
                     case "4":
                         ActionAfficherNouvelle();

@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\coursDotNet\coursDotNet.csproj" />
+    <ProjectReference Include="..\Forum\Forum.csproj" />
     <ProjectReference Include="..\GestionCompteBancaire\GestionCompteBancaire.csproj" />
     <ProjectReference Include="..\GestionUtilisateur\GestionUtilisateur.csproj" />
   </ItemGroup>

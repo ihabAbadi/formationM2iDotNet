@@ -5,20 +5,20 @@ using System.Text;
 
 namespace Forum.Classes
 {
-    class Forum
+    public class Forum : IForum
     {
         private int id;
         private string nom;
         private DateTime dateCreation;
         private List<Abonne> abonnes;
-        private Moderateur moderateur;
+        private IModerateur moderateur;
         private List<Nouvelle> nouvelles;
         private static int index = 0;
         public int Id { get => id; }
         public string Nom { get => nom; set => nom = value; }
         public DateTime DateCreation { get => dateCreation;}
         public List<Abonne> Abonnes { get => abonnes; set => abonnes = value; }
-        public Moderateur Moderateur { get => moderateur; set => moderateur = value; }
+        public IModerateur Moderateur { get => moderateur; set => moderateur = value; }
         public List<Nouvelle> Nouvelles { get => nouvelles; set => nouvelles = value; }
         
         public Forum()
@@ -28,7 +28,7 @@ namespace Forum.Classes
             Abonnes = new List<Abonne>();
             Nouvelles = new List<Nouvelle>();
         }
-        public Forum(string nom, Moderateur moderateur) : this()
+        public Forum(string nom, IModerateur moderateur) : this()
         {
             Nom = nom;
             Moderateur = moderateur;
