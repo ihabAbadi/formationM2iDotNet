@@ -22,5 +22,18 @@ namespace ProjetTestUnitaire
             //Assert
             Assert.IsInstanceOfType(a, typeof(Abonne));
         }
+
+        [TestMethod] 
+        public void Test_BannirAbonne()
+        {
+            //Arrange
+            Moderateur m = new Moderateur("toto", "tata", 33);
+            Abonne a = new Abonne("toto", "tata", 30);
+            //Act
+            m.BannirAbonne(a);
+            //assert
+            Assert.AreEqual(a.Statut, "banni");
+            
+        }
     }
 }
