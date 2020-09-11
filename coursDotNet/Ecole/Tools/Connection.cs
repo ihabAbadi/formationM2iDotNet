@@ -20,7 +20,7 @@ namespace Ecole.Tools
                 if (_instance == null)
                 {
                     _instance = new SqlConnection(@"Data Source=(LocalDb)\coursM2I;Integrated Security=True");
-                    //CreateTable();
+                    CreateTable();
                 }
                 m.ReleaseMutex();
                 return _instance;
@@ -35,7 +35,7 @@ namespace Ecole.Tools
         private static void CreateTable()
         {
             //Table Personne (id, nom, prenom, email, telephone, adresse, code_postal, ville)
-            string request = "if not exists(SELECT * FROM Personne) " +
+            string request = "if not exists(SELECT * FROM sysobjects where name='Personne' and xtype='U') " +
                 "CREATE TABLE [Personne] (" +
                 "Id int PRIMARY KEY IDENTITY," +
                 "Nom varchar(50) NOT NULL," +
@@ -49,21 +49,21 @@ namespace Ecole.Tools
             Instance.Open();
             command.ExecuteNonQuery();
             command.Dispose();
-            request = "if not exists(SELECT * FROM Matiere) " +
+            request = "if not exists(SELECT * FROM sysobjects where name='Matiere' and xtype='U') " +
                 "CREATE TABLE Matiere (" +
                 "Id int PRIMARY KEY IDENTITY," +
                 "Nom varchar(50) NOT NULL); INSERT INTO Matiere (nom) values('Physique'), ('Maths'), ('Français')";
             command = new SqlCommand(request, Instance);
             command.ExecuteNonQuery();
             command.Dispose();
-            request = "if not exists(SELECT * FROM classe) " +
+            request = "if not exists(SELECT * FROM sysobjects where name='classe' and xtype='U') " +
                 "CREATE TABLE classe (" +
                 "Id int PRIMARY KEY IDENTITY," +
                 "Nom varchar(50) NOT NULL); INSERT INTO classe (nom) values('premiere'), ('seconde'), ('bac')";
             command = new SqlCommand(request, Instance);
             command.ExecuteNonQuery();
             command.Dispose();
-            request = "if not exists(SELECT * FROM etudiant) " +
+            request = "if not exists(SELECT * FROM sysobjects where name='etudiant' and xtype='U') " +
                 "CREATE TABLE etudiant (" +
                 "Id int PRIMARY KEY IDENTITY," +
                 "personne_id int NOT NULL," +
@@ -71,7 +71,7 @@ namespace Ecole.Tools
             command = new SqlCommand(request, Instance);
             command.ExecuteNonQuery();
             command.Dispose();
-            request = "if not exists(SELECT * FROM prof) " +
+            request = "if not exists(SELECT * FROM sysobjects where name='prof' and xtype='U') " +
                 "CREATE TABLE prof (" +
                 "Id int PRIMARY KEY IDENTITY," +
                 "personne_id int NOT NULL," +
@@ -79,6 +79,7 @@ namespace Ecole.Tools
             command = new SqlCommand(request, Instance);
             command.ExecuteNonQuery();
             command.Dispose();
+            Instance.Close();
         }
     }
 }
