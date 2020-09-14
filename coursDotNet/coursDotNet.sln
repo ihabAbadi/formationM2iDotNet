@@ -37,7 +37,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionFichier", "GestionFi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetTestUnitaire", "ProjetTestUnitaire\ProjetTestUnitaire.csproj", "{F8D0AF86-6115-4231-8BD6-6046D73C4634}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionUtilisateur", "GestionUtilisateur\GestionUtilisateur.csproj", "{57A47EC5-0D24-4BF6-9F39-03672E2FCF08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestionUtilisateur", "GestionUtilisateur\GestionUtilisateur.csproj", "{57A47EC5-0D24-4BF6-9F39-03672E2FCF08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "coursAspNET", "coursAspNET\coursAspNET.csproj", "{F9562486-9E9E-48A4-B73C-C9AA483CF158}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,6 +119,10 @@ Global
 		{57A47EC5-0D24-4BF6-9F39-03672E2FCF08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57A47EC5-0D24-4BF6-9F39-03672E2FCF08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57A47EC5-0D24-4BF6-9F39-03672E2FCF08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9562486-9E9E-48A4-B73C-C9AA483CF158}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9562486-9E9E-48A4-B73C-C9AA483CF158}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9562486-9E9E-48A4-B73C-C9AA483CF158}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9562486-9E9E-48A4-B73C-C9AA483CF158}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
