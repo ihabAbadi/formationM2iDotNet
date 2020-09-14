@@ -1,3 +1,26 @@
-﻿<div>
-    <h1>Je suis la page Index du controller Contact</h1>
+﻿@{
+    ViewData["Title"] = "Accueil Contact";
+}
+<div class="container">
+    <h1 class="row">Je suis la page Index du controller Contact</h1>
+    <div class="row">
+        <div class="col">
+            Nom : @((ViewData["monContact"] as Contact).Nom)
+            Prénom : @((ViewData["monContact"] as Contact).Prenom)
+        </div>
+    </div>
+    <h2 class="row">
+        Liste Contacts
+    </h2>
+    @foreach (Contact c in ViewData["listeContacts"] as List<Contact>)
+    {
+        <div class="row">
+            <div class="col">
+                @c.Nom
+            </div>
+            <div class="col">
+                @c.Prenom
+            </div>
+        </div>
+    }
 </div>
