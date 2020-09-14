@@ -12,13 +12,15 @@ namespace coursAspNET.Controllers
         public IActionResult Index()
         {
             Contact c = new Contact() { Nom = "toto", Prenom = "tata" };
-            ViewData["monContact"] = c;
+            //ViewData["monContact"] = c;
+            ViewBag.monContact = c;
             List<Contact> contacts = new List<Contact>()
             {
                 new Contact() { Nom = "titi", Prenom = "minet"},
                 new Contact() { Nom = "tt", Prenom = "ttt"},
             };
-            ViewData["listeContacts"] = contacts;
+            //ViewData["listeContacts"] = contacts;
+            ViewBag.listeContacts = contacts;
             return View();
         }
 
