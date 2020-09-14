@@ -2,6 +2,12 @@
 <html lang="fr">
     <head></head>
     <body>
+        <header class="container-fluid">
+            <nav class="row">
+                <li class="col">@Html.ActionLink("Accueil", "Index", "Home")</li>
+                <li class="col"><a asp-controller="Home" asp-action="Index">Accueil</a></li>
+            </nav>
+        </header>
         <main>
             @RenderBody()
         </main>
