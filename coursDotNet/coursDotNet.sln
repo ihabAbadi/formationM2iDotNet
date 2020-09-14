@@ -41,6 +41,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestionUtilisateur", "Gesti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "coursAspNET", "coursAspNET\coursAspNET.csproj", "{F9562486-9E9E-48A4-B73C-C9AA483CF158}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoreAspNET", "EcoreAspNET\EcoreAspNET.csproj", "{1060D16B-DBEC-4851-9D1B-11EADA7C92EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +125,10 @@ Global
 		{F9562486-9E9E-48A4-B73C-C9AA483CF158}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9562486-9E9E-48A4-B73C-C9AA483CF158}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9562486-9E9E-48A4-B73C-C9AA483CF158}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1060D16B-DBEC-4851-9D1B-11EADA7C92EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1060D16B-DBEC-4851-9D1B-11EADA7C92EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1060D16B-DBEC-4851-9D1B-11EADA7C92EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1060D16B-DBEC-4851-9D1B-11EADA7C92EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
