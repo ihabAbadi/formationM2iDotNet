@@ -45,5 +45,10 @@ namespace coursAspNET.Controllers
             Contact c = new Contact { Nom = nom, Prenom = prenom };
             return View("FormContact", c);
         }
+
+        public IActionResult DetailContact(string id)
+        {
+            return new ContentResult { Content = "detail contact " + id };
+        }
     }
 }
