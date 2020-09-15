@@ -30,8 +30,20 @@ namespace coursAspNET.Controllers
 
         public IActionResult Accueil()
         {
-            return View();
+            return View("Index", new { });
+            //return View("~/Views/Contact/Accueil.cshtml");
             //return new ContentResult() { Content = "<h1>Bonjour page contact</h1>" };
+        }
+
+        public IActionResult FormContact()
+        {
+            return View();
+        }
+
+        public IActionResult SubmitContact(string nom, string prenom)
+        {
+            Contact c = new Contact { Nom = nom, Prenom = prenom };
+            return View("FormContact",c);
         }
     }
 }
