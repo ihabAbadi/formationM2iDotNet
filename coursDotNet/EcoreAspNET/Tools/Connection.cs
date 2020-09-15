@@ -20,7 +20,7 @@ namespace Ecole.Tools
                 if (_instance == null)
                 {
                     _instance = new SqlConnection(@"Data Source=(LocalDb)\coursM2I;Integrated Security=True");
-                    CreateTable();
+                   // CreateTable();
                 }
                 m.ReleaseMutex();
                 return _instance;
@@ -52,14 +52,14 @@ namespace Ecole.Tools
             request = "if not exists(SELECT * FROM sysobjects where name='Matiere' and xtype='U') " +
                 "CREATE TABLE Matiere (" +
                 "Id int PRIMARY KEY IDENTITY," +
-                "Nom varchar(50) NOT NULL); INSERT INTO Matiere (nom) values('Physique'), ('Maths'), ('Français')";
+                "Nom varchar(50) NOT NULL) INSERT INTO Matiere (nom) values('Physique'), ('Maths'), ('Français'); ";
             command = new SqlCommand(request, Instance);
             command.ExecuteNonQuery();
             command.Dispose();
             request = "if not exists(SELECT * FROM sysobjects where name='classe' and xtype='U') " +
                 "CREATE TABLE classe (" +
                 "Id int PRIMARY KEY IDENTITY," +
-                "Nom varchar(50) NOT NULL); INSERT INTO classe (nom) values('premiere'), ('seconde'), ('bac')";
+                "Nom varchar(50) NOT NULL) INSERT INTO classe (nom) values('premiere'), ('seconde'), ('bac'); ";
             command = new SqlCommand(request, Instance);
             command.ExecuteNonQuery();
             command.Dispose();

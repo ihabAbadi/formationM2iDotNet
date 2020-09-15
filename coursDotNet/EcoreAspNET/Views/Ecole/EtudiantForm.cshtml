@@ -1,1 +1,43 @@
 ﻿<h1>Ajouter un etudiant</h1>
+<div class="container">
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-@ViewBag.ClassCss">
+            @ViewBag.Message
+        </div>
+    }
+    <form asp-action="SubmitEtudiant" asp-controller="Ecole">
+        <div class="row m-1">
+            <input placeholder="Nom " type="text" class="col form-control" name="nom" />
+        </div>
+        <div class="row m-1">
+            <input placeholder="Prénom " type="text" class="col form-control" name="prenom" />
+        </div>
+        <div class="row m-1">
+            <input placeholder="Email  " type="text" class="col form-control" name="email" />
+        </div>
+        <div class="row m-1">
+            <input placeholder="Téléphone " type="text" class="col form-control" name="telephone" />
+        </div>
+        <div class="row m-1">
+            <input placeholder="Adresse " type="text" class="col form-control" name="adresse" />
+        </div>
+        <div class="row m-1">
+            <input placeholder="Code postal " type="text" class="col form-control" name="codePostal" />
+        </div>
+        <div class="row m-1">
+            <input placeholder="Ville " type="text" class="col form-control" name="ville" />
+        </div>
+        <div class="row m-1">
+            <select class="col form-control" name="classe">
+                @foreach (Classe c in Model)
+                {
+                    <option value="@c.Id">@c.Nom</option>
+                }
+            </select>
+        </div>
+        <div class="row m-1">
+            <button class="btn col btn-success form-control">Valider</button>
+        </div>
+    </form>
+</div>

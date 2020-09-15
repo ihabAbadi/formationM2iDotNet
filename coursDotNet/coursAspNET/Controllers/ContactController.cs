@@ -43,7 +43,7 @@ namespace coursAspNET.Controllers
         public IActionResult SubmitContact(string nom, string prenom)
         {
             Contact c = new Contact { Nom = nom, Prenom = prenom };
-            return View("FormContact",c);
+            return View("FormContact", c);
         }
     }
 }
