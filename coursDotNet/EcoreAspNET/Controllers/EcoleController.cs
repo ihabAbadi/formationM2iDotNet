@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Ecole.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EcoreAspNET.Controllers
@@ -10,6 +11,8 @@ namespace EcoreAspNET.Controllers
     {
         public IActionResult Listes()
         {
+            ViewBag.Etudiants = Etudiant.GetEtudiants();
+            ViewData["Profs"] = Prof.GetProfs();
             return View();
         }
 

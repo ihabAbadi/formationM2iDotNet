@@ -1,1 +1,34 @@
-﻿<h1>Listes des étudiants et profs</h1>
+﻿<div class="container">
+    <h1 class="row">
+        Liste Etudiants
+    </h1>
+    @foreach (Etudiant e in ViewBag.Etudiants)
+    {
+        <div class="row">
+            <div class="col">@e.Nom</div>
+            <div class="col">@e.Prenom</div>
+            <div class="col">@e.Telephone</div>
+            <div class="col">@e.Email</div>
+            <div class="col">@e.Adresse</div>
+            <div class="col">@e.Ville</div>
+            <div class="col">@e.CodePostal</div>
+            <div class="col">@e.Classe.Nom</div>
+        </div>
+    }
+    <h1 class="row">
+        Liste Profs
+    </h1>
+    @foreach (Prof e in ViewData["Profs"] as List<Prof>)
+    {
+        <div class="row">
+            <div class="col">@e.Nom</div>
+            <div class="col">@e.Prenom</div>
+            <div class="col">@e.Telephone</div>
+            <div class="col">@e.Email</div>
+            <div class="col">@e.Adresse</div>
+            <div class="col">@e.Ville</div>
+            <div class="col">@e.CodePostal</div>
+            <div class="col">@e.Matiere.Nom</div>
+        </div>
+    }
+</div>
