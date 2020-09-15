@@ -56,9 +56,43 @@ namespace EcoreAspNET.Controllers
             
         }
 
+        public IActionResult SubmitProf(string nom, string prenom, string email, string telephone, string adresse, string codePostal, string ville, int matiere)
+        {
+            
+            string message = null;
+            string classCss = null;
+            Prof e = new Prof
+            {
+                Nom = nom,
+                Prenom = prenom,
+                Telephone = telephone,
+                Email = email,
+                Adresse = adresse,
+                Ville = ville,
+                CodePostal = codePostal,
+                Matiere = new Matiere { Id = matiere}
+            };
+            if (e.Save())
+            {
+                message = "prof ajouté";
+                classCss = "success";
+                return RedirectToAction("Listes");
+            }
+            else
+            {
+                message = "Erreur d'ajout de prof";
+                classCss = "danger";
+                ViewBag.Message = message;
+                ViewBag.ClassCss = classCss;
+                return View("ProfForm", Matiere.getMatieres());
+            }
+
+
+        }
+
         public IActionResult ProfForm()
         {
-            return View();
+            return View(Matiere.getMatieres());
         }
     }
 }
