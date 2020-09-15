@@ -42,15 +42,18 @@ namespace EcoreAspNET.Controllers
             {
                 message = "Etudiant ajouté";
                 classCss = "success";
+                return RedirectToAction("Listes");
             }
             else
             {
                 message = "Erreur d'ajout d'étudiant";
                 classCss = "danger";
+                ViewBag.Message = message;
+                ViewBag.ClassCss = classCss;
+                return View("EtudiantForm",l);
             }
-            ViewBag.Message = message;
-            ViewBag.ClassCss = classCss;
-            return View("EtudiantForm",l);
+           
+            
         }
 
         public IActionResult ProfForm()
