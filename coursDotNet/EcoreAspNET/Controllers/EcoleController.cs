@@ -73,42 +73,27 @@ namespace EcoreAspNET.Controllers
         {
             return View(Matiere.getMatieres());
         }
-        public IActionResult SubmitProf(string nom, string prenom, string email, string telephone, string adresse, string codePostal, string ville, int matiere, int? id)
+        //public IActionResult SubmitProf(string nom, string prenom, string email, string telephone, string adresse, string codePostal, string ville, int matiere, int? id)
+        public IActionResult SubmitProf(Prof e, int Matiere)
         {
-            Prof prof = id != null ? Prof.GetProfById((int)id) : null;
+            Prof prof = Prof.GetProfById(e.Id);
             bool error = false;
             if(prof == null)
             {
-                Prof e = new Prof
-                {
-                    Nom = nom,
-                    Prenom = prenom,
-                    Telephone = telephone,
-                    Email = email,
-                    Adresse = adresse,
-                    Ville = ville,
-                    CodePostal = codePostal,
-                    Matiere = new Matiere { Id = matiere }
-                };
+                e.Matiere = new Matiere { Id = Matiere };
                 error = !e.Save();
             }
             else
             {
-                prof.Nom = nom;
-                prof.Prenom = prenom;
-                prof.Telephone = telephone;
-                prof.Adresse = adresse;
-                prof.CodePostal = codePostal;
-                prof.Ville = ville;
-                prof.Email = email;
-                prof.Matiere = new Matiere { Id = matiere };
-                error = !prof.Update();
+                e.Matiere = new Matiere { Id = Matiere };
+                e.PersonneId = prof.PersonneId;
+                error = !e.Update();
             }
             if(error)
             {
                 ViewBag.Message = "Erreur";
                 ViewBag.ClassCss = "danger";
-                return View("ProfForm", Matiere.getMatieres());
+                return View("ProfForm", Ecole.Models.Matiere.getMatieres());
             }
             else
             {
