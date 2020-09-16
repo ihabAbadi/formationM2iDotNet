@@ -22,37 +22,20 @@ namespace EcoreAspNET.Controllers
             return View(l);
         }
 
-        public IActionResult SubmitEtudiant(string nom, string prenom, string email, string telephone, string adresse, string codePostal, string ville, int classe, int? id)
+        public IActionResult SubmitEtudiant(Etudiant e, int classe)
         {
-            Etudiant etudiant = id != null ? Etudiant.GetEtudiantById((int)id) : null;
+            Etudiant etudiant = Etudiant.GetEtudiantById(e.Id);
             bool error = false;
             if(etudiant == null)
             {
                 //Création Etudiant 
-                Etudiant e = new Etudiant
-                {
-                    Nom = nom,
-                    Prenom = prenom,
-                    Telephone = telephone,
-                    Email = email,
-                    Adresse = adresse,
-                    Ville = ville,
-                    CodePostal = codePostal,
-                    Classe = new Classe { Id = classe }
-                };
                 error = !e.Save();
             }
             else
             {
-                etudiant.Nom = nom;
-                etudiant.Prenom= prenom;
-                etudiant.Telephone= telephone;
-                etudiant.Adresse= adresse;
-                etudiant.CodePostal= codePostal;
-                etudiant.Ville= ville;
-                etudiant.Email= email;
-                etudiant.Classe = new Classe { Id = classe };
-                error = !etudiant.Update();
+                e.Classe = new Classe { Id = classe };
+                e.PersonneId = etudiant.PersonneId;
+                error = !e.Update();
             }
             if(error)
             {
@@ -74,7 +57,7 @@ namespace EcoreAspNET.Controllers
             return View(Matiere.getMatieres());
         }
         //public IActionResult SubmitProf(string nom, string prenom, string email, string telephone, string adresse, string codePostal, string ville, int matiere, int? id)
-        public IActionResult SubmitProf(Prof e, int Matiere)
+        public IActionResult SubmitProf(Prof e,int Matiere)
         {
             Prof prof = Prof.GetProfById(e.Id);
             bool error = false;
