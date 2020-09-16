@@ -45,6 +45,9 @@ namespace EcoreAspNET
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "Edit",
+                    pattern: "Edit/{id}/{type}", defaults:new { controller = "Ecole", action="Edit"});
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Ecole}/{action=Listes}/{id?}");
             });

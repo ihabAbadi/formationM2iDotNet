@@ -22,41 +22,55 @@ namespace EcoreAspNET.Controllers
             return View(l);
         }
 
-        public IActionResult SubmitEtudiant(string nom, string prenom, string email, string telephone, string adresse, string codePostal, string ville, int classe)
+        public IActionResult SubmitEtudiant(string nom, string prenom, string email, string telephone, string adresse, string codePostal, string ville, int classe, int? id)
         {
-            List<Classe> l = Classe.GetClasses();
-            string message = null;
-            string classCss= null;
-            Etudiant e = new Etudiant
+            Etudiant etudiant = id != null ? Etudiant.GetEtudiantById((int)id) : null;
+            bool error = false;
+            if(etudiant == null)
             {
-                Nom = nom,
-                Prenom = prenom,
-                Telephone = telephone,
-                Email = email,
-                Adresse = adresse,
-                Ville = ville,
-                CodePostal = codePostal,
-                Classe = new Classe { Id = classe }
-            };
-            if(e.Save())
-            {
-                message = "Etudiant ajouté";
-                classCss = "success";
-                return RedirectToAction("Listes");
+                //Création Etudiant 
+                Etudiant e = new Etudiant
+                {
+                    Nom = nom,
+                    Prenom = prenom,
+                    Telephone = telephone,
+                    Email = email,
+                    Adresse = adresse,
+                    Ville = ville,
+                    CodePostal = codePostal,
+                    Classe = new Classe { Id = classe }
+                };
+                error = !e.Save();
             }
             else
             {
-                message = "Erreur d'ajout d'étudiant";
-                classCss = "danger";
+                etudiant.Nom = nom;
+                etudiant.Prenom= prenom;
+                etudiant.Telephone= telephone;
+                etudiant.Adresse= adresse;
+                etudiant.CodePostal= codePostal;
+                etudiant.Ville= ville;
+                etudiant.Email= email;
+                etudiant.Classe = new Classe { Id = classe };
+                error = !etudiant.Update();
+            }
+            if(error)
+            {
+                List<Classe> l = Classe.GetClasses();
+                string message = "Erreur";
+                string classCss = "danger";
                 ViewBag.Message = message;
                 ViewBag.ClassCss = classCss;
-                return View("EtudiantForm",l);
-            }  
+                return View("EtudiantForm", l);
+            }
+            else
+            {
+                return RedirectToAction("Listes");
+            }
         }
 
         public IActionResult SubmitProf(string nom, string prenom, string email, string telephone, string adresse, string codePostal, string ville, int matiere)
         {
-            
             string message = null;
             string classCss = null;
             Prof e = new Prof
@@ -115,6 +129,23 @@ namespace EcoreAspNET.Controllers
             {
                 return RedirectToAction("Listes");
             }
+        }
+
+        public IActionResult Edit(int id, string type)
+        {
+            if(type == "Ecole.Models.Etudiant")
+            {
+                Etudiant etudiant = Etudiant.GetEtudiantById(id);
+                ViewBag.Etudiant = etudiant;
+                return View("EtudiantForm", Classe.GetClasses());
+            }
+            else if(type == "Ecole.Models.Prof")
+            {
+                Prof prof = Prof.GetProfById(id);
+                ViewBag.Prof = prof;
+                return View("ProfForm", Matiere.getMatieres());
+            }
+            return RedirectToAction("Listes");
         }
     }
 }
