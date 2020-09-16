@@ -85,5 +85,37 @@ namespace Ecole.Models
             }
             return false;
         }
+
+        public static Etudiant GetEtudiantById(int id)
+        {
+            Etudiant etudiant = null;
+            string request = "SELECT p.id,p.nom, p.prenom,p.telephone, p.email, p.adresse, p.code_postal, p.ville," +
+                " e.id, c.id, c.nom FROM personne as p " +
+                "inner join etudiant as e on p.id =e.personne_id " +
+                "inner join classe as c on c.id = e.classe_id where e.id = @id";
+            command = new SqlCommand(request, Connection.Instance);
+            command.Parameters.Add(new SqlParameter("@id", id));
+            Connection.Instance.Open();
+            reader = command.ExecuteReader();
+            if(reader.Read())
+            {
+                etudiant = new Etudiant()
+                {
+                    Id = reader.GetInt32(8),
+                    PersonneId = reader.GetInt32(0),
+                    Nom = reader.GetString(1),
+                    Prenom = reader.GetString(2),
+                    Telephone = reader.GetString(3),
+                    Email = reader.GetString(4),
+                    Adresse = reader.GetString(5),
+                    CodePostal = reader.GetString(6),
+                    Ville = reader.GetString(7),
+                    Classe = new Classe() { Id = reader.GetInt32(9), Nom = reader.GetString(10) }
+                };
+            }
+            command.Dispose();
+            Connection.Instance.Close();
+            return etudiant;
+        }
     }
 }

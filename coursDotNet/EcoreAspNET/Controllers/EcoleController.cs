@@ -51,9 +51,7 @@ namespace EcoreAspNET.Controllers
                 ViewBag.Message = message;
                 ViewBag.ClassCss = classCss;
                 return View("EtudiantForm",l);
-            }
-           
-            
+            }  
         }
 
         public IActionResult SubmitProf(string nom, string prenom, string email, string telephone, string adresse, string codePostal, string ville, int matiere)
@@ -86,13 +84,37 @@ namespace EcoreAspNET.Controllers
                 ViewBag.ClassCss = classCss;
                 return View("ProfForm", Matiere.getMatieres());
             }
-
-
         }
 
         public IActionResult ProfForm()
         {
             return View(Matiere.getMatieres());
+        }
+
+        public IActionResult DetailEtudiant(int id)
+        {
+            Etudiant etudiant = Etudiant.GetEtudiantById(id);
+            if(etudiant != null)
+            {
+                return View("Detail",etudiant);
+            }
+            else
+            {
+                return RedirectToAction("Listes");
+            }
+        }
+
+        public IActionResult DetailProf(int id)
+        {
+            Prof prof = Prof.GetProfById(id);
+            if (prof != null)
+            {
+                return View("Detail",prof);
+            }
+            else
+            {
+                return RedirectToAction("Listes");
+            }
         }
     }
 }

@@ -13,6 +13,7 @@
             <div class="col">@e.Ville</div>
             <div class="col">@e.CodePostal</div>
             <div class="col">@e.Classe.Nom</div>
+            <div class="col"><a asp-controller="Ecole" asp-action="DetailEtudiant" asp-route-id="@e.Id">Detail</a></div>
         </div>
     }
     <h1 class="row">
@@ -20,15 +21,16 @@
     </h1>
     @foreach (Prof e in ViewData["Profs"] as List<Prof>)
     {
-        <div class="row">
-            <div class="col">@e.Nom</div>
-            <div class="col">@e.Prenom</div>
-            <div class="col">@e.Telephone</div>
-            <div class="col">@e.Email</div>
-            <div class="col">@e.Adresse</div>
-            <div class="col">@e.Ville</div>
-            <div class="col">@e.CodePostal</div>
-            <div class="col">@e.Matiere.Nom</div>
-        </div>
+<div class="row">
+    <div class="col">@e.Nom</div>
+    <div class="col">@e.Prenom</div>
+    <div class="col">@e.Telephone</div>
+    <div class="col">@e.Email</div>
+    <div class="col">@e.Adresse</div>
+    <div class="col">@e.Ville</div>
+    <div class="col">@e.CodePostal</div>
+    <div class="col">@e.Matiere.Nom</div>
+    <div class="col"><a asp-controller="Ecole" asp-action="DetailProf" asp-route-id="@e.Id">Detail</a></div>
+</div>
     }
 </div>

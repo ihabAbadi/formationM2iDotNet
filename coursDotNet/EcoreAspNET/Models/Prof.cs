@@ -84,5 +84,38 @@ namespace Ecole.Models
             Connection.Instance.Close();
             return liste;
         }
+
+        public static Prof GetProfById(int id)
+        {
+            Prof prof = null;
+            string request = "SELECT p.id,p.nom, p.prenom,p.telephone, p.email, p.adresse, p.code_postal, p.ville," +
+                " e.id, c.id, c.nom FROM personne as p " +
+                "inner join prof as e on p.id =e.personne_id " +
+                "inner join matiere as c on c.id = e.matiere_id where e.id = @id";
+            command = new SqlCommand(request, Connection.Instance);
+            command.Parameters.Add(new SqlParameter("@id", id));
+            Connection.Instance.Open();
+            reader = command.ExecuteReader();
+            if(reader.Read())
+            {
+                prof = new Prof()
+                {
+                    Id = reader.GetInt32(8),
+                    PersonneId = reader.GetInt32(0),
+                    Nom = reader.GetString(1),
+                    Prenom = reader.GetString(2),
+                    Telephone = reader.GetString(3),
+                    Email = reader.GetString(4),
+                    Adresse = reader.GetString(5),
+                    CodePostal = reader.GetString(6),
+                    Ville = reader.GetString(7),
+                    Matiere = new Matiere() { Id = reader.GetInt32(9), Nom = reader.GetString(10) }
+                };
+            }
+            reader.Close();
+            command.Dispose();
+            Connection.Instance.Close();
+            return prof;
+        }
     }
 }

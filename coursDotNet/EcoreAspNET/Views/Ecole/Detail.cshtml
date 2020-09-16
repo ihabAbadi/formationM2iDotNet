@@ -1,0 +1,52 @@
+﻿@model Personne
+    <div class="container">
+        <div class="row m-1 justify-content-start">
+            <div class="col">
+                Nom : @Model.Nom
+            </div>
+            <div class="col">
+                Prénom : @Model.Prenom
+            </div>
+        </div>
+        <div class="row m-1 justify-content-start">
+            <div class="col">
+                Adresse : @Model.Adresse
+            </div>
+        </div>
+        <div class="row m-1 justify-content-start">
+            <div class="col">
+                Code Postal : @Model.CodePostal
+            </div>
+            <div class="col">
+                Ville : @Model.Ville
+            </div>
+        </div>
+        <div class="row m-1 justify-content-start">
+            <div class="col">
+                Email : @Model.Email
+            </div>
+            <div class="col">
+                Téléphone : @Model.Telephone
+            </div>
+        </div>
+        @if (Model is Prof p)
+        {
+            <div class="row m-1 justify-content-start">
+                <div class="col">
+                    Matiere : @p.Matiere.Nom
+                </div>
+            </div>
+        }
+        @if (Model is Etudiant e)
+        {
+            <div class="row m-1 justify-content-start">
+                <div class="col">
+                    Classe : @e.Classe.Nom
+                </div>
+            </div>
+        }
+
+        <div class="row m-1 justify-content-start">
+            <a class="col btn btn-warning">Modifier</a>
+        </div>
+    </div>
