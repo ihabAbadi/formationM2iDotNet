@@ -22,7 +22,8 @@ namespace EcoreAspNET.Controllers
             return View(l);
         }
 
-        public IActionResult SubmitEtudiant(Etudiant e, int classe)
+        [HttpPost]
+        public IActionResult SubmitEtudiant([FromForm]Etudiant e, int classe)
         {
             Etudiant etudiant = Etudiant.GetEtudiantById(e.Id);
             bool error = false;
