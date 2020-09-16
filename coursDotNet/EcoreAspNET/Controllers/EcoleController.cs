@@ -69,41 +69,54 @@ namespace EcoreAspNET.Controllers
             }
         }
 
-        public IActionResult SubmitProf(string nom, string prenom, string email, string telephone, string adresse, string codePostal, string ville, int matiere)
-        {
-            string message = null;
-            string classCss = null;
-            Prof e = new Prof
-            {
-                Nom = nom,
-                Prenom = prenom,
-                Telephone = telephone,
-                Email = email,
-                Adresse = adresse,
-                Ville = ville,
-                CodePostal = codePostal,
-                Matiere = new Matiere { Id = matiere}
-            };
-            if (e.Save())
-            {
-                message = "prof ajouté";
-                classCss = "success";
-                return RedirectToAction("Listes");
-            }
-            else
-            {
-                message = "Erreur d'ajout de prof";
-                classCss = "danger";
-                ViewBag.Message = message;
-                ViewBag.ClassCss = classCss;
-                return View("ProfForm", Matiere.getMatieres());
-            }
-        }
-
         public IActionResult ProfForm()
         {
             return View(Matiere.getMatieres());
         }
+        public IActionResult SubmitProf(string nom, string prenom, string email, string telephone, string adresse, string codePostal, string ville, int matiere, int? id)
+        {
+            Prof prof = id != null ? Prof.GetProfById((int)id) : null;
+            bool error = false;
+            if(prof == null)
+            {
+                Prof e = new Prof
+                {
+                    Nom = nom,
+                    Prenom = prenom,
+                    Telephone = telephone,
+                    Email = email,
+                    Adresse = adresse,
+                    Ville = ville,
+                    CodePostal = codePostal,
+                    Matiere = new Matiere { Id = matiere }
+                };
+                error = !e.Save();
+            }
+            else
+            {
+                prof.Nom = nom;
+                prof.Prenom = prenom;
+                prof.Telephone = telephone;
+                prof.Adresse = adresse;
+                prof.CodePostal = codePostal;
+                prof.Ville = ville;
+                prof.Email = email;
+                prof.Matiere = new Matiere { Id = matiere };
+                error = !prof.Update();
+            }
+            if(error)
+            {
+                ViewBag.Message = "Erreur";
+                ViewBag.ClassCss = "danger";
+                return View("ProfForm", Matiere.getMatieres());
+            }
+            else
+            {
+                return RedirectToAction("Listes");
+            }
+        }
+
+        
 
         public IActionResult DetailEtudiant(int id)
         {

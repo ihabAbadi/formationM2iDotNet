@@ -16,6 +16,10 @@ namespace Ecole.Models
         public int PersonneId { get => personneId; set => personneId = value; }
         public Matiere Matiere { get => matiere; set => matiere = value; }
 
+        public Prof()
+        {
+            Matiere = new Matiere();
+        }
         public override bool Save()
         {
             if (base.Save())
