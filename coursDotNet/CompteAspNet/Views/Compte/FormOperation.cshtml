@@ -1,1 +1,23 @@
-﻿
+﻿<div class="container">
+    @if(ViewBag.Message != null)
+    {
+        <div class="row">
+            <div class="col alert alert-danger">
+                @ViewBag.Message
+            </div>
+        </div>
+    }
+    <form asp-controller="Compte" asp-action="SubmitOperation" method="post">
+        <input type="hidden" name="numero" value="@ViewBag.Numero" />
+        <input type="hidden" name="type" value="@ViewBag.Type" />
+        <div class="row m-1">
+            <h1 class="col">@ViewBag.Type @ViewBag.Numero</h1>
+        </div>
+        <div class="row m-1">
+            <input type="number" name="montant" placeholder="Montant de l'opération " class="form-control col" />
+        </div>
+        <div class="row m-1">
+            <button type="submit" class="col btn btn-dark form-control text-white">Valider</button>
+        </div>
+    </form>
+</div>

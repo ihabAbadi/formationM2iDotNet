@@ -24,11 +24,11 @@ namespace CompteAspNet.Controllers
         public IActionResult Detail(string numero)
         {
             Compte compte = Sauvegarde.Instance.ChercherCompte(numero);
-            if(compte != null)
+            if (compte != null)
             {
                 compte.Operations = Sauvegarde.Instance.getOperations(compte.Id);
             }
-            return View("DetailCompte",compte);
+            return View("DetailCompte", compte);
         }
 
         [HttpGet]
@@ -38,21 +38,57 @@ namespace CompteAspNet.Controllers
         }
 
         [HttpPost]
-        public IActionResult SubmitCompte([FromForm]Compte compte)
+        public IActionResult SubmitCompte([FromForm] Compte compte)
         {
-            return RedirectToAction("Detail", new { numero = compte.Numero }); 
+            return RedirectToAction("Detail", new { numero = compte.Numero });
         }
 
         [HttpGet]
         public IActionResult FormOperation(string numero, string type)
         {
+            Compte compte = Sauvegarde.Instance.ChercherCompte(numero);
+            if (compte == null)
+            {
+                return RedirectToAction("Index");
+            }
+            ViewBag.Numero = numero;
+            ViewBag.Type = type;
             return View("FormOperation");
         }
 
-        [HttpPost] 
-        public IActionResult SubmitOperation([FromForm] Operation operation)
+        [HttpPost]
+        public IActionResult SubmitOperation([FromForm] string numero, [FromForm] string type, [FromForm] decimal montant)
         {
-            return RedirectToAction("Detail");
+            Compte compte = Sauvegarde.Instance.ChercherCompte(numero);
+            bool error = false;
+            if (compte == null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                if (type == "retrait")
+                {
+                    Operation o = new Operation(montant*-1, compte.Id);
+                    error = !compte.Retrait(o);
+                }
+                else if(type =="depot")
+                {
+                    Operation o = new Operation(montant, compte.Id);
+                    error = !compte.Depot(o);
+                }
+            }
+            if(error)
+            {
+                return RedirectToAction("Detail", new { numero = compte.Numero});
+            }
+            else
+            {
+                ViewBag.Numero = numero;
+                ViewBag.Type = type;
+                ViewBag.Message = "Error opération";
+                return View("FormOperation");
+            }
         }
     }
 }
