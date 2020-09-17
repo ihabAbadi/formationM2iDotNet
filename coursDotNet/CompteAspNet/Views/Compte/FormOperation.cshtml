@@ -1,12 +1,13 @@
 ﻿<div class="container">
-    @if(ViewBag.Message != null)
+    @*@if(ViewBag.Message != null)
     {
         <div class="row">
             <div class="col alert alert-danger">
                 @ViewBag.Message
             </div>
         </div>
-    }
+    }*@
+    <partial name="~/Views/Partial/Error.cshtml" />
     <form asp-controller="Compte" asp-action="SubmitOperation" method="post">
         <input type="hidden" name="numero" value="@ViewBag.Numero" />
         <input type="hidden" name="type" value="@ViewBag.Type" />

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CompteAspNet.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CompteAspNet.Controllers
@@ -59,14 +60,18 @@ namespace CompteAspNet.Controllers
             {
                 return RedirectToAction("Index");
             }
+            HttpContext.Session.SetString("numero", numero);
+            HttpContext.Session.SetString("type", type);
             ViewBag.Numero = numero;
             ViewBag.Type = type;
             return View("FormOperation");
         }
 
         [HttpPost]
-        public IActionResult SubmitOperation([FromForm] string numero, [FromForm] string type, [FromForm] decimal montant)
+        public IActionResult SubmitOperation( [FromForm] decimal montant)
         {
+            string numero = HttpContext.Session.GetString("numero");
+            string type = HttpContext.Session.GetString("type");
             Compte compte = Sauvegarde.Instance.ChercherCompte(numero);
             bool error = false;
             if (compte == null)
