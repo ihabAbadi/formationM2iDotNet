@@ -1,0 +1,52 @@
+﻿@model List<Compte>
+<div class="container">
+    <form asp-controller="Compte" asp-action="Search">
+        <div class="row">
+            <div class="input-group mb-3 col">
+                <input type="text" name="numero" class="form-control" placeholder="Rechercher un compte par son numéro" aria-label="Rechercher un compte par son numéro" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <Button class="input-group-text btn btn-info" type="submit" id="basic-addon2">Rechercher</Button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+@if (Model != null)
+{
+<div class="container">
+    @if (Model.Count > 0)
+    {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Numero</th>
+                    <th scope="col">Nom Client</th>
+                    <th scope="col">Prénom Client</th>
+                    <th scope="col">Solde</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Compte c in Model)
+                {
+                    <tr>
+                        <th scope="row">@c.Numero</th>
+                        <td>@c.Client.Nom</td>
+                        <td>@c.Client.Prenom</td>
+                        <td>@c.Solde</td>
+                        <td><a asp-controller="Compte" asp-action="Detail" asp-route-numero="@c.Numero">Detail</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col alert-danger alert">
+                Aucun compte avec ce numéro
+            </div>
+        </div>
+    }
+</div>
+}
