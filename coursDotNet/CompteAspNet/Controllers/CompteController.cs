@@ -23,7 +23,12 @@ namespace CompteAspNet.Controllers
         [HttpGet]
         public IActionResult Detail(string numero)
         {
-            return View("DetailCompte");
+            Compte compte = Sauvegarde.Instance.ChercherCompte(numero);
+            if(compte != null)
+            {
+                compte.Operations = Sauvegarde.Instance.getOperations(compte.Id);
+            }
+            return View("DetailCompte",compte);
         }
 
         [HttpGet]
