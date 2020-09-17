@@ -1,1 +1,33 @@
-﻿
+﻿<div class="container">
+    @if(ViewBag.Message != null)
+    {
+        <div class="row m-1">
+            <div class="col alert alert-danger">
+                @ViewBag.Message
+            </div>
+        </div>
+    }
+    <form asp-controller="Compte" asp-action="SubmitCompte">
+        <div class="row m-1">
+            <h1 class="col">Informations du client :</h1>
+        </div>
+        <div class="row m-1">
+            <input placeholder="Nom du client" type="text" class="col form-control" name="Client.Nom" />
+        </div>
+        <div class="row m-1">
+            <input placeholder="Prénom du client" type="text" class="col form-control" name="Client.Prenom" />
+        </div>
+        <div class="row m-1">
+            <input placeholder="Téléphone du client" type="text" class="col form-control" name="Client.Telephone" />
+        </div>
+        <div class="row m-1">
+            <h1 class="col">Informations du compte :</h1>
+        </div>
+        <div class="row m-1">
+            <input placeholder="Solde de départ du compte" type="text" class="col form-control" name="Solde" />
+        </div>
+        <div class="row m-1">
+            <button class="btn col btn-success form-control">Enregister</button>
+        </div>
+    </form>
+</div>

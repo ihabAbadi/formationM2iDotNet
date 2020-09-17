@@ -40,7 +40,15 @@ namespace CompteAspNet.Controllers
         [HttpPost]
         public IActionResult SubmitCompte([FromForm] Compte compte)
         {
-            return RedirectToAction("Detail", new { numero = compte.Numero });
+            if(Sauvegarde.Instance.CreationCompte(compte))
+            {
+                return RedirectToAction("Detail", new { numero = compte.Numero });
+            }
+            else
+            {
+                ViewBag.Message = "Erreur création compte";
+                return View("FormCompte");
+            }
         }
 
         [HttpGet]
@@ -78,7 +86,7 @@ namespace CompteAspNet.Controllers
                     error = !compte.Depot(o);
                 }
             }
-            if(error)
+            if(!error)
             {
                 return RedirectToAction("Detail", new { numero = compte.Numero});
             }
