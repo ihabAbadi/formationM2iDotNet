@@ -1,0 +1,18 @@
+﻿@model List<Product>
+<div class="container">
+    <div class="row">
+        @foreach (Product p in Model)
+        {
+        <div class="col-3">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="@p.Images[0].Url" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">@p.Title</h5>
+                    <p class="card-text">@p.Price €</p>
+                    <a asp-controller="Product" asp-action="Detail" asp-route-id="@p.Id" class="btn btn-primary">Detail</a>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>

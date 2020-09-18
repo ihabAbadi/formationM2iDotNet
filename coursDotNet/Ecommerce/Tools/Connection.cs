@@ -51,6 +51,8 @@ namespace Ecommerce.Tools
                 "ProductId INT NOT NULL)";
             command = new SqlCommand(request, Instance);
             command.ExecuteNonQuery();
+            command.Dispose();
+            Instance.Close();
         }
 
     }

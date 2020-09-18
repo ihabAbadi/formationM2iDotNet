@@ -37,7 +37,9 @@ namespace Ecommerce.Models
                 };
                 images.Add(image);
             }
-
+            reader.Close();
+            command.Dispose();
+            Connection.Instance.Close();
             return images;
         }
     }
