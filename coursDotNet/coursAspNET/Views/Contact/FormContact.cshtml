@@ -10,7 +10,10 @@
             </div>
         </div>
     }
-    <form method="post" asp-controller="Contact" asp-action="SubmitContact">
+    <form enctype="multipart/form-data" method="post" asp-controller="Contact" asp-action="SubmitContact">
+        <div class="row m-1">
+            <input type="file" class="col form-control" placeholder="Image" name="image" />
+        </div>
         <div class="row m-1">
             <input type="text" class="col form-control" placeholder="Nom contact" name="nom" />
         </div>

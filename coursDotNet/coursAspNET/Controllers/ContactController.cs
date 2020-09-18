@@ -1,15 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using coursAspNET.Models;
 using coursAspNET.ViewModels;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace coursAspNET.Controllers
 {
     public class ContactController : Controller
     {
+        private IWebHostEnvironment env;
+        public ContactController(IWebHostEnvironment _env)
+        {
+            env = _env;
+        }
         public IActionResult Index()
         {
             ContactViewModel vm = new ContactViewModel();
@@ -40,9 +48,13 @@ namespace coursAspNET.Controllers
             return View();
         }
 
-        public IActionResult SubmitContact(string nom, string prenom)
+        public IActionResult SubmitContact(string nom, string prenom, IFormFile image)
         {
             Contact c = new Contact { Nom = nom, Prenom = prenom };
+            string path = Path.Combine(env.WebRootPath, "upload", image.FileName);
+            Stream s = System.IO.File.Create(path);
+            image.CopyTo(s);
+            s.Close();
             return View("FormContact", c);
         }
 
