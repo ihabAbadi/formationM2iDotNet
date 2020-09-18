@@ -45,5 +45,16 @@ namespace Ecommerce.Models
                 Products.Add(productCart);
             }
         }
+
+        public bool DeleteProduct(int id)
+        {
+            ProductCart product = Products.FirstOrDefault(p => p.Product.Id == id);
+            if(product != null)
+            {
+                Products.Remove(product);
+                return true;
+            }
+            return false;
+        }
     }
 }

@@ -47,7 +47,17 @@ namespace Ecommerce.Controllers
 
         public IActionResult DeleteProductFromCart(int id)
         {
-            return View();
+            Cart cart;
+            string cartString = HttpContext.Session.GetString("Cart");
+            if(cartString != null)
+            {
+                cart = JsonConvert.DeserializeObject<Cart>(cartString);
+                if(cart.DeleteProduct(id))
+                {
+                    HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
+                }
+            }
+            return RedirectToAction("Index");
         }
     }
 }
