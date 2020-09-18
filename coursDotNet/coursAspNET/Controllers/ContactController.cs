@@ -48,13 +48,27 @@ namespace coursAspNET.Controllers
             return View();
         }
 
-        public IActionResult SubmitContact(string nom, string prenom, IFormFile image)
+        //public IActionResult SubmitContact(string nom, string prenom, IFormFile image)
+        //{
+        //    Contact c = new Contact { Nom = nom, Prenom = prenom };
+        //    string path = Path.Combine(env.WebRootPath, "upload", image.FileName);
+        //    Stream s = System.IO.File.Create(path);
+        //    image.CopyTo(s);
+        //    s.Close();
+        //    return View("FormContact", c);
+        //}
+
+        public IActionResult SubmitContact(string nom, string prenom, List<IFormFile> image)
         {
             Contact c = new Contact { Nom = nom, Prenom = prenom };
-            string path = Path.Combine(env.WebRootPath, "upload", image.FileName);
-            Stream s = System.IO.File.Create(path);
-            image.CopyTo(s);
-            s.Close();
+            foreach(IFormFile i in image)
+            {
+                string path = Path.Combine(env.WebRootPath, "upload", i.FileName);
+                Stream s = System.IO.File.Create(path);
+                i.CopyTo(s);
+                s.Close();
+            }
+            
             return View("FormContact", c);
         }
 
