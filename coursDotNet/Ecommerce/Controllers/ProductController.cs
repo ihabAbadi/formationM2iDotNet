@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Ecommerce.Models;
+using Ecommerce.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -42,12 +43,13 @@ namespace Ecommerce.Controllers
         {
             if(product.Add())
             {
+                UploadService service = new UploadService(_env);
                 foreach(IFormFile i in imagesProduct)
                 {
                     Image image = new Image()
                     {
                         ProductId = product.Id,
-                        Url = Upload(i)
+                        Url = service.Upload(i)
                     };
                     image.Add();
                 }
@@ -60,15 +62,6 @@ namespace Ecommerce.Controllers
             }
         }
 
-        private string Upload(IFormFile image)
-        {
-            string uniqueString = Guid.NewGuid().ToString();
-            string basePath = @"images/" + uniqueString + "-" + image.FileName;
-            string path = Path.Combine(_env.WebRootPath, basePath);
-            Stream s = System.IO.File.Create(path);
-            image.CopyTo(s);
-            s.Close();
-            return basePath;
-        }
+        
     }
 }
