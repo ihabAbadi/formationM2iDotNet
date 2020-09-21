@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@inject ITranslate translator
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -19,13 +20,26 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Accueil</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">@translator.Translate("accueil")</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="FormProduct">Ajouter un produit</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">Panier</a>
+                        </li>
+                        <li class="nav-item">
+                            <div class="btn-group dropright">
+                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Langue
+                                </button>
+                                <div class="dropdown-menu">
+                                    @foreach (string l in translator.GetLang())
+                                    {
+                                        <a class="dropdown-item" type="button" asp-controller="Product" asp-action="ChangeLanguage" asp-route-id="@l">@l</a>
+                                    }
+                                </div>
+                            </div>
                         </li>
                     </ul>
                 </div>

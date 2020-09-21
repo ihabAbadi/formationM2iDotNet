@@ -17,7 +17,6 @@ namespace Ecommerce.Services
         }
         public string ReWriteImageUrl(string url)
         {
-
             string host = _accessor.HttpContext.Request.Scheme +@"://"+ _accessor.HttpContext.Request.Host.Value;
             if(url.Contains("http"))
             {

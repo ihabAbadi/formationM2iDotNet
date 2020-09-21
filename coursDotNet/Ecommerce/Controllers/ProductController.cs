@@ -16,10 +16,12 @@ namespace Ecommerce.Controllers
     {
         private IWebHostEnvironment _env;
         private IUpload _service;
-        public ProductController(IWebHostEnvironment env, IUpload service)
+        private ITranslate _translator;
+        public ProductController(IWebHostEnvironment env, IUpload service, ITranslate translator)
         {
             _env = env;
             _service = service;
+            _translator = translator;
         }
         //Liste des produits
         public IActionResult Index()
@@ -65,6 +67,10 @@ namespace Ecommerce.Controllers
             }
         }
 
-        
+        public IActionResult ChangeLanguage(string id)
+        {
+            _translator.ChangeLang(id);
+            return RedirectToAction("Index");
+        }
     }
 }
