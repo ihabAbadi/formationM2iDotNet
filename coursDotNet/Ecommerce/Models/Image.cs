@@ -32,15 +32,29 @@ namespace Ecommerce.Models
                 Image image = new Image()
                 {
                     Id = reader.GetInt32(0),
-                    Url = reader.GetString(1),
+                    
                     ProductId = productId
                 };
+                image.Url = (reader.GetString(1).Contains("http")) ? reader.GetString(1) : @"http://localhost:54485/"+ reader.GetString(1);
                 images.Add(image);
             }
             reader.Close();
             command.Dispose();
             Connection.Instance.Close();
             return images;
+        }
+
+        public bool Add()
+        {
+            string request = "INSERT INTO Image (Url, ProductId) OUTPUT INSERTED.ID values(@url,@productId)";
+            SqlCommand command = new SqlCommand(request, Connection.Instance);
+            command.Parameters.Add(new SqlParameter("@url", Url));
+            command.Parameters.Add(new SqlParameter("@productId", ProductId));
+            Connection.Instance.Open();
+            Id = (int)command.ExecuteScalar();
+            command.Dispose();
+            Connection.Instance.Close();
+            return Id > 0;
         }
     }
 }

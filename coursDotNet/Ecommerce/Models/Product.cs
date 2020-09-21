@@ -76,5 +76,20 @@ namespace Ecommerce.Models
             Connection.Instance.Close();
             return product;
         }
+
+        public bool Add()
+        {
+            string request = "INSERT INTO Product(Title, Price, Description) OUTPUT INSERTED.ID values(@title, @price, @description)";
+            SqlCommand command = new SqlCommand(request, Connection.Instance);
+            command.Parameters.Add(new SqlParameter("@title", Title));
+            command.Parameters.Add(new SqlParameter("@price", Price));
+            command.Parameters.Add(new SqlParameter("@description", Description));
+            Connection.Instance.Open();
+            Id = (int)command.ExecuteScalar();
+            command.Dispose();
+            Connection.Instance.Close();
+            return Id > 0;
+
+        }
     }
 }

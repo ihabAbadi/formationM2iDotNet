@@ -68,7 +68,6 @@ namespace coursAspNET.Controllers
                 i.CopyTo(s);
                 s.Close();
             }
-            
             return View("FormContact", c);
         }
 

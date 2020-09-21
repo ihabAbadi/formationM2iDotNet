@@ -13,16 +13,8 @@
                         <img class="d-block w-100" src="@i.Url" alt="@Model.Title">
                     </div>
                 }
-
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+            
         </div>
     </div>
     <div class="container">
@@ -36,15 +28,7 @@
                 @Model.Price €
             </div>
         </div>
-        <form asp-controller="Cart" asp-action="AddProductToCart">
-            <div class="row">
-
-                <input type="hidden" name="id" value="@Model.Id" />
-                <input type="number" name="qty" class="col form-control" placeholder="Qty" />
-                <button class="col form-control btn btn-info">Ajouter au panier</button>
-
-            </div>
-        </form>
+        
     </div>
 }
 else
