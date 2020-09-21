@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Ecommerce.Interface;
+using Ecommerce.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -26,6 +28,10 @@ namespace Ecommerce
             {
                 options.IdleTimeout = TimeSpan.FromHours(1);
             });
+            //Ajouter un service
+            //services.AddTransient<IUpload, UploadService>();
+            services.AddScoped<IUpload, UploadServiceBis>();
+            //services.AddSingleton<IUpload, UploadService>();
             services.AddControllersWithViews();
         }
 

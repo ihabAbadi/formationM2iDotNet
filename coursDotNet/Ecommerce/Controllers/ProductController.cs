@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Ecommerce.Interface;
 using Ecommerce.Models;
 using Ecommerce.Services;
 using Microsoft.AspNetCore.Hosting;
@@ -14,9 +15,11 @@ namespace Ecommerce.Controllers
     public class ProductController : Controller
     {
         private IWebHostEnvironment _env;
-        public ProductController(IWebHostEnvironment env)
+        private IUpload _service;
+        public ProductController(IWebHostEnvironment env, IUpload service)
         {
             _env = env;
+            _service = service;
         }
         //Liste des produits
         public IActionResult Index()
@@ -43,13 +46,13 @@ namespace Ecommerce.Controllers
         {
             if(product.Add())
             {
-                UploadService service = new UploadService(_env);
+                //UploadService _service = new UploadService(_env);
                 foreach(IFormFile i in imagesProduct)
                 {
                     Image image = new Image()
                     {
                         ProductId = product.Id,
-                        Url = service.Upload(i)
+                        Url = _service.Upload(i)
                     };
                     image.Add();
                 }
