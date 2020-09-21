@@ -1,4 +1,6 @@
 ﻿@model Product
+@inject IDisplayer displayerService
+
 @if (Model != null)
 {
     <div class="container">
@@ -10,11 +12,11 @@
                 @foreach (Image i in Model.Images)
                 {
                     <div class="carousel-item active">
-                        <img class="d-block w-100" src="@i.Url" alt="@Model.Title">
+                        <img class="d-block w-100" src="@displayerService.ReWriteImageUrl(i.Url)" alt="@Model.Title">
                     </div>
                 }
             </div>
-            
+
         </div>
     </div>
     <div class="container">
@@ -28,7 +30,7 @@
                 @Model.Price €
             </div>
         </div>
-        
+
     </div>
 }
 else

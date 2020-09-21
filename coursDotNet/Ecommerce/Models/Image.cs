@@ -35,7 +35,7 @@ namespace Ecommerce.Models
                     
                     ProductId = productId
                 };
-                image.Url = (reader.GetString(1).Contains("http")) ? reader.GetString(1) : @"http://localhost:54485/"+ reader.GetString(1);
+                image.Url = reader.GetString(1);
                 images.Add(image);
             }
             reader.Close();

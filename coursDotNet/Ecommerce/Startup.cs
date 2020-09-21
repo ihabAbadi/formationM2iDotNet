@@ -30,8 +30,10 @@ namespace Ecommerce
             });
             //Ajouter un service
             //services.AddTransient<IUpload, UploadService>();
-            services.AddScoped<IUpload, UploadServiceBis>();
+            services.AddScoped<IUpload, UploadService>();
+            services.AddScoped<IDisplayer, DisplayService>();
             //services.AddSingleton<IUpload, UploadService>();
+            services.AddHttpContextAccessor();
             services.AddControllersWithViews();
         }
 
