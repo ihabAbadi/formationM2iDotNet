@@ -33,6 +33,7 @@ namespace Ecommerce
             services.AddScoped<IUpload, UploadService>();
             services.AddScoped<IDisplayer, DisplayService>();
             services.AddScoped<ITranslate, TranslateService>();
+            services.AddSingleton<ILog, LogService>();
             //services.AddSingleton<IUpload, UploadService>();
             services.AddHttpContextAccessor();
             services.AddControllersWithViews();

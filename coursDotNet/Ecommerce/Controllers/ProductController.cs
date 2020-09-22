@@ -17,11 +17,13 @@ namespace Ecommerce.Controllers
         private IWebHostEnvironment _env;
         private IUpload _service;
         private ITranslate _translator;
-        public ProductController(IWebHostEnvironment env, IUpload service, ITranslate translator)
+        private ILog _log;
+        public ProductController(IWebHostEnvironment env, IUpload service, ITranslate translator, ILog log)
         {
             _env = env;
             _service = service;
             _translator = translator;
+            _log = log;
         }
         //Liste des produits
         public IActionResult Index()
@@ -33,8 +35,17 @@ namespace Ecommerce.Controllers
         //Detail du produit
         public IActionResult Detail(int id)
         {
-            Product p = Product.GetProductById(id);
-            p.Images = Image.GetImagesByProduct(p.Id);
+            Product p = null;
+            try
+            {
+                p = Product.GetProductById(id);
+                p.Images = Image.GetImagesByProduct(p.Id);
+            }
+            catch(Exception e)
+            {
+                _log.Logging(e.Message);
+            }
+            
             return View(p);
         }
 
