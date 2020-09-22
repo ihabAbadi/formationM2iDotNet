@@ -1,6 +1,7 @@
 ﻿using Ecommerce.Tools;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,7 +19,9 @@ namespace Ecommerce.Models
         public int Id { get => id; set => id = value; }
         public string Url { get => url; set => url = value; }
         public int ProductId { get => productId; set => productId = value; }
-
+        
+        [ForeignKey("ProductId")]
+        public Product Product { get; set; }
         public static List<Image> GetImagesByProduct(int productId)
         {
             List<Image> images = new List<Image>();

@@ -29,7 +29,7 @@ namespace Ecommerce.Controllers
         public IActionResult Index()
         {
             List<Product> products = Product.GetProducts();
-            products.ForEach(p => p.Images = Image.GetImagesByProduct(p.Id));
+            //products.ForEach(p => p.Images = Image.GetImagesByProduct(p.Id));
             return View(products);
         }
         //Detail du produit
@@ -39,13 +39,13 @@ namespace Ecommerce.Controllers
             try
             {
                 p = Product.GetProductById(id);
-                p.Images = Image.GetImagesByProduct(p.Id);
+                //p.Images = Image.GetImagesByProduct(p.Id);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 _log.Logging(e.Message);
             }
-            
+
             return View(p);
         }
 
@@ -57,18 +57,34 @@ namespace Ecommerce.Controllers
         [HttpPost]
         public IActionResult SubmitForm([FromForm] Product product, List<IFormFile> imagesProduct)
         {
-            if(product.Add())
+            //if(product.Add())
+            //{
+            //    //UploadService _service = new UploadService(_env);
+            //    foreach(IFormFile i in imagesProduct)
+            //    {
+            //        Image image = new Image()
+            //        {
+            //            ProductId = product.Id,
+            //            Url = _service.Upload(i)
+            //        };
+            //        image.Add();
+            //    }
+            //    return RedirectToAction("Index");
+            //}
+
+            //UploadService _service = new UploadService(_env);
+            foreach (IFormFile i in imagesProduct)
             {
-                //UploadService _service = new UploadService(_env);
-                foreach(IFormFile i in imagesProduct)
+                Image image = new Image()
                 {
-                    Image image = new Image()
-                    {
-                        ProductId = product.Id,
-                        Url = _service.Upload(i)
-                    };
-                    image.Add();
-                }
+                    Url = _service.Upload(i)
+                };
+                product.Images.Add(image);
+
+
+            }
+            if (product.Add())
+            {
                 return RedirectToAction("Index");
             }
             else
