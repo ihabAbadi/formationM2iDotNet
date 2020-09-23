@@ -48,5 +48,10 @@ namespace AnnoncesAspNet.Services
             }
             return favoris;
         }
+
+        public bool IsFavoris(int id)
+        {
+            return getFavoris().Contains(id);
+        }
     }
 }

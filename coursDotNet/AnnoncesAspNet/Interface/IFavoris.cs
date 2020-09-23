@@ -10,5 +10,7 @@ namespace AnnoncesAspNet.Interface
         bool AddToFavoris(int id);
         bool RemoveFromFavoris(int id);
         List<int> getFavoris();
+
+        bool IsFavoris(int id);
     }
 }

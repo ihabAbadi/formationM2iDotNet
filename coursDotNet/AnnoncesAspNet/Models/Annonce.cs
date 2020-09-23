@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,6 +18,8 @@ namespace AnnoncesAspNet.Models
         public string Title { get => title; set => title = value; }
         public string Description { get => description; set => description = value; }
 
+        //[NotMapped]
+        //public bool IsFavoris { get; set; }
         public List<AnnonceCategorie> Categories { get; set; }
 
         public List<Image> Images { get; set; }
