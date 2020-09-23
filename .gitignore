@@ -30,3 +30,5 @@ msbuild.wrn
 videos/
 # Visual Studio 2015
 .vs/
+entity.mdf
+entity_log.ldf
