@@ -35,7 +35,7 @@ namespace AnnoncesAspNet.Controllers
         }
 
         [HttpGet]
-        public IActionResult Search(int id)
+        public IActionResult SearchCategorie(int id)
         {
             AnnoncesViewModel vm = new AnnoncesViewModel();
             vm.Annonces = Annonce.GetAnnoncesByCategorie(id);

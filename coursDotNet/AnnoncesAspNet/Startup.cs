@@ -30,6 +30,7 @@ namespace AnnoncesAspNet
             });
             services.AddHttpContextAccessor();
             services.AddSingleton<IUpload, UploadService>();
+            services.AddTransient<IFavoris, FavorisService>();
             services.AddControllersWithViews();
         }
 
@@ -45,7 +46,7 @@ namespace AnnoncesAspNet
                 app.UseExceptionHandler("/Home/Error");
             }
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthorization();
