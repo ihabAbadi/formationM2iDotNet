@@ -13,4 +13,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Favoris\" />
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
 </Project>

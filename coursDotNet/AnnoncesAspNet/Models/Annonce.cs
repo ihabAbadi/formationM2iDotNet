@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AnnoncesAspNet.Tools;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,6 +25,22 @@ namespace AnnoncesAspNet.Models
         {
             Categories = new List<AnnonceCategorie>();
             Images = new List<Image>();
+        }
+
+        public static Annonce GetAnnonce(int id)
+        {
+            return DataContext.Instance.Annonces.Include(a => a.Images).Include(a => a.Categories).ThenInclude(c => c.Categorie).FirstOrDefault(a => a.Id == id);
+        }
+
+        public static List<Annonce> GetAnnonces(string chaine)
+        {
+            return DataContext.Instance.Annonces.Include(a => a.Images).Include(a => a.Categories).ThenInclude(c => c.Categorie).Where((a) => a.Title.Contains(chaine) ||a.Description.Contains(chaine)).ToList();
+        }
+
+        public static List<Annonce> GetAnnoncesByCategorie(int id)
+        {
+            //---------------------------------------------AnnoncesCategories-----------Annonce---------------------Images---------Categorie par id---------------Annonces categories---Selectionne Annonce
+            return DataContext.Instance.Categories.Include(c => c.Annonces).ThenInclude(a => a.Annonce).ThenInclude(a => a.Images).FirstOrDefault(c => c.Id == id).Annonces.Select(a => a.Annonce).ToList();
         }
     }
 }

@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AnnoncesAspNet.Interface;
+using AnnoncesAspNet.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -22,6 +24,12 @@ namespace AnnoncesAspNet
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSession((options) =>
+            {
+                options.IdleTimeout = TimeSpan.FromDays(1);
+            });
+            services.AddHttpContextAccessor();
+            services.AddSingleton<IUpload, UploadService>();
             services.AddControllersWithViews();
         }
 
@@ -46,7 +54,7 @@ namespace AnnoncesAspNet
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Annonce}/{action=Index}/{id?}");
             });
         }
     }
