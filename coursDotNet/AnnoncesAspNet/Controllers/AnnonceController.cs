@@ -27,10 +27,10 @@ namespace AnnoncesAspNet.Controllers
         }
 
         [HttpPost]
-        public IActionResult Search(string chaine)
+        public IActionResult Search(string search)
         {
             AnnoncesViewModel vm = new AnnoncesViewModel();
-            vm.Annonces = Annonce.GetAnnonces(chaine);
+            vm.Annonces = Annonce.GetAnnonces(search);
             return View("Index", vm);
         }
 

@@ -13,7 +13,7 @@ namespace AnnoncesAspNet.Services
         private IHttpContextAccessor _accessor;
         public FavorisService(IHttpContextAccessor accessor)
         {
-
+            _accessor = accessor;
         }
 
         public bool AddToFavoris(int id)

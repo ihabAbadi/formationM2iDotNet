@@ -1,5 +1,28 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model Annonce
+
+<div class="container">
+    <form enctype="multipart/form-data" method="post" asp-controller="Annonce" asp-action="SubmitAnnonce">
+        @if(Model.Id > 0)
+        {
+            <input type="hidden" name="id" value="@Model.Id" />
+        }
+        <div class="row m-1">
+            <input type="text" name="title" value="@Model.Title" placeholder="Titre de l'annonce" class="form-control col" />
+        </div>
+        <div class="row m-1">
+            <textarea class="form-control col" name="description" placeholder="Description du produit">@Model.Description</textarea>
+        </div>
+        <div class="row m-1">
+            <input type="file" multiple name="images" placeholder="Images de l'annonce" class="form-control col" />
+        </div>
+        <select name="categories" class="custom-select" multiple>
+            @foreach (Categorie c in ViewBag.Categories)
+            {
+                <option value="@c.Id" selected="@Model.Categories.Exists(ce => ce.Categorie.Id == c.Id)">@c.Title</option>
+            }
+        </select>
+        <div class="row m-1">
+            <button type="submit" class="col btn btn-info form-control">Valider</button>
+        </div>
+    </form>
+</div>
