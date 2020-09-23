@@ -1,0 +1,32 @@
+﻿@model Annonce
+<div class="container justify-content-center">
+    <h5 class="m-3">Detail Annonce</h5>
+    <div class="row justify-content-center m-2">
+        <div class="row badge-info w-25 h5 font-weight-bolder m-2 justify-content-center">Titre:</div>
+        <div class="row alert-info w-25 h6 font-weight-bold m-2 justify-content-center">@Model.Title </div>
+    </div>
+    <div class="row justify-content-center m-2">
+        <div class="row w-25 justify-content-center mt-5 h5 font-weight-bolder m-2 badge-info mb-2">Catégorie :</div>
+    </div>
+    <div class="row justify-content-center m-2">
+        <ul class="list-group list-group-horizontal-lg">
+            @foreach (AnnonceCategorie c in Model.Categories)
+            {
+                <li class="list-group-item font-weight-bold">@c.Categorie.Title</li>
+            }
+        </ul>
+    </div>
+    <div class="row justify-content-center m-2">
+        <div class="row w-25 mt-5 h5 font-weight-bolder justify-content-center m-2 badge-info mb-2"> Description : </div>
+    </div>
+    <div class="row justify-content-center m-2">
+        <div class="row w-75 h6 font-weight-bold font-italic justify-content-center m-2 border"> @Model.Description </div>
+    </div>
+    <div class="row m-2 w-100 justify-content-center">
+        @foreach (Image image in Model.Images)
+        {
+            <img class="row m-2 align-content-center" src="@image.Url" />
+
+        }
+    </div>
+</div>

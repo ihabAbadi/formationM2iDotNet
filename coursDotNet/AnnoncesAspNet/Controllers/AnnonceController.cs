@@ -92,6 +92,11 @@ namespace AnnoncesAspNet.Controllers
             }
             return RedirectToAction("Index");
         }
+        [HttpGet]
+        public IActionResult Detail(int id)
+        {
+            return View(Annonce.GetAnnonce(id));
+        }
         private void SetCategories(Annonce annonce, List<int> categories)
         {
             categories.ForEach(i =>
