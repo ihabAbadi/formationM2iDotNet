@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AnnoncesAspNet.Interface;
 using AnnoncesAspNet.Services;
+using AnnoncesAspNet.Tools;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -39,6 +42,15 @@ namespace AnnoncesAspNet
             {
                 options.LoginPath = new PathString("/Utilisateur/FormLogin");
             });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("connectOk", policy =>
+                {
+                    //policy.RequireClaim(ClaimTypes.Email);
+                    policy.Requirements.Add(new ConnectRequirement());
+                });
+            });
+            services.AddSingleton<IAuthorizationHandler, ConnectHandler>();
             services.AddControllersWithViews();
         }
 

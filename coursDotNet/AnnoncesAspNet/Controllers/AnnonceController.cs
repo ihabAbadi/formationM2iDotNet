@@ -28,6 +28,7 @@ namespace AnnoncesAspNet.Controllers
         }
         
         [HttpGet]
+        [Authorize(Policy = "connectOk")]
         public IActionResult Index()
         {
             AnnoncesViewModel vm = new AnnoncesViewModel();
