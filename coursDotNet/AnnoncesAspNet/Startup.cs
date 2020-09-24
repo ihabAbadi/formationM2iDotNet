@@ -30,7 +30,8 @@ namespace AnnoncesAspNet
             });
             services.AddHttpContextAccessor();
             services.AddSingleton<IUpload, UploadService>();
-            services.AddTransient<IFavoris, FavorisService>();
+            services.AddScoped<IFavoris, FavorisService>();
+            services.AddScoped<IHash, HashService>();
             services.AddControllersWithViews();
         }
 

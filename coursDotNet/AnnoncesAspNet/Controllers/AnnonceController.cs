@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using AnnoncesAspNet.Interface;
 using AnnoncesAspNet.Models;
@@ -15,9 +16,11 @@ namespace AnnoncesAspNet.Controllers
     public class AnnonceController : Controller
     {
         IUpload _upload;
-        public AnnonceController(IUpload upload)
+        IHash _hash;
+        public AnnonceController(IUpload upload, IHash hash)
         {
             _upload = upload;
+            _hash = hash;
         }
         [HttpGet]
         public IActionResult Index()
@@ -96,6 +99,11 @@ namespace AnnoncesAspNet.Controllers
         public IActionResult Detail(int id)
         {
             return View(Annonce.GetAnnonce(id));
+        }
+
+        public IActionResult Hash(string id)
+        {
+            return new JsonResult(new { hash = _hash.GetHash(SHA256.Create(), id) });
         }
         private void SetCategories(Annonce annonce, List<int> categories)
         {
