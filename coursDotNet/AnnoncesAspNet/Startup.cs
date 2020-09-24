@@ -35,6 +35,10 @@ namespace AnnoncesAspNet
             services.AddScoped<IFavoris, FavorisService>();
             services.AddScoped<IHash, HashService>();
             services.AddScoped<ILogin, LoginService>();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            {
+                options.LoginPath = new PathString("/Utilisateur/FormLogin");
+            });
             services.AddControllersWithViews();
         }
 
@@ -52,7 +56,9 @@ namespace AnnoncesAspNet
             app.UseStaticFiles();
             app.UseSession();
             app.UseRouting();
-            app.UseCookiePolicy(new CookiePolicyOptions() { MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.Strict });
+            app.UseAuthorization();
+            app.UseAuthentication();
+            //app.UseCookiePolicy(new CookiePolicyOptions() { MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.Strict });
             
 
             app.UseEndpoints(endpoints =>

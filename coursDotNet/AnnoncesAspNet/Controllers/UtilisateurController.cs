@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using AnnoncesAspNet.Interface;
 using AnnoncesAspNet.Models;
 using AnnoncesAspNet.Tools;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AnnoncesAspNet.Controllers
@@ -40,22 +43,31 @@ namespace AnnoncesAspNet.Controllers
         }
 
         [HttpPost]
-        public IActionResult SubmitLogin(string email, string password)
+        public async Task<IActionResult> SubmitLogin(string email, string password)
         {
             string compareHash = _hash.GetHash(SHA256.Create(), password);
             Utilisateur utilisateur = DataContext.Instance.Utilisateurs.FirstOrDefault(u => u.Email == email && u.Password == compareHash);
             if(utilisateur != null)
             {
                 //Garder la connexion dans les sessions, ainsi que les informations des utilisateurs
-                _login.SaveUser(utilisateur);
+                //_login.SaveUser(utilisateur);
+                //Utilisation du login avec AuthenticationCookie
+                List<Claim> claims = new List<Claim>()
+                {
+                    new Claim(ClaimTypes.Email, utilisateur.Email),
+                    new Claim("nomComplet", utilisateur.Nom + " "+utilisateur.Prenom)
+                };
+                ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
                 return RedirectToAction("Index", "Annonce");
             }
             return View("FormLogin");
         }
 
-        public IActionResult LogOut()
+        public async Task<IActionResult> LogOut()
         {
-            HttpContext.Session.Clear();
+            //HttpContext.Session.Clear();
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index", "Annonce");
         }
     }

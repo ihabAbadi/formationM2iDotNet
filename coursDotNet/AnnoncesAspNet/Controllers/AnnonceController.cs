@@ -26,6 +26,7 @@ namespace AnnoncesAspNet.Controllers
             _hash = hash;
             _login = login;
         }
+        
         [HttpGet]
         public IActionResult Index()
         {
@@ -34,6 +35,7 @@ namespace AnnoncesAspNet.Controllers
         }
 
         [HttpPost]
+       
         public IActionResult Search(string search)
         {
             AnnoncesViewModel vm = new AnnoncesViewModel();

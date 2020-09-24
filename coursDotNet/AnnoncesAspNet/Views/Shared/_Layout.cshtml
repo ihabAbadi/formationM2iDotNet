@@ -1,7 +1,10 @@
-﻿@inject ILogin _login
-@{
-    Utilisateur utilisateur = _login.GetUserInfo();
-}
+﻿@*@inject ILogin _login
+    @{
+        Utilisateur utilisateur = _login.GetUserInfo();
+    }*@
+@using Microsoft.AspNetCore.Http;
+@using System.Security.Claims;
+@inject IHttpContextAccessor _accessor
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,35 +31,45 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Categorie" asp-action="FormCategorie">Ajouter Catégorie</a>
                         </li>
-                        @if (utilisateur == null)
+                        @*@if (utilisateur == null)
+        {
+            <li><a asp-controller="Utilisateur" asp-action="SignInForm">Sign In</a></li>
+            <li><a asp-controller="Utilisateur" asp-action="FormLogin">Login</a></li>
+        }
+        else
+        {
+            <li>@utilisateur.Nom @utilisateur.Prenom</li>
+            <li><a asp-controller="Utilisateur" asp-action="LogOut">LogOut</a></li>
+        }*@
+                        @if (_accessor.HttpContext.User.HasClaim(c => c.Type == ClaimTypes.Email))
+                        {
+                            <li>@_accessor.HttpContext.User.Claims.FirstOrDefault(x => x.Type == "nomComplet").Value</li>
+                            <li><a asp-controller="Utilisateur" asp-action="LogOut">LogOut</a></li>
+                        }
+                        else
                         {
                             <li><a asp-controller="Utilisateur" asp-action="SignInForm">Sign In</a></li>
                             <li><a asp-controller="Utilisateur" asp-action="FormLogin">Login</a></li>
                         }
-                        else
-                        {
-                            <li>@utilisateur.Nom @utilisateur.Prenom</li>
-                            <li><a asp-controller="Utilisateur" asp-action="LogOut">LogOut</a></li>
-                        }
                     </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
+            </nav>
+        </header>
         <div class="container">
-            &copy; 2020 - AnnoncesAspNet - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
-</body>
+
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2020 - AnnoncesAspNet - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        @RenderSection("Scripts", required: false)
+    </body>
 </html>
