@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using AnnoncesAspNet.Interface;
 using AnnoncesAspNet.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -32,6 +34,7 @@ namespace AnnoncesAspNet
             services.AddSingleton<IUpload, UploadService>();
             services.AddScoped<IFavoris, FavorisService>();
             services.AddScoped<IHash, HashService>();
+            services.AddScoped<ILogin, LoginService>();
             services.AddControllersWithViews();
         }
 
@@ -49,8 +52,8 @@ namespace AnnoncesAspNet
             app.UseStaticFiles();
             app.UseSession();
             app.UseRouting();
-
-            app.UseAuthorization();
+            app.UseCookiePolicy(new CookiePolicyOptions() { MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.Strict });
+            
 
             app.UseEndpoints(endpoints =>
             {

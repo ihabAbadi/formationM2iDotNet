@@ -7,20 +7,24 @@ using AnnoncesAspNet.Interface;
 using AnnoncesAspNet.Models;
 using AnnoncesAspNet.Tools;
 using AnnoncesAspNet.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace AnnoncesAspNet.Controllers
 {
+    
     public class AnnonceController : Controller
     {
         IUpload _upload;
         IHash _hash;
-        public AnnonceController(IUpload upload, IHash hash)
+        ILogin _login;
+        public AnnonceController(IUpload upload, IHash hash, ILogin login)
         {
             _upload = upload;
             _hash = hash;
+            _login = login;
         }
         [HttpGet]
         public IActionResult Index()
@@ -48,47 +52,55 @@ namespace AnnoncesAspNet.Controllers
         [HttpGet]
         public IActionResult FormAnnonce(int? id)
         {
-            Annonce annonce = new Annonce();
-            if(id != null)
+            if (_login.GetUserInfo() != null)
             {
-                annonce = Annonce.GetAnnonce((int)id);
+                Annonce annonce = new Annonce();
+                if (id != null)
+                {
+                    annonce = Annonce.GetAnnonce((int)id);
+                }
+                ViewBag.Categories = DataContext.Instance.Categories.ToList();
+                return View(annonce);
             }
-            ViewBag.Categories = DataContext.Instance.Categories.ToList();
-            return View(annonce);
+            return RedirectToAction("FormLogin", "Utilisateur");
         }
 
         [HttpPost]
         public IActionResult SubmitAnnonce([FromForm] Annonce annonce, List<IFormFile> images, List<int> categories)
         {
-            if(annonce.Id == 0)
+            if (_login.GetUserInfo() != null)
             {
-                SetCategories(annonce, categories);
-                SetImages(annonce, images);
-                DataContext.Instance.Annonces.Add(annonce);
-                DataContext.Instance.SaveChanges();
-            }
-            else
-            {
-                Annonce annonceSaved = Annonce.GetAnnonce(annonce.Id);
-                if(annonceSaved != null)
+                if (annonce.Id == 0)
                 {
-                    annonceSaved.Categories.Clear();
-                    annonceSaved.Images.Clear();
-                    SetCategories(annonceSaved, categories);
-                    SetImages(annonceSaved, images);
-                    annonceSaved.Title = annonce.Title;
-                    annonceSaved.Description = annonce.Description;
+                    SetCategories(annonce, categories);
+                    SetImages(annonce, images);
+                    DataContext.Instance.Annonces.Add(annonce);
                     DataContext.Instance.SaveChanges();
                 }
+                else
+                {
+                    Annonce annonceSaved = Annonce.GetAnnonce(annonce.Id);
+                    if (annonceSaved != null)
+                    {
+                        annonceSaved.Categories.Clear();
+                        annonceSaved.Images.Clear();
+                        SetCategories(annonceSaved, categories);
+                        SetImages(annonceSaved, images);
+                        annonceSaved.Title = annonce.Title;
+                        annonceSaved.Description = annonce.Description;
+                        DataContext.Instance.SaveChanges();
+                    }
+                }
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
-        } 
+            return RedirectToAction("FormLogin", "Utilisateur");
+        }
 
         [HttpGet]
         public IActionResult DeleteAnnonce(int id)
         {
             Annonce annonce = DataContext.Instance.Annonces.FirstOrDefault((a) => a.Id == id);
-            if(annonce != null)
+            if (annonce != null)
             {
                 DataContext.Instance.Annonces.Remove(annonce);
                 DataContext.Instance.SaveChanges();
@@ -101,10 +113,6 @@ namespace AnnoncesAspNet.Controllers
             return View(Annonce.GetAnnonce(id));
         }
 
-        public IActionResult Hash(string id)
-        {
-            return new JsonResult(new { hash = _hash.GetHash(SHA256.Create(), id) });
-        }
         private void SetCategories(Annonce annonce, List<int> categories)
         {
             categories.ForEach(i =>

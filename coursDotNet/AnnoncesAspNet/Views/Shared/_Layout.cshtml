@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@inject ILogin _login
+@{
+    Utilisateur utilisateur = _login.GetUserInfo();
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -24,6 +28,16 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Categorie" asp-action="FormCategorie">Ajouter Catégorie</a>
                         </li>
+                        @if (utilisateur == null)
+                        {
+                            <li><a asp-controller="Utilisateur" asp-action="SignInForm">Sign In</a></li>
+                            <li><a asp-controller="Utilisateur" asp-action="FormLogin">Login</a></li>
+                        }
+                        else
+                        {
+                            <li>@utilisateur.Nom @utilisateur.Prenom</li>
+                            <li><a asp-controller="Utilisateur" asp-action="LogOut">LogOut</a></li>
+                        }
                     </ul>
                 </div>
             </div>

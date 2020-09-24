@@ -28,6 +28,8 @@ namespace AnnoncesAspNet.Tools
         public DbSet<Annonce> Annonces { get; set; }
 
         public DbSet<Categorie> Categories { get; set; }
+
+        public DbSet<Utilisateur> Utilisateurs { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Administrateur\Desktop\Formation\entity.mdf;Integrated Security=True;Connect Timeout=30");

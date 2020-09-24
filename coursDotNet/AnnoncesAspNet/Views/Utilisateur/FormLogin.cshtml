@@ -1,0 +1,14 @@
+﻿<h2>Login</h2>
+
+<form enctype="multipart/form-data" method="post" asp-controller="Utilisateur" asp-action="SubmitLogin">
+    <div class="row m-1">
+        Votre Email
+    </div>
+    <div class="row m-1">
+        <input type="text" class="col form-control" placeholder="Email" name="email" />
+    </div>
+    <div class="row m-1">
+        <input type="password" class="col form-control" placeholder="Password" name="password" />
+    </div>
+    <button type="submit" class="col btn btn-success m-2 w-auto">Valider</button>
+</form>
