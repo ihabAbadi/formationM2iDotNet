@@ -32,3 +32,5 @@ videos/
 .vs/
 entity.mdf
 entity_log.ldf
+ecommerce.mdf
+ecommerce.ldf
