@@ -28,12 +28,14 @@ namespace Ecommerce.Tools
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Euser> Users { get; set; }
+
+        public DbSet<Erole> Roles { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Administrateur\Documents\ecommerce.mdf;Integrated Security=True;Connect Timeout=30");
         }
 
-        public DataContext() : base()
+        private DataContext() : base()
         {
 
         }

@@ -30,7 +30,13 @@
                 @Model.Price €
             </div>
         </div>
-
+        <form asp-controller="Cart" asp-action="AddProductToCart" method="post">
+            <div class="row">
+                <input class="col form-control" type="text" name="qty" placeholder="Qty" />
+                <input type="hidden" name="id" value="@Model.Id" />
+                <button type="submit" class="col from-control btn btn-info">Ajouter au panier</button>
+            </div>
+        </form>
     </div>
 }
 else

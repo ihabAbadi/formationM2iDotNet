@@ -1,4 +1,5 @@
 ﻿@inject ITranslate translator
+@inject IHttpContextAccessor accessor
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,12 +23,32 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">@translator.Translate("accueil")</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="FormProduct">Ajouter un produit</a>
-                        </li>
+                        @if (accessor.HttpContext.User.HasClaim(c => c.Type == ClaimTypes.Email) && accessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role).Value == "admin")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="FormProduct">Ajouter un produit</a>
+                            </li>
+                        }
+
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">Panier</a>
                         </li>
+                        @if (!accessor.HttpContext.User.HasClaim(c => c.Type == ClaimTypes.Email))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Form" asp-route-route="/">Login</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark">@accessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name).Value</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="LogOut">LogOut</a>
+                            </li>
+                        }
+
                         <li class="nav-item">
                             <div class="btn-group dropright">
                                 <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

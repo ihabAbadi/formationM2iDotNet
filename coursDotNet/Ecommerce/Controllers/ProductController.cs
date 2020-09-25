@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Ecommerce.Interface;
 using Ecommerce.Models;
 using Ecommerce.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -48,12 +49,12 @@ namespace Ecommerce.Controllers
 
             return View(p);
         }
-
+        [Authorize(Policy = "admin")]
         public IActionResult FormProduct()
         {
             return View();
         }
-
+        [Authorize(Policy = "admin")]
         [HttpPost]
         public IActionResult SubmitForm([FromForm] Product product, List<IFormFile> imagesProduct)
         {

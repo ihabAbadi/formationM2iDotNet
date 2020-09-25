@@ -58,9 +58,8 @@ namespace Ecommerce.Models
             //reader.Close();
             //command.Dispose();
             //Connection.Instance.Close();
-            //return products;
-            DataContext db = new DataContext();
-            return db.Products.Include(p=>p.Images).ToList();
+            //return products
+            return DataContext.Instance.Products.Include(p=>p.Images).ToList();
         }
 
         public static Product GetProductById(int id)
@@ -87,9 +86,8 @@ namespace Ecommerce.Models
             //command.Dispose();
             //Connection.Instance.Close();
             //return product;
-            DataContext db = new DataContext();
             //return db.Products.FirstOrDefault((p) => p.Id == id);
-            return db.Products.Include(p=>p.Images).FirstOrDefault((p) => p.Id == id);
+            return DataContext.Instance.Products.Include(p=>p.Images).FirstOrDefault((p) => p.Id == id);
         }
 
         public bool Add()
@@ -102,10 +100,9 @@ namespace Ecommerce.Models
             //Connection.Instance.Open();
             //Id = (int)command.ExecuteScalar();
             //command.Dispose();
-            //Connection.Instance.Close();
-            DataContext db = new DataContext();
-            db.Products.Add(this);
-            db.SaveChanges();
+            //Connection.Instance.Close()
+            DataContext.Instance.Products.Add(this);
+            DataContext.Instance.SaveChanges();
             return Id > 0;
 
         }

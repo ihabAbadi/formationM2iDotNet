@@ -31,7 +31,6 @@ namespace Ecommerce.Controllers
         {
             Cart cart;
             Product product = Product.GetProductById(id);
-            product.Images = Image.GetImagesByProduct(product.Id);
             string cartString = HttpContext.Session.GetString("Cart");
             if (cartString != null)
             {
