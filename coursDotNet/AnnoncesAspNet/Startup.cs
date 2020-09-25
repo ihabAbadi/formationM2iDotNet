@@ -38,10 +38,7 @@ namespace AnnoncesAspNet
             services.AddScoped<IFavoris, FavorisService>();
             services.AddScoped<IHash, HashService>();
             services.AddScoped<ILogin, LoginService>();
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
-            {
-                options.LoginPath = new PathString("/Utilisateur/FormLogin");
-            });
+           
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("connectOk", policy =>
@@ -49,8 +46,19 @@ namespace AnnoncesAspNet
                     //policy.RequireClaim(ClaimTypes.Email);
                     policy.Requirements.Add(new ConnectRequirement());
                 });
+                options.AddPolicy("connectAdmin", policy =>
+                {
+                    //policy.RequireClaim(ClaimTypes.Email);
+                    policy.Requirements.Add(new ConnectRequirement("admin"));
+                });
             });
-            services.AddSingleton<IAuthorizationHandler, ConnectHandler>();
+            services.AddScoped<IAuthorizationHandler, ConnectHandler>();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            {
+                options.LoginPath = new PathString("/Utilisateur/FormLogin");
+                options.AccessDeniedPath = new PathString("/utilisateur/denied");
+                options.ExpireTimeSpan = TimeSpan.FromDays(1);
+            });
             services.AddControllersWithViews();
         }
 
@@ -67,11 +75,13 @@ namespace AnnoncesAspNet
             }
             app.UseStaticFiles();
             app.UseSession();
+            app.UseAuthentication();
+           
             app.UseRouting();
             app.UseAuthorization();
-            app.UseAuthentication();
+
             //app.UseCookiePolicy(new CookiePolicyOptions() { MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.Strict });
-            
+
 
             app.UseEndpoints(endpoints =>
             {

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,11 @@ namespace AnnoncesAspNet.Tools
 {
     public class ConnectHandler : AuthorizationHandler<ConnectRequirement>
     {
+        //private IHttpContextAccessor _accessor;
+        //public ConnectHandler(IHttpContextAccessor accessor)
+        //{
+        //    _accessor = accessor;
+        //}
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, ConnectRequirement requirement)
         {
             
@@ -18,7 +24,10 @@ namespace AnnoncesAspNet.Tools
             }
             else
             {
-                context.Succeed(requirement);
+                if(requirement.Role == null || (context.User.HasClaim(c => c.Type == ClaimTypes.Role) && context.User.Claims.FirstOrDefault(x=>x.Type == ClaimTypes.Role).Value == requirement.Role))
+                {
+                    context.Succeed(requirement);
+                }
                 return Task.CompletedTask;
             } 
             

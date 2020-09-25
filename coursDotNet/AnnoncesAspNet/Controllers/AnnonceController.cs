@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AnnoncesAspNet.Controllers
 {
-    
+
     public class AnnonceController : Controller
     {
         IUpload _upload;
@@ -26,7 +26,7 @@ namespace AnnoncesAspNet.Controllers
             _hash = hash;
             _login = login;
         }
-        
+
         [HttpGet]
         [Authorize(Policy = "connectOk")]
         public IActionResult Index()
@@ -36,7 +36,7 @@ namespace AnnoncesAspNet.Controllers
         }
 
         [HttpPost]
-       
+
         public IActionResult Search(string search)
         {
             AnnoncesViewModel vm = new AnnoncesViewModel();
@@ -53,19 +53,16 @@ namespace AnnoncesAspNet.Controllers
         }
 
         [HttpGet]
+        [Authorize(Policy = "connectAdmin")]
         public IActionResult FormAnnonce(int? id)
         {
-            if (_login.GetUserInfo() != null)
+            Annonce annonce = new Annonce();
+            if (id != null)
             {
-                Annonce annonce = new Annonce();
-                if (id != null)
-                {
-                    annonce = Annonce.GetAnnonce((int)id);
-                }
-                ViewBag.Categories = DataContext.Instance.Categories.ToList();
-                return View(annonce);
+                annonce = Annonce.GetAnnonce((int)id);
             }
-            return RedirectToAction("FormLogin", "Utilisateur");
+            ViewBag.Categories = DataContext.Instance.Categories.ToList();
+            return View(annonce);
         }
 
         [HttpPost]

@@ -55,10 +55,16 @@ namespace AnnoncesAspNet.Controllers
                 List<Claim> claims = new List<Claim>()
                 {
                     new Claim(ClaimTypes.Email, utilisateur.Email),
-                    new Claim("nomComplet", utilisateur.Nom + " "+utilisateur.Prenom)
+                    new Claim("nomComplet", utilisateur.Nom + " "+utilisateur.Prenom),
+                    new Claim(ClaimTypes.Role, "visiteur")
                 };
                 ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+                AuthenticationProperties option = new AuthenticationProperties()
+                {
+                    IsPersistent = true,
+                    ExpiresUtc = DateTime.UtcNow.AddDays(1)
+                };
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), option);
                 return RedirectToAction("Index", "Annonce");
             }
             return View("FormLogin");
