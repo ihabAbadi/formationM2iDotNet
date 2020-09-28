@@ -15,48 +15,39 @@ namespace ApiContact.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            List<Contact> liste = new List<Contact>();
-            liste.Add(new Contact()
-            {
-                Nom = "toto",
-                Prenom = "tata"
-            });
-            liste.Add(new Contact()
-            {
-                Nom = "abadi",
-                Prenom = "ihab"
-            });
-
-            return Ok(liste);
+            return Ok(DataContext.Instance.Contacts.ToList());
         }
 
         [HttpGet("{id}")]
 
         public IActionResult Get(int id)
         {
-            Contact contact = new Contact()
-            {
-                Nom = "toto",
-                Prenom = "tata"
-            };
-            return Ok(contact);
+            return Ok(DataContext.Instance.Contacts.Find(id));
         }
         [HttpPost]
         public IActionResult Post([FromBody] Contact contact)
         {
-            return Ok(contact);
+            DataContext.Instance.Contacts.Add(contact);
+            DataContext.Instance.SaveChanges();
+            return Ok(new { message = "succeed", id=contact.Id});
         }
 
         [HttpPut("{id}")]
         public IActionResult Put([FromBody] Contact contact, int id)
         {
-            contact.Id = id;
-            return Ok(contact);
+            Contact c = DataContext.Instance.Contacts.Find(id);
+            c.Nom = contact.Nom;
+            c.Prenom = contact.Prenom;
+            DataContext.Instance.SaveChanges();
+            return Ok(new { message = "succeed", id = c.Id });
         }
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            return Ok(id);
+            Contact c = DataContext.Instance.Contacts.Find(id);
+            DataContext.Instance.Contacts.Remove(c);
+            DataContext.Instance.SaveChanges();
+            return Ok(new { message = "succeed", id = c.Id });
         }
     }
 }
