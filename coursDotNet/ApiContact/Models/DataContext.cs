@@ -31,7 +31,7 @@ namespace ApiContact.Models
             optionsBuilder.UseSqlServer(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Administrateur\Documents\ecommerce.mdf;Integrated Security=True;Connect Timeout=30");
         }
 
-        public DataContext() : base()
+        private DataContext() : base()
         {
 
         }

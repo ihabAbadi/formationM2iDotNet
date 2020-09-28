@@ -14,5 +14,12 @@ namespace ApiContact.Models
         public int Id { get => id; set => id = value; }
         public string Nom { get => nom; set => nom = value; }
         public string Prenom { get => prenom; set => prenom = value; }
+
+        public List<Email> Emails { get; set; }
+
+        public Contact()
+        {
+            Emails = new List<Email>();
+        }
     }
 }
