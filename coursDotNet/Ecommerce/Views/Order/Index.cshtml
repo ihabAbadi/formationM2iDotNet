@@ -1,0 +1,31 @@
+﻿@model List<Order>
+<div class="container">
+    <h1>Liste des commandes</h1>
+    @foreach (Order o in Model)
+    {
+        <div class="row">
+            <div class="col">
+                @o.User.FirstName @o.User.LastName
+            </div>
+            <div class="col">
+                @o.Total
+            </div>
+            <div class="col">
+                @foreach (ProductOrder p in o.Products)
+                {
+                    <div class="row">
+                        <div class="col">
+                            @p.Product.Title
+                        </div>
+                        <div class="col">
+                            @p.Product.Price
+                        </div>
+                        <div class="col">
+                            @p.Qty
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>

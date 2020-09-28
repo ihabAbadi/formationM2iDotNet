@@ -3,6 +3,7 @@ using Ecommerce.Tools;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,8 @@ namespace Ecommerce.Controllers
         [Authorize(Policy = "admin")]
         public IActionResult Index()
         {
-            return View();
+            List<Order> liste = DataContext.Instance.Orders.Include(o => o.User).Include(o => o.Products).ThenInclude(po => po.Product).ToList();
+            return View(liste);
         }
 
         public IActionResult Order()
