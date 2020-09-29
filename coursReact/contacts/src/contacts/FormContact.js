@@ -7,8 +7,10 @@ export class FormContact extends Component {
         this.state = {
             contact :{
                 nom : '',
-                prenom : ''
-            }
+                prenom : '',
+                emails : []
+            },
+            mail : ''
         }
     }
 
@@ -31,6 +33,20 @@ export class FormContact extends Component {
             })
         }
     }
+    updateValueEmail = (e) => {
+        this.setState({
+            mail : e.target.value
+        })
+    }
+
+    addEmail = () => {
+        let tmpContact = {...this.state.contact}
+        tmpContact.emails = [...tmpContact.emails, {mail : this.state.mail}]
+        this.setState({
+            contact : tmpContact,
+            mail : ''
+        })
+    }
     render() {
         return (
             <div className="container">
@@ -39,6 +55,10 @@ export class FormContact extends Component {
                 </div>
                 <div className="row justify-content-center">
                     <input name="prenom" value={this.state.contact.prenom} onChange={this.updateValueContact} placeholder="Prénom" className="form-control col" />
+                </div>
+                <div className="row ">
+                    <input value={this.state.mail} onChange={this.updateValueEmail} placeholder="Mail" className="form-control col-9" />
+                    <button className="col-3 btn btn-info" onClick={this.addEmail}>Ajouter email</button>
                 </div>
                 <div className="row justify-content-center">
                     <button onClick={this.addContact} className="form-control btn btn-primary">Add Contact</button>
