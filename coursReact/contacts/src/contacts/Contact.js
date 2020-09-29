@@ -34,7 +34,29 @@ export const Contact = (props) => {
     //     }
     // }
 
-   
+    const renderCell = () => {
+        if(props.editing) {
+            if(props.dataIndex != "email") {
+                return(
+                    <td>
+                        <Input defaultValue={props.record != undefined ? props.record[props.dataIndex] : ''} onChange ={(e) => props.updateContactCell(props.dataIndex, e.target.value)} />
+                    </td>
+                )
+            }
+            else {
+                return props.record.emails.map((email) => (<td>
+                    <Input defaultValue={email != undefined ? email.mail : ''} onChange ={(e) => props.updateContactEmailCell(email.id,e.target.email)} />
+                </td>))
+            }
+        }
+        else {
+            return (
+                <td>
+                    {props.children}
+                </td>
+            )
+        }
+    }
     return (
         // <div className="row">
         //     <div className="col-6">
@@ -51,12 +73,7 @@ export const Contact = (props) => {
 
         // </div>
         <td>
-            {(props.editing) ?
-                
-                (
-                    <Input defaultValue={props.record != undefined ? props.record[props.dataIndex] : ''} onChange ={(e) => props.updateContactCell(props.dataIndex, e.target.value)} />
-                )
-                : (props.children)}
+            {renderCell()}
         </td>
     )
 }

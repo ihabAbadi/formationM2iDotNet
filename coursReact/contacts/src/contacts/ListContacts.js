@@ -12,7 +12,8 @@ export class ListContacts extends Component {
             idContactEditing: undefined,
             contact : {
                 nom : '',
-                prenom : ''
+                prenom : '',
+                emails : []
             }
         }
     }
@@ -63,7 +64,8 @@ export class ListContacts extends Component {
             idContactEditing: record.id,
             contact : {
                 nom : record.nom,
-                prenom : record.prenom
+                prenom : record.prenom,
+                emails : [...record.emails]
             }
         })
     }
@@ -76,6 +78,14 @@ export class ListContacts extends Component {
         })
     }
 
+    updateContactEmailCell = (id,value) => {
+        let tmpContact = {...this.state.contact}
+        let tmpEmail = tmpContact.emails.filter(e => e.id != id)
+        tmpContact.emails = [...tmpEmail, {mail:value}]
+        this.setState({
+            contact : tmpContact
+        })
+    }
     saveContact = (id) => {
         const contact = {...this.state.contact}
         axios.put("http://localhost:64783/v1/contact/" + id,contact).then((res) => {
@@ -99,6 +109,16 @@ export class ListContacts extends Component {
                 title: 'Prénom',
                 dataIndex: 'prenom',
                 editable: true,
+            },
+            {
+                title: 'Emails',
+                dataIndex: 'email',
+                render : (_,record) => {
+                    return (
+                    record.emails.map((email)=>(<div>{email.mail}</div>))
+                    )
+                },
+                editable : true
             },
             {
                 title: "Opération",
@@ -125,6 +145,7 @@ export class ListContacts extends Component {
                     dataIndex: col.dataIndex,
                     title: col.title,
                     updateContactCell : this.updateCellValue,
+                    updateContactEmailCell : this.updateContactEmailCell,
                     editing: this.state.idContactEditing == record.id,
                 }),
             };
