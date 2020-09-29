@@ -60,7 +60,11 @@ export class ListContacts extends Component {
     edit = (record) => {
         console.log(record)
         this.setState({
-            idContactEditing: record.id
+            idContactEditing: record.id,
+            contact : {
+                nom : record.nom,
+                prenom : record.prenom
+            }
         })
     }
 

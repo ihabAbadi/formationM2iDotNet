@@ -33,6 +33,8 @@ export const Contact = (props) => {
     //         ))
     //     }
     // }
+
+   
     return (
         // <div className="row">
         //     <div className="col-6">
