@@ -28,7 +28,7 @@ export const Contact = (props) => {
     const renderEmail = () => {
         if(contact != undefined && contact.emails != undefined) {
             return contact.emails.map((email) => (
-            <div className="row"><div className="col">{email.mail}</div></div>
+            <div className="row"><div className="col">{email.mail}</div><div onClick={() => props.deleteEmail(contact.id, email.id)}>X</div></div>
             ))
         }
     }
@@ -41,7 +41,7 @@ export const Contact = (props) => {
             {renderEmail()}
             </div>
             <div onClick={() => {
-                props.deleteContact(contact)
+                props.deleteContact(contact.id)
             }} className="col-1">
                 X
                 </div>

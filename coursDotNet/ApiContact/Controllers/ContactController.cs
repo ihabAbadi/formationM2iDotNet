@@ -32,7 +32,7 @@ namespace ApiContact.Controllers
         {
             DataContext.Instance.Contacts.Add(contact);
             DataContext.Instance.SaveChanges();
-            return Ok(new { message = "succeed", id=contact.Id});
+            return Ok(new { message = "succeed", id=contact.Id , contact = contact});
         }
 
         [HttpPost("{id}/mail")]

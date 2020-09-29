@@ -11,16 +11,20 @@ export class ListContacts extends Component {
         }
     }
     componentDidMount() {
-        axios.get("http://localhost:64783/v1/contact").then((res) => {
-            this.setState({
-                contacts: res.data
-            })
+        this.getData()
+    }
+
+    deleteEmail = (contactId, emailId) => {
+        axios.delete("http://localhost:64783/v1/contact/" + contactId + "/email/"+emailId).then(res => {
+            if (res.data.message == "succeed") {
+                this.getData()
+            }
         })
     }
     addContact = (contact) => {
         axios.post("http://localhost:64783/v1/contact", { ...contact }).then(res => {
             if (res.data.message == "succeed") {
-                let tmpContacts = [...this.state.contacts, contact]
+                let tmpContacts = [...this.state.contacts, res.data.contact]
                 this.setState({
                     contacts: tmpContacts
                 })
@@ -31,16 +35,18 @@ export class ListContacts extends Component {
         })
 
     }
-
-    deleteContact = (contact) => {
-        let tmpContacts = []
-        for (let c of this.state.contacts) {
-            if (c != contact) {
-                tmpContacts.push(c)
+    getData = () => {
+        axios.get("http://localhost:64783/v1/contact").then((res) => {
+            this.setState({
+                contacts: res.data
+            })
+        })
+    }
+    deleteContact = (id) => {
+        axios.delete("http://localhost:64783/v1/contact/" + id).then(res => {
+            if (res.data.message == "succeed") {
+                this.getData()
             }
-        }
-        this.setState({
-            contacts: tmpContacts
         })
     }
     render() {
@@ -50,7 +56,7 @@ export class ListContacts extends Component {
                 <section className="container">
                     {this.state.contacts.map((c) => {
                         return (
-                            <Contact deleteContact={this.deleteContact} contact={c}></Contact>
+                            <Contact deleteEmail={this.deleteEmail} deleteContact={this.deleteContact} contact={c}></Contact>
                         )
                     })}
                 </section>
