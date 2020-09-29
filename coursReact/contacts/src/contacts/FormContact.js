@@ -28,7 +28,8 @@ export class FormContact extends Component {
             this.setState({
                 contact : {
                     nom : '',
-                    prenom : ''
+                    prenom : '',
+                    emails : []
                 }
             })
         }

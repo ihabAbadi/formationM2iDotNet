@@ -79,6 +79,7 @@ export class ListContacts extends Component {
     }
 
     updateContactEmailCell = (id,value) => {
+        console.log(value)
         let tmpContact = {...this.state.contact}
         let tmpEmail = tmpContact.emails.filter(e => e.id != id)
         tmpContact.emails = [...tmpEmail, {mail:value}]
@@ -88,6 +89,11 @@ export class ListContacts extends Component {
     }
     saveContact = (id) => {
         const contact = {...this.state.contact}
+        const emails = [] 
+        contact.emails.forEach(email => {
+            emails.push({mail : email.mail}) 
+        })
+        contact.emails = emails;
         axios.put("http://localhost:64783/v1/contact/" + id,contact).then((res) => {
             if(res.data.message == "succeed"){
                 this.setState({

@@ -45,7 +45,7 @@ export const Contact = (props) => {
             }
             else {
                 return props.record.emails.map((email) => (<td>
-                    <Input defaultValue={email != undefined ? email.mail : ''} onChange ={(e) => props.updateContactEmailCell(email.id,e.target.email)} />
+                    <Input defaultValue={email != undefined ? email.mail : ''} onBlur ={(e) => props.updateContactEmailCell(email.id,e.target.value)} />
                 </td>))
             }
         }
