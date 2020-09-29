@@ -23,17 +23,29 @@ import React, { Component } from "react"
 // }
 
 export const Contact = (props) => {
+    const {contact} = props
 
+    const renderEmail = () => {
+        if(contact != undefined && contact.emails != undefined) {
+            return contact.emails.map((email) => (
+            <div className="row"><div className="col">{email.mail}</div></div>
+            ))
+        }
+    }
     return (
         <div className="row">
-            <div className="col-11">
-                {props.name}
+            <div className="col-6">
+                {contact != undefined ? contact.nom + " "+ contact.prenom : ''}
+            </div>
+            <div className="col-5">
+            {renderEmail()}
             </div>
             <div onClick={() => {
-                props.deleteContact(props.name)
+                props.deleteContact(contact)
             }} className="col-1">
                 X
                 </div>
+                
         </div>
     )
 }

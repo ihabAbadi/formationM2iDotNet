@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ApiContact.Models;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ namespace ApiContact.Controllers
 {
     [Route("v1/[controller]")]
     [ApiController]
+    [EnableCors("AcceptAll")]
     public class ContactController : ControllerBase
     {
         [HttpGet]
