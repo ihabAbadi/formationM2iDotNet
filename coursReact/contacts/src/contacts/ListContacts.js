@@ -7,27 +7,35 @@ export class ListContacts extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            contacts : []
+            contacts: []
         }
     }
     componentDidMount() {
         axios.get("http://localhost:64783/v1/contact").then((res) => {
             this.setState({
-                contacts : res.data
+                contacts: res.data
             })
         })
     }
     addContact = (contact) => {
-        let tmpContacts = [...this.state.contacts, contact]
-        this.setState({
-            contacts:tmpContacts
+        axios.post("http://localhost:64783/v1/contact", { ...contact }).then(res => {
+            if (res.data.message == "succeed") {
+                let tmpContacts = [...this.state.contacts, contact]
+                this.setState({
+                    contacts: tmpContacts
+                })
+            }
+            else {
+                alert("erreur")
+            }
         })
+
     }
 
     deleteContact = (contact) => {
         let tmpContacts = []
-        for(let c of this.state.contacts) {
-            if(c != contact) {
+        for (let c of this.state.contacts) {
+            if (c != contact) {
                 tmpContacts.push(c)
             }
         }
@@ -36,12 +44,12 @@ export class ListContacts extends Component {
         })
     }
     render() {
-        return(
+        return (
             <div>
                 <FormContact addContact={this.addContact}></FormContact>
                 <section className="container">
                     {this.state.contacts.map((c) => {
-                        return(
+                        return (
                             <Contact deleteContact={this.deleteContact} contact={c}></Contact>
                         )
                     })}

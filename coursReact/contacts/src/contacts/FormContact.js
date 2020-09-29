@@ -5,15 +5,29 @@ export class FormContact extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            contact :undefined
+            contact :{
+                nom : '',
+                prenom : ''
+            }
         }
+    }
+
+    updateValueContact = (e) => {
+        let tmpContact = {...this.state.contact}
+        tmpContact[e.target.name] = e.target.value
+        this.setState({
+            contact : tmpContact
+        })
     }
 
     addContact = () => {
         if(this.state.contact != undefined) {
             this.props.addContact(this.state.contact)
             this.setState({
-                contact : ''
+                contact : {
+                    nom : '',
+                    prenom : ''
+                }
             })
         }
     }
@@ -21,12 +35,10 @@ export class FormContact extends Component {
         return (
             <div className="container">
                 <div className="row justify-content-center">
-                    <input type="text" onChange={(e) => {
-                        this.setState({
-                            contact: e.target.value
-                        })
-                        
-                    }} value={this.state.contact} placeholder="Name of contact" className="form-control col" />
+                    <input name="nom" value={this.state.contact.nom} onChange={this.updateValueContact} placeholder="Nom" className="form-control col" />
+                </div>
+                <div className="row justify-content-center">
+                    <input name="prenom" value={this.state.contact.prenom} onChange={this.updateValueContact} placeholder="Prénom" className="form-control col" />
                 </div>
                 <div className="row justify-content-center">
                     <button onClick={this.addContact} className="form-control btn btn-primary">Add Contact</button>
