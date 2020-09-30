@@ -57,6 +57,7 @@ namespace ApiContact.Controllers
             DataContext.Instance.SaveChanges();
             return Ok(new { message = "succeed", id = c.Id });
         }
+
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

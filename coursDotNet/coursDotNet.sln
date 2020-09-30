@@ -49,9 +49,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecommerce", "Ecommerce\Ecom
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnnoncesAspNet", "AnnoncesAspNet\AnnoncesAspNet.csproj", "{AE8F1D98-3F56-43A5-A0FD-2AE4543D0C24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIRESTCLIENTREACT", "APIRESTCLIENTREACT\APIRESTCLIENTREACT.csproj", "{B0A80CBF-580A-46C1-B1CC-E4CB3697C246}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIRESTCLIENTREACT", "APIRESTCLIENTREACT\APIRESTCLIENTREACT.csproj", "{B0A80CBF-580A-46C1-B1CC-E4CB3697C246}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiContact", "ApiContact\ApiContact.csproj", "{2A08FE8E-B8E5-43DB-A77D-79E6DFE7BD38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiContact", "ApiContact\ApiContact.csproj", "{2A08FE8E-B8E5-43DB-A77D-79E6DFE7BD38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiEcommerce", "ApiEcommerce\ApiEcommerce.csproj", "{7C9601F9-5F7B-416E-BAD0-A055C418D146}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -159,6 +161,10 @@ Global
 		{2A08FE8E-B8E5-43DB-A77D-79E6DFE7BD38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A08FE8E-B8E5-43DB-A77D-79E6DFE7BD38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A08FE8E-B8E5-43DB-A77D-79E6DFE7BD38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C9601F9-5F7B-416E-BAD0-A055C418D146}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C9601F9-5F7B-416E-BAD0-A055C418D146}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C9601F9-5F7B-416E-BAD0-A055C418D146}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C9601F9-5F7B-416E-BAD0-A055C418D146}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
