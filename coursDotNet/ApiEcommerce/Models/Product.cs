@@ -90,21 +90,6 @@ namespace Ecommerce.Models
             return DataContext.Instance.Products.Include(p=>p.Images).FirstOrDefault((p) => p.Id == id);
         }
 
-        public bool Add()
-        {
-            //string request = "INSERT INTO Product(Title, Price, Description) OUTPUT INSERTED.ID values(@title, @price, @description)";
-            //SqlCommand command = new SqlCommand(request, Connection.Instance);
-            //command.Parameters.Add(new SqlParameter("@title", Title));
-            //command.Parameters.Add(new SqlParameter("@price", Price));
-            //command.Parameters.Add(new SqlParameter("@description", Description));
-            //Connection.Instance.Open();
-            //Id = (int)command.ExecuteScalar();
-            //command.Dispose();
-            //Connection.Instance.Close()
-            DataContext.Instance.Products.Add(this);
-            DataContext.Instance.SaveChanges();
-            return Id > 0;
-
-        }
+       
     }
 }

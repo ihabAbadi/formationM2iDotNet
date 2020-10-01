@@ -1,16 +1,22 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Ecommerce.Interface;
+using Ecommerce.Models;
 using Ecommerce.Services;
+using Ecommerce.Tools;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 
 namespace ApiEcommerce
 {
@@ -28,6 +34,17 @@ namespace ApiEcommerce
         {
             services.AddScoped<IHash, HashService>();
             services.AddScoped<IUpload, UploadService>();
+            
+            services.AddScoped<IAuthorizationHandler, RoleHandler>();
+            services.AddScoped<IDisplayer, DisplayService>();
+            services.AddHttpContextAccessor();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AcceptAll", (builder) =>
+                {
+                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                });
+            });
             services.AddControllers();
         }
 
@@ -39,10 +56,11 @@ namespace ApiEcommerce
                 app.UseDeveloperExceptionPage();
             }
             app.UseStaticFiles();
+            
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseCors();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

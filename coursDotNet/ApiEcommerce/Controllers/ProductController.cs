@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Ecommerce.Interface;
 using Ecommerce.Models;
 using Ecommerce.Tools;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,24 +15,40 @@ namespace ApiEcommerce.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("AcceptAll")]
     public class ProductController : ControllerBase
     {
 
         IUpload _upload;
-        public ProductController(IUpload upload)
+        IDisplayer _displayer;
+        public ProductController(IUpload upload, IDisplayer displayer)
         {
             _upload = upload;
+            _displayer = displayer;
         }
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(Product.GetProducts());
+            List<Product> liste = Product.GetProducts();
+            liste.ForEach(p =>
+            {
+                p.Images.ForEach((i) =>
+                {
+                    i.Url = _displayer.ReWriteImageUrl(i.Url);
+                });
+            });
+            return Ok(liste);
         }
 
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            return Ok(Product.GetProductById(id));
+            Product p = Product.GetProductById(id);
+            p.Images.ForEach(i =>
+            {
+                i.Url = _displayer.ReWriteImageUrl(i.Url);
+            });
+            return Ok(p);
         }
 
         [HttpGet("search/{search}")]

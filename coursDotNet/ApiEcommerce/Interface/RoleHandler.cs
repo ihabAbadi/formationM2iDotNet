@@ -12,7 +12,6 @@ namespace Ecommerce.Interface
     {
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, RoleRequirement requirement)
         {
-
             if (!context.User.HasClaim(c => c.Type == ClaimTypes.Email))
             {
                 return Task.CompletedTask;
