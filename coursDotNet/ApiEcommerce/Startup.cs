@@ -43,7 +43,8 @@ namespace ApiEcommerce
             {
                 options.AddPolicy("AcceptAll", (builder) =>
                 {
-                    builder.AllowAnyOrigin().AllowAnyHeader();
+                    builder.AllowAnyOrigin();
+                    builder.AllowAnyHeader();
                 });
             });
 
@@ -87,9 +88,10 @@ namespace ApiEcommerce
             app.UseStaticFiles();
             
             app.UseRouting();
+            app.UseCors();
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseCors();
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

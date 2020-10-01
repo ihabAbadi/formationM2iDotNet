@@ -15,9 +15,8 @@ namespace ApiEcommerce.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize("customer")]
     [EnableCors("AcceptAll")]
-  
+    [Authorize("customer")]
     public class ProductController : ControllerBase
     {
 
