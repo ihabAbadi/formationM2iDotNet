@@ -61,9 +61,11 @@ export default class Details extends Component {
                             <Link to="/">
                                 <ButtonContainer>back to products</ButtonContainer>
                             </Link>
+                            <Link to={"/cart/"+id}>
                             <ButtonContainer
                             >add to cart
                             </ButtonContainer>
+                            </Link>
                         </div>
                     </div>
                 </div>

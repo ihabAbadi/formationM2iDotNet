@@ -1,8 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import { totalCart } from '../../services/CartService';
 
-export default function CartTotals({value}) {
-    const {cartSubTotal, cartTax, cartTotal, clearCart} = value;
+export default function CartTotals({clearCart}) {
     return (
         <React.Fragment>
             
@@ -20,17 +20,10 @@ export default function CartTotals({value}) {
                         clear cart
                     </button>
                     </Link>
-                    <h5>
-                    <span className="text-title"> subtotal :</span>{" "}
-                    <strong>$ {cartSubTotal} </strong>
-                    </h5>
-                    <h5>
-                    <span className="text-title"> tax :</span>{" "}
-                    <strong>$ {cartTax} </strong>
-                    </h5>
+                    
                     <h5>
                     <span className="text-title"> total :</span>{" "}
-                    <strong>$ {cartTotal} </strong>
+                    <strong>$ {totalCart()} </strong>
                     </h5>
                 </div>
                 </div>
