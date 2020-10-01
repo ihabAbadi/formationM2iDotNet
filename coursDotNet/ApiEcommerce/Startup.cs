@@ -7,6 +7,7 @@ using Ecommerce.Interface;
 using Ecommerce.Models;
 using Ecommerce.Services;
 using Ecommerce.Tools;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -42,8 +43,36 @@ namespace ApiEcommerce
             {
                 options.AddPolicy("AcceptAll", (builder) =>
                 {
-                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                    builder.AllowAnyOrigin().AllowAnyHeader();
                 });
+            });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("customer", policy =>
+                {
+                    //policy.RequireClaim(ClaimTypes.Email);
+                    policy.Requirements.Add(new RoleRequirement());
+                });
+                options.AddPolicy("admin", policy =>
+                {
+                    //policy.RequireClaim(ClaimTypes.Email);
+                    policy.Requirements.Add(new RoleRequirement(new Erole() { Role = "admin" }));
+                });
+            });
+            services.AddScoped<IAuthorizationHandler, RoleHandler>();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer((options) =>
+            {
+                options.SaveToken = true;
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuer = true,
+                    ValidIssuer = "m2i",
+                    ValidateAudience = true,
+                    ValidAudience = "m2i",
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("bonjour tout le monde"))
+                };
             });
             services.AddControllers();
         }

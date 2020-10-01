@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +34,24 @@ namespace ApiEcommerce.Controllers
             return Ok(new { message = "user added", id = user.Id });
         }
 
+        [HttpGet]
+        public IActionResult GetToken()
+        {
+            return Ok(new { token = GenerateToken() });
+        }
+
+        private string GenerateToken()
+        {
+            SigningCredentials credentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes("bonjour tout le monde")), SecurityAlgorithms.HmacSha256);
+            JwtSecurityToken jwt = new JwtSecurityToken(
+                issuer : "m2i",
+                audience : "m2i",
+                claims : new List<Claim>() { new Claim(ClaimTypes.Email, "ihab@utopios.net") },
+                expires: DateTime.Now.AddDays(1),
+                signingCredentials:credentials);
+            string token = new JwtSecurityTokenHandler().WriteToken(jwt);
+            return token;
+        }
         
     }
 }
