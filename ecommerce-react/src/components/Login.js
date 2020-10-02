@@ -23,7 +23,7 @@ export class Login extends Component {
         login(this.state.user).then(res=> {
             localStorage.setItem("token", res.data.token)
             localStorage.setItem("name", res.data.name)
-            this.props.history.push('/Order')
+            this.props.history.push('/order')
         }).catch((err) => {
             alert("Erreur login")
         })

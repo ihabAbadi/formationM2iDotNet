@@ -1,4 +1,5 @@
 import axios from "axios"
+import { prepareOrder } from "./CartService"
 
 const url = "http://localhost:61692/api/"
 export const getProducts = () => {
@@ -17,6 +18,13 @@ export const getProduct = (id) => {
 
 export const testToken = () => {
     return axios.get(url+'user/testToken', {headers:{
+        "Access-Control-Allow-Origin" : "*",
+        "Authorization" : "Bearer "+localStorage.getItem("token")
+    }})
+}
+
+export const confirmOrder =() =>{
+    return axios.post(url+'order', prepareOrder(), {headers:{
         "Access-Control-Allow-Origin" : "*",
         "Authorization" : "Bearer "+localStorage.getItem("token")
     }})

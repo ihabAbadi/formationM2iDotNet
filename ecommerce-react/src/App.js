@@ -22,10 +22,10 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={ProductList}></Route>
           <Route path="/details/:id" component={Details}></Route>
-          <Route path="/cart/:id" component={Cart}></Route>
           <Route path="/cart" component={Cart}></Route>
+          <Route path="/cart/:id" component={Cart}></Route>
           <Route path="/login" component={Login} ></Route>
-          <PrivateRoute path="/order" component={Order}></PrivateRoute>
+          <Route path="/order" component={Order}></Route>
           <Route component={Default}></Route>
         </Switch>
         <Modal />
@@ -43,8 +43,9 @@ class PrivateRoute extends Component {
 
   componentDidMount() {
     testToken().then((res) => {
+      console.log(res)
       this.setState({
-        authenticate: true
+        test : true
       })
     }).catch(err => {
 

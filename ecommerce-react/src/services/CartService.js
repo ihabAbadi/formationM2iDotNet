@@ -56,3 +56,17 @@ export const totalCart = () => {
 export const saveCart = (cart) => {
     localStorage.setItem("cart", JSON.stringify(cart))
 }
+
+export const prepareOrder = () => {
+    let order = {
+        total : totalCart(),
+        products : []
+    }
+    getCart().forEach(p => {
+        order.products.push({
+            ...p
+        })
+    })
+
+    return order
+}

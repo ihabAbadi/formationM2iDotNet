@@ -25,6 +25,11 @@ export default class Cart extends Component {
                 })
             })
         }
+        else {
+            this.setState({
+                cart : getCart()
+            })
+        }
     }
 
     updateQty = (id, qty) => {
@@ -54,7 +59,7 @@ export default class Cart extends Component {
                             <Title name="your" title="cart" />
                             <CartColumns />
                             <CartList updateQty={this.updateQty} removeProduct={this.removeProduct} cart={cart} />
-                            <CartTotals clearCart = {this.clearCart} value={cart} />
+                            <CartTotals history={this.props.history} clearCart = {this.clearCart} value={cart} />
                         </React.Fragment>
                     )
                         :
