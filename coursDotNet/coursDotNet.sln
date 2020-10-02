@@ -53,7 +53,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIRESTCLIENTREACT", "APIRE
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiContact", "ApiContact\ApiContact.csproj", "{2A08FE8E-B8E5-43DB-A77D-79E6DFE7BD38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiEcommerce", "ApiEcommerce\ApiEcommerce.csproj", "{7C9601F9-5F7B-416E-BAD0-A055C418D146}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiEcommerce", "ApiEcommerce\ApiEcommerce.csproj", "{7C9601F9-5F7B-416E-BAD0-A055C418D146}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApi", "WpfApi\WpfApi.csproj", "{863A3EAA-141D-4D24-97E4-21B4FF2CB109}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -165,6 +167,10 @@ Global
 		{7C9601F9-5F7B-416E-BAD0-A055C418D146}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C9601F9-5F7B-416E-BAD0-A055C418D146}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C9601F9-5F7B-416E-BAD0-A055C418D146}.Release|Any CPU.Build.0 = Release|Any CPU
+		{863A3EAA-141D-4D24-97E4-21B4FF2CB109}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{863A3EAA-141D-4D24-97E4-21B4FF2CB109}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{863A3EAA-141D-4D24-97E4-21B4FF2CB109}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{863A3EAA-141D-4D24-97E4-21B4FF2CB109}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
