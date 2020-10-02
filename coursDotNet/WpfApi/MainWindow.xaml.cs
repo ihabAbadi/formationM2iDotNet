@@ -34,6 +34,8 @@ namespace WpfApi
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer" ,"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJpaGFiQHV0b3Bpb3MubmV0IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6ImFiYWRpIGloYWIiLCJleHAiOjE2MDE3MzM5ODQsImlzcyI6Im0yaSIsImF1ZCI6Im0yaSJ9.4bYE23YezvKggVn74a8Jc9FCA8mZ5bB5br17OPR_Qc0");
             client.BaseAddress = new Uri(@"http://localhost:61692");
             HttpResponseMessage response = await client.GetAsync("api/product");
+            HttpContent content = new StringContent("json");
+            client.PostAsync("url", content);
             string contenu = await response.Content.ReadAsStringAsync();
         }
     }
