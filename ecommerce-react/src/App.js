@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Switch, Route} from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 //import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -10,6 +10,9 @@ import Details from './components/Details';
 import Cart from './components/Cart';
 import Default from './components/Default';
 import Modal from './components/Modal';
+import { Login } from './components/Login';
+import { Order } from './components/Order';
+import { testToken } from './services/ApiService';
 
 class App extends Component {
   render() {
@@ -21,6 +24,8 @@ class App extends Component {
           <Route path="/details/:id" component={Details}></Route>
           <Route path="/cart/:id" component={Cart}></Route>
           <Route path="/cart" component={Cart}></Route>
+          <Route path="/login" component={Login} ></Route>
+          <PrivateRoute path="/order" component={Order}></PrivateRoute>
           <Route component={Default}></Route>
         </Switch>
         <Modal />
@@ -28,5 +33,31 @@ class App extends Component {
     );
   }
 }
+class PrivateRoute extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      authenticate: false
+    }
+  }
 
+  componentDidMount() {
+    testToken().then((res) => {
+      this.setState({
+        authenticate: true
+      })
+    }).catch(err => {
+
+    })
+  }
+  render() {
+    return (
+      this.state.authenticate ? <Route {...this.state.props}></Route> : <Redirect
+        to={{
+          pathname: "/login"
+        }}
+      />
+    )
+  }
+}
 export default App;
